@@ -136,7 +136,6 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
     </div>
   </div>
   <div class="header-right">
-    <input id="claude-key" type="password" placeholder="Claude API key…" class="key-input">
     <button class="btn-outline" onclick="openRiepilogo()">📋 Riepilogo medico</button>
     <button class="btn-outline" onclick="openEdit()">✏️ Modifica</button>
   </div>
@@ -386,22 +385,20 @@ function removeLoading(id){ var e=document.getElementById('loading-'+id); if(e) 
 function sendMsg(id){
   var inp=document.getElementById('input-'+id); var btn=document.getElementById('btn-'+id);
   if(!inp) return; var text=inp.value.trim(); if(!text) return;
-  var apiKey=document.getElementById('claude-key').value.trim();
-  if(!apiKey){ alert('Inserisci la Claude API key in alto.'); return; }
   inp.value=''; if(btn) btn.disabled=true;
   addMsg(id,'user',text);
   if(!chatHistories[id]) chatHistories[id]=[];
   chatHistories[id].push({role:'user',content:text});
   addLoading(id);
-  fetch('https://api.anthropic.com/v1/messages',{
+  fetch('https://holy-band-5ed2.pasca2009.workers.dev/',{
     method:'POST',
-    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-allow-browser':'true'},
+    headers:{'Content-Type':'application/json'},
     body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,system:getSystem(id),tools:[{type:'web_search_20250305',name:'web_search'}],messages:chatHistories[id]})
   })
   .then(function(r){return r.json();})
   .then(function(data){
     var reply=''; if(data.content){ data.content.forEach(function(b){ if(b.type==='text') reply+=b.text; }); }
-    if(!reply) reply=data.error?('Errore API: '+data.error.message):'Nessuna risposta.';
+    if(!reply) reply=data.error?('Errore: '+data.error.message):'Nessuna risposta.';
     removeLoading(id); addMsg(id,'ai',reply);
     chatHistories[id].push({role:'assistant',content:reply});
   })
@@ -697,8 +694,6 @@ function openSalvati(){
 }
 
 function openRiepilogo(){
-  var apiKey=document.getElementById('claude-key').value.trim();
-  if(!apiKey){ alert('Inserisci la Claude API key in alto per generare il riepilogo.'); return; }
   var id='riepilogo'; panelStack=['riepilogo'];
   document.getElementById('home').style.display='none';
   document.getElementById('panel').classList.add('open');
