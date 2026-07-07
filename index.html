@@ -180,8 +180,8 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
   <div class="tile" onclick="openPanel('macula')">
     <div class="tile-icon">👁️</div>
     <div class="tile-title">Maculopatia &amp; occhi</div>
-    <div class="tile-sub">OD operato · OS visita 11 mag</div>
-    <div class="tile-badges"><span class="tag-green">OD recupero</span><span class="tag-amber">OS monitor</span></div>
+    <div class="tile-sub">DMLE dry stabile · controllo 11/05/2026</div>
+    <div class="tile-badges"><span class="tag-green">Stabile, no MNV</span></div>
     <span class="tile-arrow">›</span>
   </div>
   <div class="tile" onclick="openPanel('patologie')">
@@ -200,9 +200,9 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
   </div>
   <div class="tile" onclick="openPanel('storia')">
     <div class="tile-icon">📖</div>
-    <div class="tile-title">Storia &amp; referti</div>
-    <div class="tile-sub">Interventi, esami, PS</div>
-    <div class="tile-badges"><span class="tag-blue">Archivio</span></div>
+    <div class="tile-title">Archivio referti</div>
+    <div class="tile-sub">Tutti i referti per specialità</div>
+    <div class="tile-badges"><span class="tag-blue">9 aree</span></div>
     <span class="tile-arrow">›</span>
   </div>
   <div class="tile" onclick="openSalvati()">
@@ -250,7 +250,8 @@ var profile = {
     "Vitamina D - dose non specificata, 25-OH MAI dosata",
     "Omega 3 - dopo i pasti","Coenzima Q10 - utile con statine",
     "Creatina - massa muscolare","Magnesio","Collagene UC-II - gonartrosi/coxartrosi",
-      ],
+    "Kerà crema sera (cheratosi attiniche)","Actinic Control FP100 mattino (cheratosi attiniche)"
+  ],
   patologie_attive:[
     "Ipertensione arteriosa (in terapia)","Dislipidemia - LDL 98, target ≤70",
     "DMLE bilaterale con drusen diffuse","Pucker maculare OD - operato 26/05/2025, VOD 8/10",
@@ -279,23 +280,24 @@ var profile = {
   ],
   spirometria:{data:"19/12/2025",risultato:"Deficit ostruttivo lieve. FEV1 3.11L (125%), FVC 4.41L (137%), FEV1/FVC 70.56%. SatO2 96%."},
   maculopatia:{
-    diagnosi:"DMLE (Degenerazione Maculare Legata all'Età) bilaterale, diagnosticata ~10 anni fa (~2014). Familiarità per maculopatia senile essudativa.",
+    diagnosi:"DMLE (Degenerazione Maculare Legata all'Età) bilaterale, forma SECCA (dry AMD), diagnosticata ~10 anni fa (~2014). Familiarità per maculopatia senile essudativa. Ultimo controllo 11/05/2026: stabile, senza attivazione neovascolare.",
     od:{
-      stato:"Pseudofachico (IOL). VOD 8/10 (set 2025).",
-      storia:"DMLE con drusen → membrana epiretinica (pucker) → 2RT laser 12/03/2024 → evoluzione a pucker maculare con edema maculare cistoide (FAG feb 2025) → intervento chirurgico 26/05/2025 (vitrectomia+peeling pucker+MLI+endolaser 360°+FACO IOL). VOD passato da 5/10 (feb 2025) a 4/10 post-op precoce a 8/10 (set 2025).",
-      terapia_postop:"Tobradex/Netildex + Yellox, poi sospesi. Renova Tre al bisogno."
+      stato:"Pseudofachico (IOL regolare). ODV 8/10 (-1.00/100). Esiti di peeling. DMLE dry stabile.",
+      storia:"DMLE con drusen → membrana epiretinica (pucker) → 2RT laser 12/03/2024 → evoluzione a pucker maculare con edema maculare cistoide (FAG feb 2025) → intervento chirurgico 26/05/2025 (vitrectomia+peeling pucker+MLI+endolaser 360°+FACO IOL). VOD: 5/10 (feb 2025) → 4/10 post-op precoce → 8/10 (set 2025, confermato mag 2026). OCT 11/05/2026: DMS dry senza IRF né SRF né segni di MNV.",
+      terapia_postop:"Tobradex/Netildex + Yellox, poi sospesi."
     },
     os:{
-      stato:"Fachico con cataratta iniziale (opacità corticali/nucleari). VOS 10/10 con correzione.",
-      storia:"DMLE con drusen diffuse → 2RT laser 22/09/2024. Cataratta iniziale in osservazione. Non pucker. FAG feb 2025: drusen senza leakage patologico.",
-      prossimo:"Visita ambulatorio maculopatia 11/05/2026 (Santa Maria Nuova RE) + OCT."
+      stato:"Fachico con facosclerosi (cataratta iniziale). OSV 9-10/10 nat. DMLE dry stabile.",
+      storia:"DMLE con drusen diffuse → 2RT laser 22/09/2024. Cataratta iniziale (facosclerosi) in osservazione. Non pucker. FAG feb 2025: drusen senza leakage. OCT 11/05/2026: DMS dry senza IRF né SRF né segni di MNV.",
+      prossimo:"Controlli periodici via CUP / oculista di fiducia. Prossimo OCT di follow-up da programmare."
     },
     esami_strumentali:[
       "OCT 27/02/2023 (Hesperia): sollevamenti drusenoidi EPR-Bruch bilaterali, contrazione limitante interna OD",
       "OCT 15/11/2023 (PS): maculopatia drusenoide, ipereflessia MLI OD",
-      "Fluorangiografia 28/02/2025 (Policlinico MO): OD edema maculare cistoide in sindrome interfaccia vitreo-retinica, drusen; OS drusen senza leakage"
+      "Fluorangiografia 28/02/2025 (Policlinico MO): OD edema maculare cistoide in sindrome interfaccia vitreo-retinica, drusen; OS drusen senza leakage",
+      "OCT macula + fundus 11/05/2026 (Amb. Macula Correggio, Dr.ssa Ferraro): OO DMS dry senza IRF né SRF né segni di attivazione MNV — quadro stabile, forma secca"
     ],
-    terapia_attuale:"Vision Defender Plus (AREDS 2) 2 cp/die. Amsler test domiciliare. Protezione solare.",
+    terapia_attuale:"Vision Defender Plus (AREDS 2) 2 cp/die. Automonitoraggio con test di Amsler. Protezione solare.",
     laser_2rt:"2RT (Retinal Rejuvenation Therapy) = laser a nanosecondi a soglia sottovisibile, per DMLE intermedia con drusen, stimola il ricambio dell'EPR per rallentare la progressione. OD 12/03/2024, OS 22/09/2024."
   },
   vaccinazioni:{
@@ -303,7 +305,69 @@ var profile = {
     antiinfluenzale:"nov 2025 ✅",antipneumococcica:"dic 2025 ✅",
     herpes_zoster:"non documentata ⚠️",anti_covid:"non documentata ⚠️"
   },
-  screening:{colon_retto:"sangue occulto negativo (lug 2024)"}
+  screening:{colon_retto:"sangue occulto negativo (lug 2024)"},
+
+  referti_archivio:{
+    "Oculistica":[
+      {data:"10/01/2023",struttura:"Finale Emilia · Dr. Fonso",testo:"VOD 10/10 nat, VOS 10/10 nat. Drusen colloidi diffuse e atrofi confluenti. DPV in OD. DMLE diagnosticata. Prescritta OCT. Assume AREDS 2."},
+      {data:"27/02/2023",struttura:"Hesperia Modena · Dr.ssa Benassi (OCT)",testo:"OCT macula: OD contrazione limitante interna, profilo maculare regolare, numerosi sollevamenti drusenoidi EPR-Bruch. OS profilo regolare, numerosi drusenoidi EPR-Bruch."},
+      {data:"15/11/2023",struttura:"PS Oculistico Modena · Dr. Bianchi",testo:"Metamorfopsie OO. VOD/VOS 10/10. OCT: maculopatia drusenoide, OD ipereflessia MLI invariata. Diagnosi: maculopatia drusenoide nota."},
+      {data:"06/02/2024",struttura:"Life Clinic Bologna · Dr. Cappuccini",testo:"1a visita. DMLE OO da ~10 anni. Familiarità maculopatia. VOD -0.50=10/10, VOS +0.25-0.50=10/10. TOD 18, TOS 16. Amsler OD ++-, OS ---. Velatura nucleare lente. OD membrana epiretinica, OS DMLE. Valutare 2RT."},
+      {data:"12/03/2024",struttura:"Life Clinic Bologna · Dr. Cappuccini",testo:"Laser 2RT (Retinal Rejuvenation Therapy) occhio destro per DMLE intermedia."},
+      {data:"22/09/2024",struttura:"Life Clinic Bologna · Dr. Cappuccini",testo:"Laser 2RT occhio sinistro per DMLE. (OD: miglioramento sensibilità dopo 2RT di febbraio)."},
+      {data:"19/02/2025",struttura:"PS Oculistico Modena · Dr. Campi",testo:"Deficit visivo OD da 3 settimane. VOD 5/10 con foro. FOD: maculopatia colloide e pucker maculare. Pianificata FAG 28/2 e chirurgia retinica."},
+      {data:"24/02/2025",struttura:"Oculistica Correggio · Dr. Vecchi",testo:"DMLE complicata da ERM OD. VOD nat 5/10, VOS +0.5 sf 6/10. EBMOO opacità corticali. TOO 15. FOD: DMLE aspetto cistico, non escludere MNVSR. FOS: DMLE drusen diffuse. Pianificata FAG OD."},
+      {data:"28/02/2025",struttura:"Policlinico Modena · Dr.ssa Peppoloni (FAG)",testo:"Fluorangiografia: OD iperfluorescenza da pooling compatibile con edema maculare cistoide in sindrome interfaccia vitreo-retinica + drusen, no leakage patologici. OS drusen, no alterazioni rilevanti."},
+      {data:"26/05/2025",struttura:"Day Hospital Correggio · Dr. Vecchi (INTERVENTO)",testo:"OD vitrectomia centrale e periferica + peeling pucker + MLI + endolaser periferico 360° + FACO IOL nel sacco. Anestesia locale. Diagnosi: pucker OD in DMLE. Dimesso con Netildex 5v/die."},
+      {data:"27/05/2025",struttura:"Oculistica Correggio · Dr. Dondi",testo:"Post-op giorno 1. BOD cornea indenne, IOL regolare. TOD 15. FOD: esiti VVPP, gas in CV 70%, macula in piano. Tobradex 5v/die."},
+      {data:"06/06/2025",struttura:"Oculistica Correggio · Dr. Dondi",testo:"Post-op 11 giorni. VOD 4/10 nat. TOD 15. FOD: gas in CV 20%, macula in piano libera da trazioni. Aggiunto Yellox OD."},
+      {data:"15/09/2025",struttura:"Aesculapio San Felice · Dr. Procopio",testo:"VOD 8/10, VOS 10/10 corretto. Pseudofachia OD, opacità lente OS. FOO: peeling OD per pucker, OS distrofia maculare con molte drusen bilaterali. TOO 15/13. Richiesta visita amb. maculopatia + OCT tra 8 mesi."},
+      {data:"11/05/2026",struttura:"Amb. Macula Correggio · Dr.ssa Ferraro (OCT)",testo:"ODV 8/10 -1.00/100, OSV 9-10/10 nat. OOT 13-12. OD pseudofachia regolare, OS facosclerosi. OCT macula+fundus: OO DMS dry senza IRF né SRF né segni di attivazione MNV. Dry AMD stabile. Continua AREDS 2 + Amsler."}
+    ],
+    "Rachide & Neurochirurgia":[
+      {data:"16/12/2022",struttura:"CAF Modena · Dr. Colombi (ortopedico)",testo:"Lombosciatalgia destra ingravescente da alcuni mesi. Non segni di radicolopatia. Prescritta RMN rachide lombo-sacrale."},
+      {data:"06/06/2023",struttura:"Ospedale Sassuolo (RM)",testo:"RM lombo-sacrale: anterolistesi I grado L4-L5. Pseudobulging L4-L5 con fissurazioni anulus, stenosi canale marcata con artrosi interapofisaria. Bulging L5-S1, L3-L4, L2-L3. Cisti di Tarlov sacrale ~2cm a S2."},
+      {data:"21/11/2024",struttura:"Ospedale Sassuolo (RX)",testo:"RX rachide+bacino+anche: invariata anterolistesi I grado L4-L5. Spondilo-unco-artrosi. Calcificazioni aortiche. Coxartrosi bilaterale modesta. Ridotto tono calcico."},
+      {data:"09/01/2025",struttura:"Xray One (RMN)",testo:"RMN lombo-sacrale: ernia discale posteriore mediana voluminosa L4-L5 con stenosi canalare acquisita grado severo. Modesta erniazione L5-S1 paramediana sinistra."},
+      {data:"20/02/2025",struttura:"Bellaria Bologna (RX torace preop)",testo:"Trama polmonare accentuata (bronchitico-cronica). Strie fibro-disventilatorie base sn. No versamenti. OCV nei limiti per età."},
+      {data:"19-22/03/2025",struttura:"Osp. Bellaria Bologna · dott.ssa Serchi (INTERVENTO)",testo:"Stabilizzazione vertebrale L4-L5 con viti peduncolari + barre + cage intersomatica + laminoartrectomia L5. Anestesia generale. Diagnosi ingresso: stenosi severa L4-L5 (Schizas C). TC 20/3: corretto posizionamento, no complicanze. Decorso regolare."},
+      {data:"22/05/2025",struttura:"Villa Rosa Modena (RX post-op)",testo:"RX rachide lombo-sacrale: esiti stabilizzazione L4-L5 con barre + viti transpeduncolari + cage. Spazi discali conservati. Allineamento muro somatico posteriore conservato."}
+    ],
+    "Cardiovascolare (Eco-TSA)":[
+      {data:"12/12/2022",struttura:"San Felice · Dr. Segalla",testo:"Eco-TSA: lieve ateromasia parietale bilaterale (carotidi comune/interna/esterna), pervietà con flusso conservato. Flusso vertebrale normodiretto bilaterale."},
+      {data:"11/06/2025",struttura:"Aesculapio · Dr. Mascaro",testo:"Eco-TSA: DX ateromasia parietale carotide comune + placca iperecogena origine c.interna stenosi <30% non emodinamica. SX modesta ateromasia biforcazione. Vertebrale V2 pervia bilaterale."},
+      {data:"29/06/2026",struttura:"Angiologia Modena · Dr.ssa Zambelli",testo:"Eco-TSA: DX placca tratto distale carotide comune stenosi 23% + iperplasia intimale biforcazione. SX iperplasia intimale carotide comune e biforcazione. Profili velocimetrici nei limiti per età. Vertebrali pervie normodiretto. Quadro stabile."}
+    ],
+    "Esami di laboratorio":[
+      {data:"05/10/2022",struttura:"Baggiovara",testo:"Glicemia 98, Creatinina 0.84, Col.tot 212, HDL 53, Trigliceridi 86, GPT 17, TSH 2.89, PSA 0.84. Emocromo nella norma. Urine ok."},
+      {data:"27/06/2023",struttura:"Baggiovara",testo:"Glicemia 85, Creatinina 0.95, Col.tot 233, HDL 46, Trigliceridi 92, GPT 12, PCR 0.7, TSH 3.14, RF 2. ANA negativo, CCP 0.8. Elettroforesi nella norma."},
+      {data:"12/02/2025",struttura:"Baggiovara",testo:"Glicemia 92, Creatinina 0.81, Ac.urico 6.2, Col.tot 139, HDL 36 (basso), LDL 93, Trigliceridi 99, GPT 26, Fosf.alc 77, TSH 2.96. Urine ok."},
+      {data:"20/02/2025",struttura:"Bellaria (preop)",testo:"Glicemia 93, Creatinina 0.87, eGFR 88, Sodio 144, Potassio 4.3, Fibrinogeno 430 (lievemente alto), INR 0.94, aPTT 0.96. Emocromo nella norma."},
+      {data:"17/12/2025",struttura:"Baggiovara",testo:"Glicemia 97, Creatinina 0.84, Ac.urico 4.6, Col.tot 160, LDL 98, HDL 44, Col.non-HDL 116, Trigliceridi 74, GPT 21, Fosf.alc 103, PCR 0.5, α1-antitripsina 170, TSH 2.84, PSA 2.11. Elettroforesi: no componenti monoclonali. Urine ok (pH 7.0)."}
+    ],
+    "Pneumologia":[
+      {data:"19/12/2025",struttura:"Policlinico Modena · Dr.ssa Rubini (spirometria)",testo:"Spirometria flusso-volume: deficit ostruttivo lieve. VC max 4.48, FVC 4.41 (137%), FEV1 3.11 (125%), FEV1/FVC 70.56%. MEF50 e MEF25 ridotti."},
+      {data:"22/12/2025",struttura:"Pneumologia Carpi",testo:"Visita per sospetta BPCO. Ex fumatore ~15 anni ~30 sig/die. SatO2 96% AA, MV lievemente ridotto. A volte tosse con espettorazione mucosa. EOS norma, PCR negativa, α1-antitripsina 170 (norma). Conclusione: sospetta BPCO lieve. Prescritta Rolufta 55 mcg + test broncodilatazione."}
+    ],
+    "Ortopedia":[
+      {data:"28/06/2023",struttura:"Mirandola (RX)",testo:"RX ginocchio DX sotto carico: iniziale appuntimento spine intercondiliche, rima femoro-tibiale conservata. RX piedi: marcato valgismo alluce bilaterale, artropatia I metatarso-falangea, iperostosi teste metatarsali."},
+      {data:"30/08/2025",struttura:"PS Ortopedico Modena · Dr.ssa Ferrari",testo:"Gonalgia DX atraumatica da 10 giorni. Ginocchio fresco e asciutto, lieve dolore emirima mediale, ROM completo. Arcoxia 90mg 7gg. RX ginocchio + controllo ortopedico."},
+      {data:"18/09/2025",struttura:"Ospedale Sassuolo · Dr.ssa D'Andrea (RX)",testo:"RX ginocchio DX + rotule: gonartrosi tricompartimentale DX, artropatia femoro-tibiale SX. Disomogeneità sottocorticali condili femorali interni. Lieve varo DX. Rotula SX lieve iperpressione esterna."}
+    ],
+    "Dermatologia":[
+      {data:"16/12/2022",struttura:"Modena · Dr.ssa Padalino",testo:"Visita nevi. Rari nevi melanocitici senza atipia. Angiomi rubino e cheratosi seborroiche tronco. Nevo blu cavo popliteo DX. Nessuna lesione patologica. Protezione solare SPF 50+."},
+      {data:"26/05/2025",struttura:"Modena · Dr.ssa Schiavi",testo:"Cheratosi seborroica emidorso SX (non patologica). Cheratosi attiniche fronte. Terapia: Kerà cr sera x 3 mesi + Actinic Control FP100 mattino."}
+    ],
+    "Pronto Soccorso":[
+      {data:"29/12/2019",struttura:"PS Ortopedico Modena",testo:"Trauma polso SX 3 giorni prima. Diagnosi: frattura composta EDR polso SX. Apparecchio gessato, prognosi 30 giorni."},
+      {data:"05/08/2024",struttura:"PS Oculistico Modena",testo:"Congiuntivite bilaterale non responsiva da ~20 giorni. Secrezione sieromucosa, iperemia con ipertrofia papillare. Terapia: Ducressa + Dropsept collirio."},
+      {data:"30/09/2024",struttura:"PS Modena",testo:"Morso di cane 3-4-5° dito mano DX. Ferite lacero-contuse multiple. Amoxicillina+clavulanico 6gg, antitetanica passiva, medicazioni."}
+    ],
+    "Vaccinazioni & Screening":[
+      {data:"16/07/2024",struttura:"Screening AUSL Modena",testo:"Ricerca sangue occulto feci (screening colon-retto): esito NEGATIVO."},
+      {data:"24/12/2025",struttura:"Igiene Pubblica Modena (certificato)",testo:"Antitetanica: 4 dosi (2002-2003, ultima ott 2024). Antidifterica + antipertossica ott 2024 (Tribaccine). Antiinfluenzale 12/11/2025 (Fluad). Antipneumococcica 23/12/2025 (Apexxnar). NON documentate: Herpes Zoster, anti-COVID."}
+    ]
+  }
 };
 
 var SYSTEM_PROMPT = "Sei un medico consulente personale esperto e multidisciplinare per il paziente Cataldo Pasquale, 70 anni. Competenze: medicina generale, cardiologia, oculistica, ORL, ortopedia, dermatologia, endocrinologia, pneumologia.\n\nPROFILO PAZIENTE COMPLETO: {PROFILE}\n\nUSA: avviso per situazioni da monitorare, URGENTE per situazioni critiche, ok per parametri nella norma. Risposte in italiano, usa grassetto e liste per chiarezza. Le decisioni terapeutiche spettano sempre ai medici reali.";
@@ -444,9 +508,9 @@ PANELS.cal = {
   quick:['In quale ordine prenotare le visite mancanti?','Cosa aspettarsi dalla visita maculopatia OS?'],
   render:function(c){
     var b=mk('div','block'); var bt=mk('div','block-title'); bt.textContent='Visite e scadenze'; b.appendChild(bt);
-    [{d:'11',m:'Mag',ds:'',dc:'',t:'Ambulatorio Maculopatia OS',s:'Osp. Santa Maria Nuova, RE · ore 8:15',dot:'dot-green'},
+    [{d:'11',m:'Mag',ds:'background:var(--grnbg);border-color:var(--green)',dc:'color:var(--grnt)',t:'Ambulatorio Maculopatia',s:'Eseguita 11/05/2026 · DMLE dry stabile, no MNV',dot:'dot-green'},
      {d:'29',m:'Giu',ds:'background:var(--grnbg);border-color:var(--green)',dc:'color:var(--grnt)',t:'Eco-TSA carotide',s:'Eseguita 29/06/2026 · placca DX 23%, stabile',dot:'dot-green'},
-     {d:'Mag',m:'26',ds:'background:var(--ambrbg);border-color:var(--amber)',dc:'color:var(--ambrt)',t:'OCT macula bilaterale',s:'Da prenotare · ~maggio 2026',dot:'dot-amber'},
+     {d:'OCT',m:'--',ds:'background:var(--ambrbg);border-color:var(--amber)',dc:'color:var(--ambrt)',t:'OCT macula di follow-up',s:'Da programmare via CUP/oculista di fiducia',dot:'dot-amber'},
      {d:'TBD',m:'--',ds:'background:var(--redbg);border-color:var(--red)',dc:'color:var(--redt)',t:'Test broncodilatazione',s:'Pneumologia Carpi · da prenotare',dot:'dot-red'},
      {d:'TBD',m:'--',ds:'background:var(--redbg);border-color:var(--red)',dc:'color:var(--redt)',t:'Visita ORL + audiometria',s:'Da prenotare',dot:'dot-red'},
      {d:'TBD',m:'--',ds:'background:var(--redbg);border-color:var(--red)',dc:'color:var(--redt)',t:'Follow-up neurochirurgico',s:'Post stabilizzazione L4-L5',dot:'dot-red'}
@@ -616,21 +680,53 @@ PANELS.patologie = {
 };
 
 PANELS.storia = {
-  title:'📖 Storia & referti',
-  quick:['Riassumi la mia storia clinica','Cerca novità sui miei interventi'],
+  title:'📖 Archivio referti',
+  quick:['Riassumi la mia storia clinica','Qual è l\'evoluzione della mia DMLE?'],
   render:function(c){
-    var mkBlock=function(title,items){
-      var b=mk('div','block'); var bt=mk('div','block-title'); bt.textContent=title; b.appendChild(bt);
-      items.forEach(function(it){ var r=mk('div','alert-row'); var dot=mk('div','alert-dot dot-blue'); var t=mk('div','alert-text'); t.textContent=it; r.appendChild(dot); r.appendChild(t); b.appendChild(r); });
+    var arch=profile.referti_archivio;
+    var intro=mk('div','block'); var it=mk('p',''); it.style.cssText='font-size:12px;color:var(--text2)'; it.textContent='Tocca una specialità per aprire i referti. Ordinati dal più recente.'; intro.appendChild(it); c.appendChild(intro);
+    Object.keys(arch).forEach(function(spec){
+      var refs=arch[spec].slice().reverse();
+      var b=mk('div','block'); b.style.padding='0';
+      var head=mk('div',''); head.style.cssText='padding:12px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer';
+      var lbl=mk('div',''); lbl.style.cssText='font-size:13px;font-weight:500;color:var(--text)'; lbl.textContent=spec;
+      var cnt=mk('span',''); cnt.className='tag-blue'; cnt.textContent=refs.length+' referti';
+      var right=mk('div',''); right.style.cssText='display:flex;align-items:center;gap:8px';
+      var chev=mk('span',''); chev.textContent='▾'; chev.style.cssText='color:var(--text2);transition:transform .2s';
+      right.appendChild(cnt); right.appendChild(chev);
+      head.appendChild(lbl); head.appendChild(right); b.appendChild(head);
+      var body=mk('div',''); body.style.cssText='display:none;padding:0 14px 12px';
+      refs.forEach(function(r){
+        var card=mk('div',''); card.style.cssText='border-top:0.5px solid var(--border2);padding:10px 0';
+        var dt=mk('div',''); dt.style.cssText='display:flex;justify-content:space-between;gap:8px;margin-bottom:4px';
+        var dd=mk('span',''); dd.style.cssText='font-size:12px;font-weight:500;color:var(--bluet)'; dd.textContent=r.data;
+        var st=mk('span',''); st.style.cssText='font-size:11px;color:var(--text2);text-align:right'; st.textContent=r.struttura;
+        dt.appendChild(dd); dt.appendChild(st); card.appendChild(dt);
+        var tx=mk('div',''); tx.style.cssText='font-size:12px;color:var(--text3);line-height:1.5'; tx.textContent=r.testo; card.appendChild(tx);
+        var abtn=mk('button','approfondisci-btn'); abtn.textContent='💬 Approfondisci con l\'AI'; abtn.style.marginTop='8px';
+        abtn.addEventListener('click',(function(rr,sp){return function(){ openRefertoDetail(rr,sp); };})(r,spec));
+        card.appendChild(abtn);
+        body.appendChild(card);
+      });
+      b.appendChild(body);
+      head.addEventListener('click',(function(bd,cv){return function(){ var open=bd.style.display!=='none'; bd.style.display=open?'none':'block'; cv.style.transform=open?'':'rotate(180deg)'; };})(body,chev));
       c.appendChild(b);
-    };
-    mkBlock('Interventi e procedure',profile.storia_chirurgica);
-    mkBlock('Eco-TSA (evoluzione carotidea)',profile.eco_tsa.map(function(e){return e.data+' — '+e.risultato;}));
-    mkBlock('Pneumologia',[profile.spirometria.data+' — '+profile.spirometria.risultato]);
-    mkBlock('Vaccinazioni',[profile.vaccinazioni.antitetanica,'Influenza: '+profile.vaccinazioni.antiinfluenzale,'Pneumococco: '+profile.vaccinazioni.antipneumococcica,'Herpes Zoster: '+profile.vaccinazioni.herpes_zoster,'Anti-COVID: '+profile.vaccinazioni.anti_covid]);
-    mkBlock('Screening',[profile.screening.colon_retto]);
+    });
   }
 };
+
+function openRefertoDetail(referto, specialita){
+  var id='refdetail'; panelStack.push('refdetail');
+  document.getElementById('panel-title').textContent='💬 '+referto.data+' · '+specialita;
+  var content=document.getElementById('panel-content'); content.innerHTML='';
+  var rb=mk('div','block'); var rbt=mk('div','block-title'); rbt.textContent='Referto — '+referto.struttura; rb.appendChild(rbt);
+  var rp=mk('p',''); rp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6'; rp.textContent=referto.testo; rb.appendChild(rp); content.appendChild(rb);
+  var quick=['Spiegami questo referto in parole semplici','Cosa significano i termini tecnici?','È coerente con la mia storia clinica?','Domande da porre al medico su questo'];
+  buildChat(id,quick,content);
+  chatHistories[id]=[{role:'user',content:'CONTESTO REFERTO ('+specialita+', '+referto.data+', '+referto.struttura+'): '+referto.testo+'\n\nHo caricato questo referto. Attendi le mie domande su di esso.'},{role:'assistant',content:'Ho letto il referto del '+referto.data+'. Chiedimi pure cosa vuoi sapere: posso spiegartelo in parole semplici, chiarire i termini tecnici, o dirti come si inserisce nella tua storia clinica.'}];
+  var msgs=document.getElementById('msgs-'+id);
+  if(msgs){ chatHistories[id].forEach(function(m){ if(m.role==='assistant'){ addMsg(id,'ai',m.content); } }); }
+}
 
 function openPanel(id){
   var p=PANELS[id]; if(!p) return;
