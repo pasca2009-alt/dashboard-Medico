@@ -136,6 +136,7 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
     </div>
   </div>
   <div class="header-right">
+    <button class="btn-outline" onclick="copiaProfilo()">📋 Copia profilo</button>
     <button class="btn-outline" onclick="openRiepilogo()">📋 Riepilogo medico</button>
     <button class="btn-outline" onclick="openEdit()">✏️ Modifica</button>
   </div>
@@ -247,11 +248,11 @@ var profile = {
   ],
   integratori:[
     "Vision Defender Plus (AREDS 2) - 2 cp/die per DMLE",
-    "Vitamina D - dose non specificata, 25-OH MAI dosata",
     "Omega 3 - dopo i pasti","Coenzima Q10 - utile con statine",
     "Creatina - massa muscolare","Magnesio","Collagene UC-II - gonartrosi/coxartrosi",
     "Kerà crema sera (cheratosi attiniche)","Actinic Control FP100 mattino (cheratosi attiniche)"
   ],
+  integratori_sospesi:["Vitamina D - sospesa da tempo (25-OH MAI dosata: da controllare al prossimo prelievo)"],
   patologie_attive:[
     "Ipertensione arteriosa (in terapia)","Dislipidemia - LDL 98, target ≤70",
     "DMLE bilaterale con drusen diffuse","Pucker maculare OD - operato 26/05/2025, VOD 8/10",
@@ -545,8 +546,8 @@ PANELS.farm = {
      {n:'Actinic Control FP100',d:'Mattino · cheratosi'}
     ].forEach(function(p){ var pc=mk('div','pill-card'); if(p.s)pc.style.cssText=p.s; var pn=mk('div','pill-name'); pn.textContent=p.n; var pd=mk('div','pill-dose'); pd.textContent=p.d; pc.appendChild(pn); pc.appendChild(pd); if(p.note){var pno=mk('div','pill-note'); pno.textContent='⚠️ '+p.note; pc.appendChild(pno);} g2.appendChild(pc); });
     b2.appendChild(g2); c.appendChild(b2);
-    var note=mk('div','block'); var nt=mk('div','block-title'); nt.textContent='Nota'; note.appendChild(nt);
-    var np=mk('p',''); np.style.cssText='font-size:12px;color:var(--text2)'; np.textContent='Rolufta 55 mcg sospeso (non più in terapia).'; note.appendChild(np); c.appendChild(note);
+    var note=mk('div','block'); var nt=mk('div','block-title'); nt.textContent='Sospesi'; note.appendChild(nt);
+    var np=mk('p',''); np.style.cssText='font-size:12px;color:var(--text2);line-height:1.6'; np.innerHTML='• <strong>Rolufta 55 mcg</strong> — non più in terapia<br>• <strong>Vitamina D</strong> — sospesa da tempo (25-OH mai dosata, da controllare al prossimo prelievo)'; note.appendChild(np); c.appendChild(note);
   }
 };
 
@@ -817,7 +818,7 @@ function openRiepilogo(){
   row.appendChild(inp); row.appendChild(sbtn); actions.appendChild(row); content.appendChild(actions);
   chatHistories[id]=[];
   var inpEl=document.getElementById('input-'+id);
-  if(inpEl){ inpEl.value='Redigi una lettera di sintesi clinica da un medico consulente al medico curante (Dr. Carnevale), sul paziente Pasquale Cataldo . Registro professionale medico-medico, come una relazione specialistica reale: asciutta, terminologia clinica appropriata, niente elenchi puntati scolastici né toni divulgativi. Apri con una riga anagrafica sintetica (età, comorbidità principali). Poi esponi in prosa scorrevole i problemi attivi in ordine di rilevanza clinica, integrando per ciascuno il dato di laboratorio o strumentale pertinente e il razionale. Includi la terapia in corso. Chiudi con un paragrafo sulle criticità aperte e gli accertamenti da programmare, formulato come raccomandazioni tra pari. Evita di ripetere ovvietà, non usare emoji, non usare grassetti eccessivi. Massimo ~350 parole.'; sendMsg(id); }
+  if(inpEl){ inpEl.value='Redigi una lettera di sintesi clinica da un medico consulente al medico curante (Dr. Carnevale), sul paziente Cataldo Pasquale. Registro professionale medico-medico, come una relazione specialistica reale: asciutta, terminologia clinica appropriata, niente elenchi puntati scolastici né toni divulgativi. Apri con una riga anagrafica sintetica (età, comorbidità principali). Poi esponi in prosa scorrevole i problemi attivi in ordine di rilevanza clinica, integrando per ciascuno il dato di laboratorio o strumentale pertinente e il razionale. Includi la terapia in corso. Chiudi con un paragrafo sulle criticità aperte e gli accertamenti da programmare, formulato come raccomandazioni tra pari. Evita di ripetere ovvietà, non usare emoji, non usare grassetti eccessivi. Massimo ~350 parole.'; sendMsg(id); }
 }
 
 function closePanel(){
@@ -826,6 +827,20 @@ function closePanel(){
   else { document.getElementById('panel').classList.remove('open'); document.getElementById('home').style.display=''; }
 }
 
+function copiaProfilo(){
+  var intro='PROFILO CLINICO COMPLETO — '+profile.nome+'\n(Incolla questo testo in una nuova conversazione con Claude per dargli tutto il quadro clinico aggiornato.)\n\n';
+  var testo=intro+JSON.stringify(profile,null,2);
+  navigator.clipboard.writeText(testo).then(function(){
+    alert('Profilo completo copiato negli appunti.\n\nOra puoi incollarlo in una nuova conversazione con Claude.');
+  }).catch(function(){
+    // fallback: mostra il testo in un'area selezionabile
+    var w=window.open('','_blank');
+    if(w){ w.document.write('<pre style="white-space:pre-wrap;font-size:12px;padding:16px">'+testo.replace(/</g,'&lt;')+'</pre>'); }
+    else { alert('Copia non riuscita. Usa il bottone Modifica per copiare il profilo manualmente.'); }
+  });
+}
+
+function copiaProfiloEnd(){}
 function openEdit(){ document.getElementById('profileEditor').value=JSON.stringify(profile,null,2); document.getElementById('editModal').classList.add('open'); }
 function closeEdit(){ document.getElementById('editModal').classList.remove('open'); }
 function saveEdit(){ try{ profile=JSON.parse(document.getElementById('profileEditor').value); chatHistories={}; closeEdit(); alert('Profilo aggiornato.'); }catch(e){ alert('JSON non valido.'); } }
