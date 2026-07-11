@@ -587,7 +587,7 @@ function sendMsg(id){
   fetch('https://holy-band-5ed2.pasca2009.workers.dev/',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2000,system:getSystem(id),tools:[{type:'web_search_20250305',name:'web_search'}],messages:chatHistories[id]})
+    body:JSON.stringify({model:'claude-sonnet-5',max_tokens:2000,system:getSystem(id),tools:[{type:'web_search_20250305',name:'web_search'}],messages:chatHistories[id]})
   })
   .then(function(r){return r.json();})
   .then(function(data){
