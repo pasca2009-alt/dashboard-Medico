@@ -26,7 +26,6 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
 .btn-outline{background:none;border:0.5px solid var(--border);border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;color:var(--text3);display:flex;align-items:center;gap:4px;min-height:32px}
 .btn-outline:hover{background:var(--bg3)}
 .header-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.key-input{border:0.5px solid var(--border);border-radius:8px;padding:6px 10px;font-size:12px;width:150px;outline:none;background:var(--bg3);color:var(--text);min-height:32px}
 #home{flex:1;padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:600px){#home{grid-template-columns:repeat(2,1fr);padding:12px;gap:10px}.header p{display:none}}
 .tile{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color .15s;position:relative;overflow:hidden;min-height:110px}
@@ -132,7 +131,7 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
     <div class="avatar">CP</div>
     <div>
       <h1>Cataldo Pasquale</h1>
-      <p>10/08/1955 · 70 anni · BMI 25 · Gruppo 0 Rh+ · Allergie: acari, polvere</p>
+      <p>10/08/1955 · 70 anni · BMI 24.7 · Gruppo 0 Rh+ · Allergie: acari, polvere</p>
     </div>
   </div>
   <div class="header-right">
@@ -147,21 +146,21 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
     <div class="tile-icon">⚠️</div>
     <div class="tile-title">Alert &amp; panoramica</div>
     <div class="tile-sub">Situazioni attive da monitorare</div>
-    <div class="tile-badges"><span class="tag-red">LDL</span><span class="tag-amber">Vit. D</span></div>
+    <div class="tile-badges"><span class="tag-red">LDL</span><span class="tag-green">molte ok</span></div>
     <span class="tile-arrow">›</span>
   </div>
   <div class="tile" onclick="openPanel('cal')">
     <div class="tile-icon">📅</div>
     <div class="tile-title">Calendario visite</div>
-    <div class="tile-sub">Prossima: Maculopatia OS, 11 mag</div>
-    <div class="tile-badges"><span class="tag-green">1 fatta</span><span class="tag-red">3 da fare</span></div>
+    <div class="tile-sub">Prossima: neurochirurgo settembre</div>
+    <div class="tile-badges"><span class="tag-green">4 fatte</span><span class="tag-red">2 da fare</span></div>
     <span class="tile-arrow">›</span>
   </div>
   <div class="tile" onclick="openPanel('farm')">
     <div class="tile-icon">💊</div>
     <div class="tile-title">Farmaci &amp; integratori</div>
-    <div class="tile-sub">2 farmaci cronici · 9 integratori</div>
-    <div class="tile-badges"><span class="tag-amber">1 da rivalutare</span></div>
+    <div class="tile-sub">2 farmaci cronici · integratori</div>
+    <div class="tile-badges"><span class="tag-amber">LDL da rivalutare</span></div>
     <span class="tile-arrow">›</span>
   </div>
   <div class="tile" onclick="openPanel('esami')">
@@ -174,15 +173,22 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
   <div class="tile" onclick="openPanel('vacc')">
     <div class="tile-icon">💉</div>
     <div class="tile-title">Vaccinazioni</div>
-    <div class="tile-sub">5 effettuate · 2 da documentare</div>
-    <div class="tile-badges"><span class="tag-green">5 ok</span><span class="tag-amber">2 mancanti</span></div>
+    <div class="tile-sub">5 fatte · 2 da valutare</div>
+    <div class="tile-badges"><span class="tag-green">5 ok</span><span class="tag-amber">Shingrix, COVID</span></div>
     <span class="tile-arrow">›</span>
   </div>
   <div class="tile" onclick="openPanel('macula')">
     <div class="tile-icon">👁️</div>
     <div class="tile-title">Maculopatia &amp; occhi</div>
-    <div class="tile-sub">DMLE dry stabile · controllo 11/05/2026</div>
+    <div class="tile-sub">DMLE secca stabile · 11/05/2026</div>
     <div class="tile-badges"><span class="tag-green">Stabile, no MNV</span></div>
+    <span class="tile-arrow">›</span>
+  </div>
+  <div class="tile" onclick="openPanel('schiena')">
+    <div class="tile-icon">🦴</div>
+    <div class="tile-title">Schiena &amp; rachide</div>
+    <div class="tile-sub">L4-L5 operata · dolore posturale</div>
+    <div class="tile-badges"><span class="tag-green">Buon esito</span><span class="tag-amber">Follow-up</span></div>
     <span class="tile-arrow">›</span>
   </div>
   <div class="tile" onclick="openPanel('patologie')">
@@ -192,25 +198,11 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
     <div class="tile-badges"><span class="tag-blue">Completo</span></div>
     <span class="tile-arrow">›</span>
   </div>
-  <div class="tile" onclick="openPanel('schiena')">
-    <div class="tile-icon">🦴</div>
-    <div class="tile-title">Schiena &amp; rachide</div>
-    <div class="tile-sub">Stenosi L4-L5 operata 03/2025</div>
-    <div class="tile-badges"><span class="tag-green">Operata</span><span class="tag-amber">Follow-up</span></div>
-    <span class="tile-arrow">›</span>
-  </div>
   <div class="tile" onclick="openPanel('storia')">
     <div class="tile-icon">📖</div>
     <div class="tile-title">Archivio referti</div>
     <div class="tile-sub">Tutti i referti per specialità</div>
     <div class="tile-badges"><span class="tag-blue">9 aree</span></div>
-    <span class="tile-arrow">›</span>
-  </div>
-  <div class="tile" onclick="openSalvati()">
-    <div class="tile-icon">💾</div>
-    <div class="tile-title">Salvati</div>
-    <div class="tile-sub">Riepiloghi e risposte archiviate</div>
-    <div class="tile-badges"><span class="tag-blue">Le mie note</span></div>
     <span class="tile-arrow">›</span>
   </div>
 </div>
@@ -238,612 +230,392 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
 </div>
 
 <script>
+var WORKER_URL = 'https://holy-band-5ed2.pasca2009.workers.dev/';
+
 var profile = {
-  nome:"Cataldo Pasquale",nato:"10/08/1955",eta:70,sesso:"M",peso_kg:67,altezza_cm:163,bmi:25,
-  gruppo_sanguigno:"0 Rh+",allergie:["Acari","polvere"],ex_fumatore:"~15 anni, ~30 sigarette/die, smesso",
+  nome:"Cataldo Pasquale", nato:"10/08/1955", eta:70, sesso:"M", peso_kg:66.5, altezza_cm:164, bmi:24.7,
+  gruppo_sanguigno:"0 Rh+", allergie:["Acari","polvere"], ex_fumatore:"~15 anni, ~30 sigarette/die, smesso",
   medico_curante:"Dr. Emanuele Carnevale, Modena",
+  parametri:{
+    pressione:"130/70 mmHg (a casa, ~lug 2026) — ben controllata",
+    ecg:"Normale (~2024, idoneità palestra)",
+    ecocardiogramma:"Normale (19/08/2026): VS normale (DTD 43mm, SIV 8mm), EF 60%. Minima sclerosi aortica, valvola normofunzionante. Sezioni destre e PAPs normali. Controllo 3-4 anni.",
+    sato2:"96% (dic 2025)",
+    hba1c:"MAI dosata — da richiedere"
+  },
+  familiarita:"Solo maculopatia. Nessuna familiarità per infarto, ictus, diabete, tumori.",
+  attivita_fisica:"Palestra 3x/sett: pesi su macchine e manubri, carico controllato (non massimale) + ellittica + bici. A casa: core (dead bug, bird dog, bridge). Nessun dolore sotto sforzo.",
+  rachide_stato:"Post-fusione L4-L5 (mar 2025): claudicatio risolta, cammina bene, NO sintomi neurologici arti. Dolore solo posturale nei cambi di posizione, stabile, migliora col bridge. Assestamento post-fusione normale.",
   terapia_cronica:[
-    {nome:"Atorvastatina 20 mg",indicazione:"dislipidemia",note:"LDL 98 mg/dL, target ≤70 con ateromasia carotidea - dose da rivalutare"},
-    {nome:"Amlodipina 5 mg",indicazione:"ipertensione arteriosa"}
+    {nome:"Atorvastatina 20 mg", indicazione:"dislipidemia", note:"LDL 98, target ≤70 — da rivalutare"},
+    {nome:"Amlodipina 5 mg", indicazione:"ipertensione — pressione 130/70 ben controllata"}
   ],
   integratori:[
-    "Vision Defender Plus (AREDS 2) - 2 cp/die per DMLE",
-    "Omega 3 - dopo i pasti","Coenzima Q10 - utile con statine",
-    "Creatina - massa muscolare","Magnesio","Collagene UC-II - gonartrosi/coxartrosi",
-    "Kerà crema sera (cheratosi attiniche)","Actinic Control FP100 mattino (cheratosi attiniche)"
+    "Vision Defender AREDS 2 - 1 cp/die con cibo [Vit.C 500, Vit.E 400IU, Zinco 25mg, Rame 2mg, Luteina 10mg, Zeaxantina 2mg]",
+    "Vision Defender MZ (meso-zeaxantina) - da confermare con oculista",
+    "Whey proteine - post-allenamento","Creatina - 3-5g/die","Omega 3 - con pasto grasso","Coenzima Q10 - con pasto grasso"
   ],
-  integratori_sospesi:["Vitamina D - sospesa da tempo (25-OH MAI dosata: da controllare al prossimo prelievo)"],
+  integratori_sospesi:["Rolufta 55mcg - sospeso","Vitamina D - sospesa da tempo, 25-OH mai dosata (da controllare)"],
   patologie_attive:[
-    "Ipertensione arteriosa (in terapia)","Dislipidemia - LDL 98, target ≤70",
-    "DMLE bilaterale con drusen diffuse","Pucker maculare OD - operato 26/05/2025, VOD 8/10",
-    "Cataratta iniziale OS","Sospetta BPCO lieve - deficit ostruttivo lieve, test broncodilatazione da eseguire",
-    "Stenosi L4-L5 severa - operata 03/2025 (stabilizzazione)","Ateromasia carotidea DX placca 23% non emodinamica",
-    "Gonartrosi tricompartimentale DX","Coxartrosi bilaterale lieve","Ipoacusia bilaterale lieve (PTA DX 15, SX 13 dB)",
+    "Ipertensione arteriosa (in terapia, ben controllata 130/70)",
+    "Dislipidemia - LDL 98, target ≤70",
+    "DMLE bilaterale forma secca stabile (controllo 11/05/2026, no MNV)",
+    "Pucker maculare OD - operato 26/05/2025, VOD 8/10",
+    "Cataratta iniziale OS (facosclerosi)",
+    "Ateromasia carotidea DX placca 23% non emodinamica",
+    "Ateromasia calcifica aorta addominale (diametro normale, no aneurisma)",
+    "Minima sclerosi aortica valvolare (valvola normofunzionante)",
+    "Stenosi L4-L5 - operata 03/2025 (stabilizzazione)",
+    "Gonartrosi tricompartimentale DX","Coxartrosi bilaterale lieve",
+    "Ipoacusia bilaterale lieve (PTA DX 15, SX 13 dB)",
     "Cheratosi attiniche fronte","Anterolistesi L4-L5 I grado","Alluce valgo bilaterale"
   ],
+  patologie_escluse:["Sospetta BPCO - NON confermata: test broncodilatazione 29/01/2026 negativo, spirometria basale normale"],
   storia_chirurgica:[
-    "2000 - Fistola del collo",
-    "Emorroidectomia (data imprecisata)",
-    "Dic 2019 - Frattura composta EDR polso SX (gesso, guarita)",
-    "12/03/2024 - Laser 2RT (Retinal Rejuvenation Therapy) occhio destro per DMLE (Life Clinic Bologna, Dr. Cappuccini)",
-    "22/09/2024 - Laser 2RT occhio sinistro per DMLE (Life Clinic Bologna, Dr. Cappuccini)",
-    "19-22/03/2025 - Stabilizzazione vertebrale L4-L5 con viti peduncolari+barre+cage+laminoartrectomia L5 (Osp. Bellaria Bologna, dott.ssa Serchi)",
-    "26/05/2025 - Vitrectomia+peeling pucker+MLI+FACO IOL occhio destro (Osp. Correggio, Dr. Vecchi)"
+    "2000 - Fistola del collo","Emorroidectomia (data imprecisata)",
+    "Dic 2019 - Frattura EDR polso SX (guarita)",
+    "12/03/2024 - Laser 2RT occhio destro (DMLE, Life Clinic Bologna)",
+    "22/09/2024 - Laser 2RT occhio sinistro (DMLE, Life Clinic Bologna)",
+    "19-22/03/2025 - Stabilizzazione L4-L5 (viti+barre+cage+laminoartrectomia L5, Bellaria Bologna)",
+    "26/05/2025 - Vitrectomia+peeling pucker+IOL occhio destro (Correggio, Dr. Vecchi)"
   ],
   ultimi_esami_data:"17/12/2025",
-  ultimi_esami:{glicemia:97,creatinina:0.84,egfr:">60",acido_urico:4.6,colesterolo_totale:160,ldl:98,hdl:44,trigliceridi:74,gpt_alt:21,fosfatasi_alcalina:103,pcr:0.5,alfa1antitripsina:170,tsh:2.84,psa:2.11,vitamina_d:"MAI DOSATA"},
-  storico_ldl:[{data:"feb 2025",val:93},{data:"dic 2025",val:98}],
+  ultimi_esami:{glicemia:97,creatinina:0.84,egfr:">60",acido_urico:4.6,colesterolo_totale:160,ldl:98,hdl:44,trigliceridi:74,gpt_alt:21,fosfatasi_alcalina:103,pcr:0.5,tsh:2.84,psa:2.11,vitamina_d:"mai dosata",hba1c:"mai dosata"},
   storico_col_tot:[{data:"ott 2022",val:212},{data:"giu 2023",val:233},{data:"feb 2025",val:139},{data:"dic 2025",val:160}],
-  eco_tsa:[
-    {data:"12/12/2022",risultato:"Lieve ateromasia bilaterale, flusso normodiretto"},
-    {data:"11/06/2025",risultato:"DX placca stenosi <30% non emodinamica, SX modesta ateromasia"},
-    {data:"29/06/2026",risultato:"DX placca stenosi 23% + iperplasia intimale, SX iperplasia intimale, vertebrali pervie. Quadro stabile."}
-  ],
-  spirometria:{data:"19/12/2025",risultato:"Deficit ostruttivo lieve. FEV1 3.11L (125%), FVC 4.41L (137%), FEV1/FVC 70.56%. SatO2 96%."},
   maculopatia:{
-    diagnosi:"DMLE (Degenerazione Maculare Legata all'Età) bilaterale, forma SECCA (dry AMD), diagnosticata ~10 anni fa (~2014). Familiarità per maculopatia senile essudativa. Ultimo controllo 11/05/2026: stabile, senza attivazione neovascolare.",
-    od:{
-      stato:"Pseudofachico (IOL regolare). ODV 8/10 (-1.00/100). Esiti di peeling. DMLE dry stabile.",
-      storia:"DMLE con drusen → membrana epiretinica (pucker) → 2RT laser 12/03/2024 → evoluzione a pucker maculare con edema maculare cistoide (FAG feb 2025) → intervento chirurgico 26/05/2025 (vitrectomia+peeling pucker+MLI+endolaser 360°+FACO IOL). VOD: 5/10 (feb 2025) → 4/10 post-op precoce → 8/10 (set 2025, confermato mag 2026). OCT 11/05/2026: DMS dry senza IRF né SRF né segni di MNV.",
-      terapia_postop:"Tobradex/Netildex + Yellox, poi sospesi."
-    },
-    os:{
-      stato:"Fachico con facosclerosi (cataratta iniziale). OSV 9-10/10 nat. DMLE dry stabile.",
-      storia:"DMLE con drusen diffuse → 2RT laser 22/09/2024. Cataratta iniziale (facosclerosi) in osservazione. Non pucker. FAG feb 2025: drusen senza leakage. OCT 11/05/2026: DMS dry senza IRF né SRF né segni di MNV.",
-      prossimo:"Controlli periodici via CUP / oculista di fiducia. Prossimo OCT di follow-up da programmare."
-    },
-    esami_strumentali:[
-      "OCT 27/02/2023 (Hesperia): sollevamenti drusenoidi EPR-Bruch bilaterali, contrazione limitante interna OD",
-      "OCT 15/11/2023 (PS): maculopatia drusenoide, ipereflessia MLI OD",
-      "Fluorangiografia 28/02/2025 (Policlinico MO): OD edema maculare cistoide in sindrome interfaccia vitreo-retinica, drusen; OS drusen senza leakage",
-      "OCT macula + fundus 11/05/2026 (Amb. Macula Correggio, Dr.ssa Ferraro): OO DMS dry senza IRF né SRF né segni di attivazione MNV — quadro stabile, forma secca"
-    ],
-    terapia_attuale:"Vision Defender Plus (AREDS 2) 2 cp/die. Automonitoraggio con test di Amsler. Protezione solare.",
-    laser_2rt:"2RT (Retinal Rejuvenation Therapy) = laser a nanosecondi a soglia sottovisibile, per DMLE intermedia con drusen, stimola il ricambio dell'EPR per rallentare la progressione. OD 12/03/2024, OS 22/09/2024."
+    diagnosi:"DMLE bilaterale forma SECCA, diagnosticata ~10 anni fa. Familiarità per maculopatia. Ultimo controllo 11/05/2026: stabile, senza attivazione neovascolare.",
+    od:{stato:"Pseudofachico (IOL). VOD 8/10. Esiti peeling. DMLE dry stabile.",storia:"DMLE con drusen → pucker → 2RT laser 12/03/2024 → pucker con edema maculare cistoide → intervento 26/05/2025 (vitrectomia+peeling+MLI+endolaser+IOL). VOD 5/10 (feb 2025) → 8/10 (2025-2026). OCT 11/05/2026: dry senza IRF/SRF/MNV."},
+    os:{stato:"Facosclerosi (cataratta iniziale). VOS 9-10/10. DMLE dry stabile.",storia:"DMLE con drusen diffuse → 2RT laser 22/09/2024. Cataratta iniziale. FAG feb 2025: drusen senza leakage. OCT 11/05/2026: dry senza IRF/SRF/MNV.",prossimo:"Controlli periodici + OCT di follow-up."},
+    esami:["OCT 27/02/2023: sollevamenti drusenoidi EPR-Bruch bilaterali","Fluorangiografia 28/02/2025: OD edema maculare cistoide, drusen; OS drusen senza leakage","OCT 11/05/2026: OO dry senza IRF/SRF/MNV, stabile"],
+    terapia:"Vision Defender AREDS 2 (1 cp/die) + eventuale MZ meso-zeaxantina. Automonitoraggio Amsler.",
+    laser_2rt:"2RT (Retinal Rejuvenation Therapy): laser a nanosecondi per DMLE intermedia. OD 12/03/2024, OS 22/09/2024."
   },
   vaccinazioni:{
-    antitetanica:"4 dosi (ultima ott 2024)",antidifterica:"ott 2024 ✅",antipertossica:"ott 2024 ✅",
-    antiinfluenzale:"nov 2025 ✅",antipneumococcica:"dic 2025 ✅",
-    herpes_zoster:"non documentata ⚠️",anti_covid:"non documentata ⚠️"
+    antitetanica:"4 dosi (ultima ott 2024)",antidifterica:"ott 2024",antipertossica:"ott 2024",
+    antiinfluenzale:"nov 2025",antipneumococcica:"dic 2025",
+    herpes_zoster:"NON fatta - da valutare (Shingrix, rilevante per situazione oculare)",anti_covid:"da valutare richiamo stagionale per età"
   },
   screening:{colon_retto:"sangue occulto negativo (lug 2024)"},
-
+  note_per_visite:{
+    medico_base:"LDL 98 → target ≤70 (ottimizzare statina). Dosare vitamina D 25-OH e HbA1c al prossimo prelievo. Shingrix: indicato a 70 anni, rilevante per situazione oculare (evitare zoster oftalmico). COVID: valutare richiamo stagionale, eventualmente con antinfluenzale. Rivedere lista integratori.",
+    oculista:"Oltre all'AREDS 2 aggiungo Vision Defender MZ (meso-zeaxantina): ha senso o è ridondante? Confermare posologia dei due prodotti.",
+    neurochirurgo:"Follow-up set 2026. Claudicatio risolta, no sintomi neurologici. Dolore solo posturale stabile, migliora col bridge. Palestra macchine+manubri controllato + core a casa. Chiedere: tenuta fusione, stato livelli adiacenti L3-L4/L5-S1, sicurezza allenamento, utilità fisioterapia."
+  },
   referti_archivio:{
     "Oculistica":[
-      {data:"10/01/2023",struttura:"Finale Emilia · Dr. Fonso",testo:"VOD 10/10 nat, VOS 10/10 nat. Drusen colloidi diffuse e atrofi confluenti. DPV in OD. DMLE diagnosticata. Prescritta OCT. Assume AREDS 2."},
-      {data:"27/02/2023",struttura:"Hesperia Modena · Dr.ssa Benassi (OCT)",testo:"OCT macula: OD contrazione limitante interna, profilo maculare regolare, numerosi sollevamenti drusenoidi EPR-Bruch. OS profilo regolare, numerosi drusenoidi EPR-Bruch."},
-      {data:"15/11/2023",struttura:"PS Oculistico Modena · Dr. Bianchi",testo:"Metamorfopsie OO. VOD/VOS 10/10. OCT: maculopatia drusenoide, OD ipereflessia MLI invariata. Diagnosi: maculopatia drusenoide nota."},
-      {data:"06/02/2024",struttura:"Life Clinic Bologna · Dr. Cappuccini",testo:"1a visita. DMLE OO da ~10 anni. Familiarità maculopatia. VOD -0.50=10/10, VOS +0.25-0.50=10/10. TOD 18, TOS 16. Amsler OD ++-, OS ---. Velatura nucleare lente. OD membrana epiretinica, OS DMLE. Valutare 2RT."},
-      {data:"12/03/2024",struttura:"Life Clinic Bologna · Dr. Cappuccini",testo:"Laser 2RT (Retinal Rejuvenation Therapy) occhio destro per DMLE intermedia."},
-      {data:"22/09/2024",struttura:"Life Clinic Bologna · Dr. Cappuccini",testo:"Laser 2RT occhio sinistro per DMLE. (OD: miglioramento sensibilità dopo 2RT di febbraio)."},
-      {data:"19/02/2025",struttura:"PS Oculistico Modena · Dr. Campi",testo:"Deficit visivo OD da 3 settimane. VOD 5/10 con foro. FOD: maculopatia colloide e pucker maculare. Pianificata FAG 28/2 e chirurgia retinica."},
-      {data:"24/02/2025",struttura:"Oculistica Correggio · Dr. Vecchi",testo:"DMLE complicata da ERM OD. VOD nat 5/10, VOS +0.5 sf 6/10. EBMOO opacità corticali. TOO 15. FOD: DMLE aspetto cistico, non escludere MNVSR. FOS: DMLE drusen diffuse. Pianificata FAG OD."},
-      {data:"28/02/2025",struttura:"Policlinico Modena · Dr.ssa Peppoloni (FAG)",testo:"Fluorangiografia: OD iperfluorescenza da pooling compatibile con edema maculare cistoide in sindrome interfaccia vitreo-retinica + drusen, no leakage patologici. OS drusen, no alterazioni rilevanti."},
-      {data:"26/05/2025",struttura:"Day Hospital Correggio · Dr. Vecchi (INTERVENTO)",testo:"OD vitrectomia centrale e periferica + peeling pucker + MLI + endolaser periferico 360° + FACO IOL nel sacco. Anestesia locale. Diagnosi: pucker OD in DMLE. Dimesso con Netildex 5v/die."},
-      {data:"27/05/2025",struttura:"Oculistica Correggio · Dr. Dondi",testo:"Post-op giorno 1. BOD cornea indenne, IOL regolare. TOD 15. FOD: esiti VVPP, gas in CV 70%, macula in piano. Tobradex 5v/die."},
-      {data:"06/06/2025",struttura:"Oculistica Correggio · Dr. Dondi",testo:"Post-op 11 giorni. VOD 4/10 nat. TOD 15. FOD: gas in CV 20%, macula in piano libera da trazioni. Aggiunto Yellox OD."},
-      {data:"15/09/2025",struttura:"Aesculapio San Felice · Dr. Procopio",testo:"VOD 8/10, VOS 10/10 corretto. Pseudofachia OD, opacità lente OS. FOO: peeling OD per pucker, OS distrofia maculare con molte drusen bilaterali. TOO 15/13. Richiesta visita amb. maculopatia + OCT tra 8 mesi."},
-      {data:"11/05/2026",struttura:"Amb. Macula Correggio · Dr.ssa Ferraro (OCT)",testo:"ODV 8/10 -1.00/100, OSV 9-10/10 nat. OOT 13-12. OD pseudofachia regolare, OS facosclerosi. OCT macula+fundus: OO DMS dry senza IRF né SRF né segni di attivazione MNV. Dry AMD stabile. Continua AREDS 2 + Amsler."}
+      {data:"10/01/2023",struttura:"Finale Emilia · Dr. Fonso",testo:"VOD/VOS 10/10 nat. Drusen colloidi diffuse. DMLE diagnosticata. Prescritta OCT. Assume AREDS 2."},
+      {data:"27/02/2023",struttura:"Hesperia Modena · Dr.ssa Benassi (OCT)",testo:"OCT macula: numerosi sollevamenti drusenoidi EPR-Bruch bilaterali. OD contrazione limitante interna."},
+      {data:"15/11/2023",struttura:"PS Oculistico Modena · Dr. Bianchi",testo:"Metamorfopsie OO. VOD/VOS 10/10. Maculopatia drusenoide nota."},
+      {data:"06/02/2024",struttura:"Life Clinic Bologna · Dr. Cappuccini",testo:"1a visita. DMLE OO da ~10 anni. Familiarità. VOD/VOS 10/10. Amsler OD ++-. OD membrana epiretinica, OS DMLE. Valutare 2RT."},
+      {data:"12/03/2024",struttura:"Life Clinic Bologna · Dr. Cappuccini",testo:"Laser 2RT occhio destro per DMLE intermedia."},
+      {data:"22/09/2024",struttura:"Life Clinic Bologna · Dr. Cappuccini",testo:"Laser 2RT occhio sinistro. OD: miglioramento dopo 2RT di marzo."},
+      {data:"19/02/2025",struttura:"PS Oculistico Modena · Dr. Campi",testo:"Deficit visivo OD. VOD 5/10 con foro. FOD: maculopatia colloide e pucker maculare. Pianificata chirurgia."},
+      {data:"24/02/2025",struttura:"Oculistica Correggio · Dr. Vecchi",testo:"DMLE complicata da ERM OD. VOD 5/10, VOS 6/10. FOD: DMLE aspetto cistico, non escludere MNVSR. Pianificata FAG."},
+      {data:"28/02/2025",struttura:"Policlinico Modena · Dr.ssa Peppoloni (FAG)",testo:"Fluorangiografia: OD edema maculare cistoide in sindrome interfaccia vitreo-retinica + drusen, no leakage patologici. OS drusen."},
+      {data:"26/05/2025",struttura:"Day Hospital Correggio · Dr. Vecchi (INTERVENTO)",testo:"OD vitrectomia + peeling pucker + MLI + endolaser 360° + FACO IOL. Anestesia locale. Diagnosi: pucker OD in DMLE."},
+      {data:"06/06/2025",struttura:"Oculistica Correggio · Dr. Dondi",testo:"Post-op. VOD 4/10 nat. Macula in piano libera da trazioni. Aggiunto Yellox."},
+      {data:"15/09/2025",struttura:"Aesculapio · Dr. Procopio",testo:"VOD 8/10, VOS 10/10. Pseudofachia OD, opacità lente OS. Peeling OD, OS distrofia maculare drusen. Richiesta OCT tra 8 mesi."},
+      {data:"11/05/2026",struttura:"Amb. Macula Correggio · Dr.ssa Ferraro (OCT)",testo:"VOD 8/10, VOS 9-10/10. OD pseudofachia, OS facosclerosi. OCT: OO DMS dry senza IRF/SRF/MNV. Dry AMD stabile. Continua AREDS 2 + Amsler."}
     ],
     "Rachide & Neurochirurgia":[
-      {data:"16/12/2022",struttura:"CAF Modena · Dr. Colombi (ortopedico)",testo:"Lombosciatalgia destra ingravescente da alcuni mesi. Non segni di radicolopatia. Prescritta RMN rachide lombo-sacrale."},
-      {data:"06/06/2023",struttura:"Ospedale Sassuolo (RM)",testo:"RM lombo-sacrale: anterolistesi I grado L4-L5. Pseudobulging L4-L5 con fissurazioni anulus, stenosi canale marcata con artrosi interapofisaria. Bulging L5-S1, L3-L4, L2-L3. Cisti di Tarlov sacrale ~2cm a S2."},
-      {data:"21/11/2024",struttura:"Ospedale Sassuolo (RX)",testo:"RX rachide+bacino+anche: invariata anterolistesi I grado L4-L5. Spondilo-unco-artrosi. Calcificazioni aortiche. Coxartrosi bilaterale modesta. Ridotto tono calcico."},
-      {data:"09/01/2025",struttura:"Xray One (RMN)",testo:"RMN lombo-sacrale: ernia discale posteriore mediana voluminosa L4-L5 con stenosi canalare acquisita grado severo. Modesta erniazione L5-S1 paramediana sinistra."},
-      {data:"20/02/2025",struttura:"Bellaria Bologna (RX torace preop)",testo:"Trama polmonare accentuata (bronchitico-cronica). Strie fibro-disventilatorie base sn. No versamenti. OCV nei limiti per età."},
-      {data:"19-22/03/2025",struttura:"Osp. Bellaria Bologna · dott.ssa Serchi (INTERVENTO)",testo:"Stabilizzazione vertebrale L4-L5 con viti peduncolari + barre + cage intersomatica + laminoartrectomia L5. Anestesia generale. Diagnosi ingresso: stenosi severa L4-L5 (Schizas C). TC 20/3: corretto posizionamento, no complicanze. Decorso regolare."},
-      {data:"22/05/2025",struttura:"Villa Rosa Modena (RX post-op)",testo:"RX rachide lombo-sacrale: esiti stabilizzazione L4-L5 con barre + viti transpeduncolari + cage. Spazi discali conservati. Allineamento muro somatico posteriore conservato."}
+      {data:"06/06/2023",struttura:"Ospedale Sassuolo (RM)",testo:"RM lombo-sacrale: anterolistesi I grado L4-L5, stenosi canale marcata con artrosi interapofisaria. Bulging L5-S1, L3-L4, L2-L3. Cisti di Tarlov sacrale ~2cm S2."},
+      {data:"09/01/2025",struttura:"Xray One (RMN)",testo:"Ernia discale mediana voluminosa L4-L5 con stenosi canalare severa. Modesta erniazione L5-S1 paramediana sn."},
+      {data:"19-22/03/2025",struttura:"Bellaria Bologna · dott.ssa Serchi (INTERVENTO)",testo:"Stabilizzazione L4-L5 con viti peduncolari + barre + cage + laminoartrectomia L5. Diagnosi: stenosi severa L4-L5 (Schizas C). TC controllo: corretto posizionamento. Decorso regolare."},
+      {data:"22/05/2025",struttura:"Villa Rosa Modena (RX)",testo:"RX post-op: esiti stabilizzazione L4-L5, spazi discali conservati, allineamento conservato."}
     ],
-    "Cardiovascolare (Eco-TSA)":[
-      {data:"12/12/2022",struttura:"San Felice · Dr. Segalla",testo:"Eco-TSA: lieve ateromasia parietale bilaterale (carotidi comune/interna/esterna), pervietà con flusso conservato. Flusso vertebrale normodiretto bilaterale."},
-      {data:"11/06/2025",struttura:"Aesculapio · Dr. Mascaro",testo:"Eco-TSA: DX ateromasia parietale carotide comune + placca iperecogena origine c.interna stenosi <30% non emodinamica. SX modesta ateromasia biforcazione. Vertebrale V2 pervia bilaterale."},
-      {data:"29/06/2026",struttura:"Angiologia Modena · Dr.ssa Zambelli",testo:"Eco-TSA: DX placca tratto distale carotide comune stenosi 23% + iperplasia intimale biforcazione. SX iperplasia intimale carotide comune e biforcazione. Profili velocimetrici nei limiti per età. Vertebrali pervie normodiretto. Quadro stabile."}
+    "Cardiovascolare (cuore, TSA, aorta)":[
+      {data:"12/12/2022",struttura:"San Felice · Dr. Segalla",testo:"Eco-TSA: lieve ateromasia bilaterale, flusso conservato e normodiretto."},
+      {data:"11/06/2025",struttura:"Aesculapio · Dr. Mascaro",testo:"Eco-TSA: DX placca stenosi <30% non emodinamica, SX modesta ateromasia. Vertebrali pervie."},
+      {data:"29/06/2026",struttura:"Angiologia Modena · Dr.ssa Zambelli",testo:"Eco-TSA: DX placca stenosi 23% + iperplasia intimale, SX iperplasia intimale. Profili nei limiti per età. Quadro stabile."},
+      {data:"27/07/2026",struttura:"Angiologia Modena · Dr. Marra",testo:"Eco-Doppler aorta addominale: asse pervio con ateromasia calcifica, diametro nei limiti (19-20mm), NO aneurisma. Assi iliaci pervi. Ricontrollo 2-3 anni."},
+      {data:"19/08/2026",struttura:"Cardiologia Castelfranco · Dr.ssa Ricci",testo:"Ecocardiogramma a riposo: VS normale (DTD 43mm, SIV 8mm), EF 60%. Minima sclerosi aortica, valvola normofunzionante. Sezioni destre e PAPs normali. No versamento. Funzione contrattile nella norma. Controllo 3-4 anni."}
     ],
     "Esami di laboratorio":[
-      {data:"05/10/2022",struttura:"Baggiovara",testo:"Glicemia 98, Creatinina 0.84, Col.tot 212, HDL 53, Trigliceridi 86, GPT 17, TSH 2.89, PSA 0.84. Emocromo nella norma. Urine ok."},
-      {data:"27/06/2023",struttura:"Baggiovara",testo:"Glicemia 85, Creatinina 0.95, Col.tot 233, HDL 46, Trigliceridi 92, GPT 12, PCR 0.7, TSH 3.14, RF 2. ANA negativo, CCP 0.8. Elettroforesi nella norma."},
-      {data:"12/02/2025",struttura:"Baggiovara",testo:"Glicemia 92, Creatinina 0.81, Ac.urico 6.2, Col.tot 139, HDL 36 (basso), LDL 93, Trigliceridi 99, GPT 26, Fosf.alc 77, TSH 2.96. Urine ok."},
-      {data:"20/02/2025",struttura:"Bellaria (preop)",testo:"Glicemia 93, Creatinina 0.87, eGFR 88, Sodio 144, Potassio 4.3, Fibrinogeno 430 (lievemente alto), INR 0.94, aPTT 0.96. Emocromo nella norma."},
-      {data:"17/12/2025",struttura:"Baggiovara",testo:"Glicemia 97, Creatinina 0.84, Ac.urico 4.6, Col.tot 160, LDL 98, HDL 44, Col.non-HDL 116, Trigliceridi 74, GPT 21, Fosf.alc 103, PCR 0.5, α1-antitripsina 170, TSH 2.84, PSA 2.11. Elettroforesi: no componenti monoclonali. Urine ok (pH 7.0)."}
+      {data:"05/10/2022",struttura:"Baggiovara",testo:"Glicemia 98, Creatinina 0.84, Col.tot 212, HDL 53, Trigliceridi 86, GPT 17, TSH 2.89, PSA 0.84."},
+      {data:"27/06/2023",struttura:"Baggiovara",testo:"Glicemia 85, Col.tot 233, HDL 46, GPT 12, PCR 0.7, TSH 3.14. ANA negativo, CCP 0.8."},
+      {data:"12/02/2025",struttura:"Baggiovara",testo:"Glicemia 92, Ac.urico 6.2, Col.tot 139, HDL 36 (basso), LDL 93, Trigliceridi 99, GPT 26, TSH 2.96."},
+      {data:"17/12/2025",struttura:"Baggiovara",testo:"Glicemia 97, Creatinina 0.84, Ac.urico 4.6, Col.tot 160, LDL 98, HDL 44, Trigliceridi 74, GPT 21, Fosf.alc 103, PCR 0.5, α1-antitripsina 170, TSH 2.84, PSA 2.11. Elettroforesi: no componenti monoclonali. Urine ok."}
     ],
     "Pneumologia":[
-      {data:"19/12/2025",struttura:"Policlinico Modena · Dr.ssa Rubini (spirometria)",testo:"Spirometria flusso-volume: deficit ostruttivo lieve. VC max 4.48, FVC 4.41 (137%), FEV1 3.11 (125%), FEV1/FVC 70.56%. MEF50 e MEF25 ridotti."},
-      {data:"22/12/2025",struttura:"Pneumologia Carpi",testo:"Visita per sospetta BPCO. Ex fumatore ~15 anni ~30 sig/die. SatO2 96% AA, MV lievemente ridotto. A volte tosse con espettorazione mucosa. EOS norma, PCR negativa, α1-antitripsina 170 (norma). Conclusione: sospetta BPCO lieve. Prescritta Rolufta 55 mcg + test broncodilatazione."}
+      {data:"19/12/2025",struttura:"Policlinico Modena · Dr.ssa Rubini",testo:"Spirometria: deficit ostruttivo lieve. FVC 4.41 (137%), FEV1 3.11 (125%), FEV1/FVC 70.56%."},
+      {data:"22/12/2025",struttura:"Pneumologia Carpi",testo:"Visita sospetta BPCO. Ex fumatore. SatO2 96%. EOS norma, α1-antitripsina 170. Prescritta Rolufta + test broncodilatazione."},
+      {data:"29/01/2026",struttura:"Pneumologia Mirandola · Dr.ssa Businarolo",testo:"Test broncodilatazione: spirometria basale NELLA NORMA, reversibilità NEGATIVA. FEV1/FVC 73.79%. La sospetta BPCO non è confermata."}
     ],
     "Ortopedia":[
-      {data:"28/06/2023",struttura:"Mirandola (RX)",testo:"RX ginocchio DX sotto carico: iniziale appuntimento spine intercondiliche, rima femoro-tibiale conservata. RX piedi: marcato valgismo alluce bilaterale, artropatia I metatarso-falangea, iperostosi teste metatarsali."},
-      {data:"30/08/2025",struttura:"PS Ortopedico Modena · Dr.ssa Ferrari",testo:"Gonalgia DX atraumatica da 10 giorni. Ginocchio fresco e asciutto, lieve dolore emirima mediale, ROM completo. Arcoxia 90mg 7gg. RX ginocchio + controllo ortopedico."},
-      {data:"18/09/2025",struttura:"Ospedale Sassuolo · Dr.ssa D'Andrea (RX)",testo:"RX ginocchio DX + rotule: gonartrosi tricompartimentale DX, artropatia femoro-tibiale SX. Disomogeneità sottocorticali condili femorali interni. Lieve varo DX. Rotula SX lieve iperpressione esterna."}
+      {data:"28/06/2023",struttura:"Mirandola (RX)",testo:"RX ginocchio DX: iniziale appuntimento spine intercondiliche. RX piedi: valgismo alluce bilaterale, artropatia I metatarso-falangea."},
+      {data:"30/08/2025",struttura:"PS Ortopedico Modena · Dr.ssa Ferrari",testo:"Gonalgia DX atraumatica. Ginocchio fresco, ROM completo. Arcoxia 90mg 7gg. RX + controllo ortopedico."},
+      {data:"18/09/2025",struttura:"Sassuolo · Dr.ssa D'Andrea (RX)",testo:"RX ginocchio DX: gonartrosi tricompartimentale DX, artropatia femoro-tibiale SX. Lieve varo DX."}
     ],
     "Dermatologia":[
-      {data:"16/12/2022",struttura:"Modena · Dr.ssa Padalino",testo:"Visita nevi. Rari nevi melanocitici senza atipia. Angiomi rubino e cheratosi seborroiche tronco. Nevo blu cavo popliteo DX. Nessuna lesione patologica. Protezione solare SPF 50+."},
-      {data:"26/05/2025",struttura:"Modena · Dr.ssa Schiavi",testo:"Cheratosi seborroica emidorso SX (non patologica). Cheratosi attiniche fronte. Terapia: Kerà cr sera x 3 mesi + Actinic Control FP100 mattino."}
+      {data:"16/12/2022",struttura:"Modena · Dr.ssa Padalino",testo:"Visita nevi. Rari nevi senza atipia. Nessuna lesione patologica. Protezione solare SPF 50+."},
+      {data:"26/05/2025",struttura:"Modena · Dr.ssa Schiavi",testo:"Cheratosi attiniche fronte. Terapia: Kerà cr sera x 3 mesi + Actinic Control FP100 mattino."}
     ],
     "Pronto Soccorso":[
-      {data:"29/12/2019",struttura:"PS Ortopedico Modena",testo:"Trauma polso SX 3 giorni prima. Diagnosi: frattura composta EDR polso SX. Apparecchio gessato, prognosi 30 giorni."},
-      {data:"05/08/2024",struttura:"PS Oculistico Modena",testo:"Congiuntivite bilaterale non responsiva da ~20 giorni. Secrezione sieromucosa, iperemia con ipertrofia papillare. Terapia: Ducressa + Dropsept collirio."},
-      {data:"30/09/2024",struttura:"PS Modena",testo:"Morso di cane 3-4-5° dito mano DX. Ferite lacero-contuse multiple. Amoxicillina+clavulanico 6gg, antitetanica passiva, medicazioni."}
+      {data:"29/12/2019",struttura:"PS Ortopedico Modena",testo:"Frattura composta EDR polso SX. Gesso, prognosi 30 giorni."},
+      {data:"05/08/2024",struttura:"PS Oculistico Modena",testo:"Congiuntivite bilaterale non responsiva. Ducressa + Dropsept collirio."},
+      {data:"30/09/2024",struttura:"PS Modena",testo:"Morso di cane mano DX. Amoxicillina+clavulanico 6gg, antitetanica passiva."}
     ],
     "Vaccinazioni & Screening":[
-      {data:"16/07/2024",struttura:"Screening AUSL Modena",testo:"Ricerca sangue occulto feci (screening colon-retto): esito NEGATIVO."},
-      {data:"24/12/2025",struttura:"Igiene Pubblica Modena (certificato)",testo:"Antitetanica: 4 dosi (2002-2003, ultima ott 2024). Antidifterica + antipertossica ott 2024 (Tribaccine). Antiinfluenzale 12/11/2025 (Fluad). Antipneumococcica 23/12/2025 (Apexxnar). NON documentate: Herpes Zoster, anti-COVID."}
+      {data:"16/07/2024",struttura:"Screening AUSL Modena",testo:"Ricerca sangue occulto feci (screening colon-retto): NEGATIVO."},
+      {data:"24/12/2025",struttura:"Igiene Pubblica Modena",testo:"Antitetanica 4 dosi. Antidifterica+antipertossica ott 2024. Antiinfluenzale nov 2025. Antipneumococcica dic 2025. NON documentate: Herpes Zoster, anti-COVID."}
     ]
   }
 };
 
-var SYSTEM_PROMPT = "Sei il medico consulente personale di Cataldo Pasquale, 70 anni. Sei esperto e multidisciplinare: medicina generale, cardiologia, oculistica, ORL, ortopedia, dermatologia, endocrinologia, pneumologia.\n\nPROFILO CLINICO COMPLETO DEL PAZIENTE:\n{PROFILE}\n\nCOME DEVI RISPONDERE:\n\n1. ESAUSTIVITÀ. Fornisci UNA SOLA risposta completa e autosufficiente. Non frammentare, non rimandare a risposte successive, non chiedere se vuole approfondire: approfondisci subito. Il paziente vuole capire a fondo, non ricevere accenni.\n\n2. RAGIONA SUL SUO CASO SPECIFICO. Non dare risposte generiche da manuale: collega SEMPRE quello che dici ai suoi dati reali (valori di laboratorio, referti, patologie, terapia in corso, interventi). Cita i dati concreti dal profilo quando sono pertinenti. Se un dato rilevante manca nel profilo, dillo esplicitamente.\n\n3. COLLEGA GLI APPARATI. La sua forza è avere il quadro completo: sfruttalo. Se una domanda su un organo ha implicazioni su un altro (es. dislipidemia e carotidi, ex fumo e polmoni, statine e muscoli), evidenzialo.\n\n4. STRUTTURA. Organizza la risposta con titoli e paragrafi. Usa liste solo quando elencare è davvero il modo migliore; altrove preferisci prosa argomentata che spiega il PERCHÉ, non solo il COSA.\n\n5. WEB SEARCH. Quando la domanda riguarda novità terapeutiche, linee guida aggiornate, nuovi farmaci o ricerca recente, USA la ricerca web e riporta le fonti con la data.\n\n6. CONCRETEZZA. Chiudi sempre indicando: cosa monitorare, quali domande porre allo specialista, quali accertamenti eventualmente mancano.\n\n7. ONESTÀ. Segnala chiaramente incertezze e limiti. Le decisioni terapeutiche spettano sempre ai medici reali che lo visitano: tu lo aiuti a capire e a prepararsi, non lo sostituisci.\n\nRispondi in italiano, con linguaggio chiaro ma clinicamente preciso.";
+var SYSTEM_PROMPT = "Sei il medico consulente personale di Cataldo Pasquale, 70 anni. Esperto multidisciplinare: medicina generale, cardiologia, oculistica, ORL, ortopedia, dermatologia, endocrinologia, pneumologia.\n\nPROFILO CLINICO COMPLETO:\n{PROFILE}\n\nCOME RISPONDERE:\n1. ESAUSTIVITÀ: una sola risposta completa e autosufficiente. Non frammentare, non rimandare, approfondisci subito.\n2. RAGIONA SUL SUO CASO: collega sempre ai suoi dati reali (valori, referti, patologie, terapia). Se un dato manca, dillo.\n3. COLLEGA GLI APPARATI: se una domanda ha implicazioni su altri organi, evidenzialo.\n4. STRUTTURA: titoli e paragrafi, prosa che spiega il perché, non solo il cosa.\n5. WEB SEARCH: per novità terapeutiche/linee guida usa la ricerca web e cita le fonti con data.\n6. CONCRETEZZA: chiudi indicando cosa monitorare, cosa chiedere allo specialista, cosa manca.\n7. ONESTÀ: segnala incertezze e limiti. Le decisioni terapeutiche spettano ai medici reali.\nRispondi in italiano, chiaro ma clinicamente preciso.";
 
 var SECTION_CTX = {
-  alerts:"Stai rispondendo sugli ALERT e situazioni da monitorare.",
-  cal:"Stai rispondendo sul CALENDARIO VISITE e scadenze.",
-  farm:"Stai rispondendo su FARMACI e INTEGRATORI.",
-  esami:"Stai rispondendo sugli ESAMI DEL SANGUE e loro andamento.",
-  vacc:"Stai rispondendo sulle VACCINAZIONI.",
-  macula:"Stai rispondendo su MACULOPATIA e salute oculare.",
-  patologie:"Stai rispondendo sull'elenco PATOLOGIE ATTIVE.",
-  storia:"Stai rispondendo sulla STORIA CLINICA e i referti.",
-  riepilogo:"Stai generando un RIEPILOGO CLINICO per il medico curante."
+  alerts:"Rispondi su ALERT e situazioni da monitorare.",cal:"Rispondi su CALENDARIO e scadenze.",
+  farm:"Rispondi su FARMACI e INTEGRATORI.",esami:"Rispondi su ESAMI e loro andamento.",
+  vacc:"Rispondi su VACCINAZIONI.",macula:"Rispondi su MACULOPATIA e occhi.",
+  patologie:"Rispondi su PATOLOGIE ATTIVE.",storia:"Rispondi su STORIA e referti.",
+  schiena:"Rispondi su SCHIENA e rachide.",riepilogo:"Genera RIEPILOGO per il medico.",
+  detail:"Approfondisci la voce specifica richiesta.",refdetail:"Approfondisci il referto specifico."
 };
 
-var chatHistories = {};
-var ldlChart = null;
-var panelStack = [];
+var chatHistories = {}, ldlChart = null, panelStack = [];
 
-function mk(tag, cls){ var d=document.createElement(tag); if(cls) d.className=cls; return d; }
-function getSystem(id){ return SYSTEM_PROMPT.replace('{PROFILE}', JSON.stringify(profile)) + '\n\nCONTESTO: ' + (SECTION_CTX[id]||''); }
-
-function downloadText(filename, text){
-  var blob=new Blob([text],{type:'text/plain;charset=utf-8'});
-  var url=URL.createObjectURL(blob);
-  var a=document.createElement('a'); a.href=url; a.download=filename;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  setTimeout(function(){URL.revokeObjectURL(url);},1000);
-}
-
-function saveToStore(key, text){
-  try{
-    var stamp=new Date().toLocaleString('it-IT');
-    window.storage.set('saved:'+key+':'+Date.now(), JSON.stringify({key:key,text:text,data:stamp}));
-    return true;
-  }catch(e){ return false; }
-}
-
-function todayStr(){
-  var d=new Date();
-  return d.getFullYear()+('0'+(d.getMonth()+1)).slice(-2)+('0'+d.getDate()).slice(-2);
-}
+function mk(t,c){var d=document.createElement(t);if(c)d.className=c;return d;}
+function getSystem(id){return SYSTEM_PROMPT.replace('{PROFILE}',JSON.stringify(profile))+'\n\nCONTESTO: '+(SECTION_CTX[id]||'');}
 
 function parseMarkdown(text){
-  var s=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
-  var lines=s.split('\n'), out=[], inUl=false;
-  for(var i=0;i<lines.length;i++){
-    var l=lines[i]; var liM=l.match(/^[\*\-] (.+)/); var h3M=l.match(/^#{1,3} (.+)/);
-    if(liM){ if(!inUl){out.push('<ul>');inUl=true;} out.push('<li>'+liM[1]+'</li>'); }
-    else{ if(inUl){out.push('</ul>');inUl=false;} if(h3M) out.push('<h3>'+h3M[1]+'</h3>'); else if(l.trim()==='') out.push(''); else out.push('<p>'+l+'</p>'); }
-  }
-  if(inUl) out.push('</ul>');
-  return out.join('');
+  var s=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
+  var lines=s.split('\n'),out=[],inUl=false;
+  for(var i=0;i<lines.length;i++){var l=lines[i],liM=l.match(/^[\*\-] (.+)/),h3M=l.match(/^#{1,3} (.+)/);
+    if(liM){if(!inUl){out.push('<ul>');inUl=true;}out.push('<li>'+liM[1]+'</li>');}
+    else{if(inUl){out.push('</ul>');inUl=false;}if(h3M)out.push('<h3>'+h3M[1]+'</h3>');else if(l.trim()==='')out.push('');else out.push('<p>'+l+'</p>');}}
+  if(inUl)out.push('</ul>');return out.join('');
 }
 
-function addMsg(id, role, text){
-  var msgs=document.getElementById('msgs-'+id); if(!msgs) return;
+function addMsg(id,role,text){
+  var msgs=document.getElementById('msgs-'+id);if(!msgs)return;
   var d=mk('div','msg '+(role==='user'?'msg-user':'msg-ai'));
-  if(role==='ai') d.innerHTML=parseMarkdown(text); else d.textContent=text;
+  if(role==='ai')d.innerHTML=parseMarkdown(text);else d.textContent=text;
   msgs.appendChild(d);
   if(role==='ai'){
-    var bar=mk('div',''); bar.style.cssText='display:flex;gap:6px;align-self:flex-start;margin:2px 0 4px 2px';
-    var cp=mk('button',''); cp.textContent='📄 Copia'; cp.style.cssText='background:none;border:0.5px solid var(--border);border-radius:6px;padding:3px 9px;font-size:11px;color:var(--text2);cursor:pointer';
-    cp.addEventListener('click',function(){ navigator.clipboard.writeText(text).then(function(){cp.textContent='✅ Copiato';setTimeout(function(){cp.textContent='📄 Copia';},1500);}); });
-    var sv=mk('button',''); sv.textContent='💾 Salva'; sv.style.cssText=cp.style.cssText;
-    sv.addEventListener('click',function(){ if(saveToStore(id,text)){sv.textContent='✅ Salvato';setTimeout(function(){sv.textContent='💾 Salva';},1500);} else {sv.textContent='Errore';} });
-    var dl=mk('button',''); dl.textContent='⬇️ Scarica'; dl.style.cssText=cp.style.cssText;
-    dl.addEventListener('click',function(){ downloadText(id+'_'+todayStr()+'.txt', text); });
-    bar.appendChild(cp); bar.appendChild(sv); bar.appendChild(dl); msgs.appendChild(bar);
+    var bar=mk('div','');bar.style.cssText='display:flex;gap:6px;align-self:flex-start;margin:2px 0 4px 2px';
+    var cp=mk('button','');cp.textContent='📄';cp.style.cssText='background:none;border:0.5px solid var(--border);border-radius:6px;padding:3px 9px;font-size:11px;color:var(--text2);cursor:pointer';
+    cp.addEventListener('click',function(){navigator.clipboard.writeText(text).then(function(){cp.textContent='✅';setTimeout(function(){cp.textContent='📄';},1500);});});
+    var dl=mk('button','');dl.textContent='⬇️';dl.style.cssText=cp.style.cssText;
+    dl.addEventListener('click',function(){downloadText(id+'.txt',text);});
+    bar.appendChild(cp);bar.appendChild(dl);msgs.appendChild(bar);
   }
   msgs.scrollTop=msgs.scrollHeight;
 }
-function addLoading(id){ var msgs=document.getElementById('msgs-'+id); if(!msgs)return; var d=mk('div','msg msg-loading'); d.id='loading-'+id; d.textContent='Elaborazione in corso…'; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; }
-function removeLoading(id){ var e=document.getElementById('loading-'+id); if(e) e.remove(); }
+function addLoading(id){var m=document.getElementById('msgs-'+id);if(!m)return;var d=mk('div','msg msg-loading');d.id='loading-'+id;d.textContent='Elaborazione…';m.appendChild(d);m.scrollTop=m.scrollHeight;}
+function removeLoading(id){var e=document.getElementById('loading-'+id);if(e)e.remove();}
 
 function sendMsg(id){
-  var inp=document.getElementById('input-'+id); var btn=document.getElementById('btn-'+id);
-  if(!inp) return; var text=inp.value.trim(); if(!text) return;
-  inp.value=''; if(btn) btn.disabled=true;
+  var inp=document.getElementById('input-'+id),btn=document.getElementById('btn-'+id);
+  if(!inp)return;var text=inp.value.trim();if(!text)return;
+  inp.value='';if(btn)btn.disabled=true;
   addMsg(id,'user',text);
-  if(!chatHistories[id]) chatHistories[id]=[];
+  if(!chatHistories[id])chatHistories[id]=[];
   chatHistories[id].push({role:'user',content:text});
   addLoading(id);
-  fetch('https://holy-band-5ed2.pasca2009.workers.dev/',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:8000,system:getSystem(id),tools:[{type:'web_search_20250305',name:'web_search'}],messages:chatHistories[id]})
-  })
+  fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:8000,system:getSystem(id),tools:[{type:'web_search_20250305',name:'web_search'}],messages:chatHistories[id]})})
   .then(function(r){return r.json();})
-  .then(function(data){
-    var reply=''; if(data.content){ data.content.forEach(function(b){ if(b.type==='text') reply+=b.text; }); }
-    if(!reply) reply=data.error?('Errore: '+data.error.message):'Nessuna risposta.';
-    removeLoading(id); addMsg(id,'ai',reply);
-    chatHistories[id].push({role:'assistant',content:reply});
-  })
-  .catch(function(e){ removeLoading(id); addMsg(id,'ai','Errore di connessione: '+e.message); })
-  .finally(function(){ if(btn) btn.disabled=false; });
+  .then(function(data){var reply='';if(data.content){data.content.forEach(function(b){if(b.type==='text')reply+=b.text;});}
+    if(!reply)reply=data.error?('Errore: '+data.error.message):'Nessuna risposta.';
+    removeLoading(id);addMsg(id,'ai',reply);chatHistories[id].push({role:'assistant',content:reply});})
+  .catch(function(e){removeLoading(id);addMsg(id,'ai','Errore di connessione: '+e.message);})
+  .finally(function(){if(btn)btn.disabled=false;});
 }
-function sendQuick(id,text){ var inp=document.getElementById('input-'+id); if(inp){ inp.value=text; sendMsg(id); } }
+function sendQuick(id,t){var inp=document.getElementById('input-'+id);if(inp){inp.value=t;sendMsg(id);}}
 
-function buildChat(id, quickList, container){
-  var block=mk('div','block');
-  var bt=mk('div','block-title'); bt.textContent='Chiedi all\'AI'; block.appendChild(bt);
+function buildChat(id,quick,c){
+  var b=mk('div','block'),bt=mk('div','block-title');bt.textContent='Chiedi all\'AI';b.appendChild(bt);
   var qb=mk('div','quick-btns');
-  quickList.forEach(function(q){ var b=mk('button','quick-btn'); b.textContent=q; b.addEventListener('click',(function(qq){return function(){sendQuick(id,qq);};})(q)); qb.appendChild(b); });
-  block.appendChild(qb);
-  var msgs=mk('div','messages'); msgs.id='msgs-'+id; block.appendChild(msgs);
-  var row=mk('div','chat-input-row'); row.style.marginTop='8px';
-  var inp=mk('input'); inp.type='text'; inp.id='input-'+id; inp.placeholder='Fai una domanda…';
-  inp.addEventListener('keydown',(function(sid){return function(e){if(e.key==='Enter')sendMsg(sid);};})(id));
-  var sbtn=mk('button','send-btn'); sbtn.id='btn-'+id; sbtn.textContent='Invia'; sbtn.addEventListener('click',(function(sid){return function(){sendMsg(sid);};})(id));
-  row.appendChild(inp); row.appendChild(sbtn); block.appendChild(row);
-  container.appendChild(block);
+  quick.forEach(function(q){var bn=mk('button','quick-btn');bn.textContent=q;bn.addEventListener('click',(function(x){return function(){sendQuick(id,x);};})(q));qb.appendChild(bn);});
+  b.appendChild(qb);
+  var msgs=mk('div','messages');msgs.id='msgs-'+id;b.appendChild(msgs);
+  var row=mk('div','chat-input-row');row.style.marginTop='8px';
+  var inp=mk('input');inp.type='text';inp.id='input-'+id;inp.placeholder='Fai una domanda…';
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg(id);});
+  var sb=mk('button','send-btn');sb.id='btn-'+id;sb.textContent='Invia';sb.addEventListener('click',function(){sendMsg(id);});
+  row.appendChild(inp);row.appendChild(sb);b.appendChild(row);c.appendChild(b);
 }
+
+function row(cls,html){var r=mk('div','alert-row'),d=mk('div','alert-dot '+cls),t=mk('div','alert-text');t.innerHTML=html;r.appendChild(d);r.appendChild(t);return r;}
+function textBlock(title,text){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent=title;b.appendChild(bt);var p=mk('p','');p.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';p.textContent=text;b.appendChild(p);return b;}
 
 var PANELS = {};
 
-PANELS.alerts = {
-  title:'⚠️ Alert & panoramica',
-  quick:['Come ottimizzare LDL a target?','Quale dose di vitamina D per me?','Priorità delle criticità aperte?'],
-  render:function(c){
-    var b=mk('div','block'); var bt=mk('div','block-title'); bt.textContent='Situazioni attive'; b.appendChild(bt);
-    [{col:'dot-red',html:'<strong>LDL 98 mg/dL</strong> — target &lt;70 con ateromasia carotidea. <span class="tag-red">Da rivalutare statina</span>'},
-     {col:'dot-amber',html:'<strong>Vitamina D 25-OH</strong> mai dosata. <span class="tag-amber">Aggiungere al prelievo</span>'},
-     {col:'dot-amber',html:'<strong>Shingrix</strong> e <strong>anti-COVID</strong> non documentate. <span class="tag-amber">Vaccinazioni over 60</span>'},
-     {col:'dot-amber',html:'<strong>Test broncodilatazione</strong> da eseguire per conferma BPCO.'},
-     {col:'dot-green',html:'Pucker OD — VOD <strong>8/10</strong>. <span class="tag-green">Recupero positivo</span>'},
-     {col:'dot-green',html:'Eco-TSA giu 2026: placca DX 23%, <strong>stabile</strong>. <span class="tag-green">Non emodinamica</span>'}
-    ].forEach(function(i){ var r=mk('div','alert-row'); var d=mk('div','alert-dot '+i.col); var t=mk('div','alert-text'); t.innerHTML=i.html; r.appendChild(d); r.appendChild(t); b.appendChild(r); });
-    c.appendChild(b);
-  }
-};
+PANELS.alerts={title:'⚠️ Alert & panoramica',quick:['Come ottimizzare LDL a target?','Priorità delle criticità aperte?','Fai un quadro riassuntivo del mio stato'],
+  render:function(c){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent='Situazioni attive';b.appendChild(bt);
+    b.appendChild(row('dot-red','<strong>LDL 98 mg/dL</strong> — target &lt;70 con ateromasia carotidea e aortica. <span class="tag-red">Da ottimizzare</span>'));
+    b.appendChild(row('dot-amber','<strong>Vitamina D</strong> sospesa e mai dosata + <strong>HbA1c</strong> mai fatta. <span class="tag-amber">Al prelievo</span>'));
+    b.appendChild(row('dot-amber','<strong>Shingrix</strong> (rilevante per occhi) e <strong>COVID</strong> stagionale. <span class="tag-amber">Da valutare</span>'));
+    b.appendChild(row('dot-green','<strong>Cuore</strong> — ecocardiogramma 19/08/2026 normale (EF 60%). <span class="tag-green">Ok</span>'));
+    b.appendChild(row('dot-green','<strong>Aorta</strong> no aneurisma · <strong>BPCO</strong> esclusa · <strong>DMLE</strong> stabile. <span class="tag-green">Rassicuranti</span>'));
+    c.appendChild(b);}};
 
-PANELS.cal = {
-  title:'📅 Calendario visite',
-  quick:['In quale ordine prenotare le visite mancanti?','Cosa aspettarsi dalla visita maculopatia OS?'],
-  render:function(c){
-    var b=mk('div','block'); var bt=mk('div','block-title'); bt.textContent='Visite e scadenze'; b.appendChild(bt);
-    [{d:'11',m:'Mag',ds:'background:var(--grnbg);border-color:var(--green)',dc:'color:var(--grnt)',t:'Ambulatorio Maculopatia',s:'Eseguita 11/05/2026 · DMLE dry stabile, no MNV',dot:'dot-green'},
-     {d:'29',m:'Giu',ds:'background:var(--grnbg);border-color:var(--green)',dc:'color:var(--grnt)',t:'Eco-TSA carotide',s:'Eseguita 29/06/2026 · placca DX 23%, stabile',dot:'dot-green'},
-     {d:'OCT',m:'--',ds:'background:var(--ambrbg);border-color:var(--amber)',dc:'color:var(--ambrt)',t:'OCT macula di follow-up',s:'Da programmare via CUP/oculista di fiducia',dot:'dot-amber'},
-     {d:'TBD',m:'--',ds:'background:var(--redbg);border-color:var(--red)',dc:'color:var(--redt)',t:'Test broncodilatazione',s:'Pneumologia Carpi · da prenotare',dot:'dot-red'},
-     {d:'TBD',m:'--',ds:'background:var(--redbg);border-color:var(--red)',dc:'color:var(--redt)',t:'Visita ORL + audiometria',s:'Da prenotare',dot:'dot-red'},
-     {d:'TBD',m:'--',ds:'background:var(--redbg);border-color:var(--red)',dc:'color:var(--redt)',t:'Follow-up neurochirurgico',s:'Post stabilizzazione L4-L5',dot:'dot-red'}
+PANELS.cal={title:'📅 Calendario visite',quick:['Che priorità do alle visite da fare?','Cosa chiedere al neurochirurgo a settembre?'],
+  render:function(c){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent='Visite e scadenze';b.appendChild(bt);
+    [{d:'11',m:'Mag',g:1,t:'Ambulatorio Maculopatia',s:'Eseguita 11/05/2026 · DMLE dry stabile'},
+     {d:'29',m:'Giu',g:1,t:'Eco-TSA carotide',s:'Eseguita · placca DX 23% stabile'},
+     {d:'27',m:'Lug',g:1,t:'Eco-Doppler aorta',s:'Eseguita · no aneurisma'},
+     {d:'19',m:'Ago',g:1,t:'Ecocardiogramma',s:'Eseguito · cuore normale EF 60%'},
+     {d:'29',m:'Gen',g:1,t:'Test broncodilatazione',s:'Eseguito · BPCO non confermata'},
+     {d:'Set',m:'26',g:2,t:'Follow-up neurochirurgico',s:'Programmato · chiedere sicurezza palestra'},
+     {d:'?',m:'--',g:3,t:'Prossimo prelievo',s:'Aggiungere vitamina D 25-OH e HbA1c'},
+     {d:'?',m:'--',g:3,t:'Vaccinazioni',s:'Shingrix + richiamo COVID (da valutare col medico)'}
     ].forEach(function(i){
-      var r=mk('div','cal-item'); var cd=mk('div','cal-date'); if(i.ds) cd.style.cssText=i.ds;
-      var cdd=mk('div','cal-date-day'); cdd.textContent=i.d; if(i.dc) cdd.style.cssText=i.dc;
-      var cdm=mk('div','cal-date-mon'); cdm.textContent=i.m; cd.appendChild(cdd); cd.appendChild(cdm);
-      var ci=mk('div',''); var ct=mk('div','cal-title'); ct.textContent=i.t; var cs=mk('div','cal-sub'); cs.textContent=i.s; ci.appendChild(ct); ci.appendChild(cs);
-      var dot=mk('div','alert-dot '+i.dot); dot.style.marginTop='6px'; r.appendChild(cd); r.appendChild(ci); r.appendChild(dot); b.appendChild(r);
-    });
-    c.appendChild(b);
-  }
-};
+      var col=i.g===1?'var(--grnbg)':i.g===2?'var(--ambrbg)':'var(--redbg)';
+      var bc=i.g===1?'var(--green)':i.g===2?'var(--amber)':'var(--red)';
+      var dc=i.g===1?'var(--grnt)':i.g===2?'var(--ambrt)':'var(--redt)';
+      var dot=i.g===1?'dot-green':i.g===2?'dot-amber':'dot-red';
+      var r=mk('div','cal-item'),cd=mk('div','cal-date');cd.style.cssText='background:'+col+';border-color:'+bc;
+      var cdd=mk('div','cal-date-day');cdd.textContent=i.d;cdd.style.color=dc;var cdm=mk('div','cal-date-mon');cdm.textContent=i.m;
+      cd.appendChild(cdd);cd.appendChild(cdm);
+      var ci=mk('div',''),ct=mk('div','cal-title');ct.textContent=i.t;var cs=mk('div','cal-sub');cs.textContent=i.s;ci.appendChild(ct);ci.appendChild(cs);
+      var dt=mk('div','alert-dot '+dot);dt.style.marginTop='6px';
+      r.appendChild(cd);r.appendChild(ci);r.appendChild(dt);b.appendChild(r);});
+    c.appendChild(b);}};
 
-PANELS.farm = {
-  title:'💊 Farmaci & integratori',
-  quick:['Interazioni tra farmaci e integratori?','Il CoQ10 è necessario con le statine?','Vision Defender: dose corretta?'],
+PANELS.farm={title:'💊 Farmaci & integratori',quick:['Interazioni tra farmaci e integratori?','Come e quando assumere gli integratori?','Il CoQ10 mi serve davvero?'],
   render:function(c){
-    var b1=mk('div','block'); var bt1=mk('div','block-title'); bt1.textContent='Terapia cronica'; b1.appendChild(bt1);
+    var b1=mk('div','block'),t1=mk('div','block-title');t1.textContent='Terapia cronica';b1.appendChild(t1);
     var g1=mk('div','pills-grid');
-    [{n:'Atorvastatina 20 mg',d:'1 cp/sera · dislipidemia',note:'LDL 98, target ≤70 — da rivalutare',s:'border-color:var(--amber);background:var(--ambrbg)'},
-     {n:'Amlodipina 5 mg',d:'1 cp/mattino · ipertensione'}
-    ].forEach(function(p){ var pc=mk('div','pill-card'); if(p.s)pc.style.cssText=p.s; var pn=mk('div','pill-name'); pn.textContent=p.n; var pd=mk('div','pill-dose'); pd.textContent=p.d; pc.appendChild(pn); pc.appendChild(pd); if(p.note){var pno=mk('div','pill-note'); pno.textContent='⚠️ '+p.note; pc.appendChild(pno);} g1.appendChild(pc); });
-    b1.appendChild(g1); c.appendChild(b1);
-    var b2=mk('div','block'); var bt2=mk('div','block-title'); bt2.textContent='Integratori'; b2.appendChild(bt2);
+    profile.terapia_cronica.forEach(function(p){var pc=mk('div','pill-card');if(p.note)pc.style.cssText='border-color:var(--amber);background:var(--ambrbg)';
+      var pn=mk('div','pill-name');pn.textContent=p.nome;var pd=mk('div','pill-dose');pd.textContent=p.indicazione;pc.appendChild(pn);pc.appendChild(pd);
+      if(p.note){var pnn=mk('div','pill-note');pnn.textContent='⚠️ '+p.note;pc.appendChild(pnn);}g1.appendChild(pc);});
+    b1.appendChild(g1);c.appendChild(b1);
+    var b2=mk('div','block'),t2=mk('div','block-title');t2.textContent='Integratori';b2.appendChild(t2);
     var g2=mk('div','pills-grid');
-    [{n:'Vision Defender Plus (AREDS 2)',d:'2 cp/die · formula maculare'},
-     {n:'Vitamina D',d:'Dose n.s.',note:'25-OH mai dosata',s:'border-color:var(--amber);background:var(--ambrbg)'},
-     {n:'Omega 3',d:'Dopo i pasti'},{n:'Coenzima Q10',d:'Con statine'},
-     {n:'Creatina',d:'Massa muscolare'},{n:'Magnesio',d:'Integrazione'},
-     {n:'Collagene UC-II',d:'Gonartrosi/coxartrosi'},{n:'Kerà crema',d:'Sera · cheratosi attiniche'},
-     {n:'Actinic Control FP100',d:'Mattino · cheratosi'}
-    ].forEach(function(p){ var pc=mk('div','pill-card'); if(p.s)pc.style.cssText=p.s; var pn=mk('div','pill-name'); pn.textContent=p.n; var pd=mk('div','pill-dose'); pd.textContent=p.d; pc.appendChild(pn); pc.appendChild(pd); if(p.note){var pno=mk('div','pill-note'); pno.textContent='⚠️ '+p.note; pc.appendChild(pno);} g2.appendChild(pc); });
-    b2.appendChild(g2); c.appendChild(b2);
-    var note=mk('div','block'); var nt=mk('div','block-title'); nt.textContent='Sospesi'; note.appendChild(nt);
-    var np=mk('p',''); np.style.cssText='font-size:12px;color:var(--text2);line-height:1.6'; np.innerHTML='• <strong>Rolufta 55 mcg</strong> — non più in terapia<br>• <strong>Vitamina D</strong> — sospesa da tempo (25-OH mai dosata, da controllare al prossimo prelievo)'; note.appendChild(np); c.appendChild(note);
-  }
-};
+    profile.integratori.forEach(function(s){var pc=mk('div','pill-card'),pn=mk('div','pill-name');
+      var parts=s.split(' - ');pn.textContent=parts[0];var pd=mk('div','pill-dose');pd.textContent=parts[1]||'';pc.appendChild(pn);pc.appendChild(pd);g2.appendChild(pc);});
+    b2.appendChild(g2);c.appendChild(b2);
+    var b3=mk('div','block'),t3=mk('div','block-title');t3.textContent='Sospesi';b3.appendChild(t3);
+    profile.integratori_sospesi.forEach(function(s){b3.appendChild(row('dot-amber',s));});c.appendChild(b3);}};
 
-PANELS.esami = {
-  title:'🧪 Ultimi esami — 17/12/2025',
-  quick:['Analizza i valori e le criticità','Il PSA 2.11 è preoccupante a 70 anni?','Andamento del colesterolo nel tempo?'],
+PANELS.esami={title:'🧪 Ultimi esami — 17/12/2025',quick:['Analizza i valori e le criticità','Il PSA 2.11 è preoccupante?','Andamento del colesterolo nel tempo?'],
   render:function(c){
-    var b1=mk('div','block'); var bt1=mk('div','block-title'); bt1.textContent='Valori (17/12/2025)'; b1.appendChild(bt1);
+    var b1=mk('div','block'),t1=mk('div','block-title');t1.textContent='Valori (17/12/2025)';b1.appendChild(t1);
     var g=mk('div','esami-grid');
-    [{l:'Glicemia',v:'97',r:'mg/dL ✅',cls:'ok'},{l:'Creatinina',v:'0.84',r:'mg/dL ✅',cls:'ok'},
-     {l:'eGFR',v:'>60',r:'✅',cls:'ok'},{l:'Ac. urico',v:'4.6',r:'✅',cls:'ok'},
-     {l:'Col. tot',v:'160',r:'✅',cls:'ok'},{l:'LDL',v:'98',r:'target ≤70 ⚠️',cls:'warn'},
-     {l:'HDL',v:'44',r:'✅',cls:'ok'},{l:'Triglic.',v:'74',r:'✅',cls:'ok'},
-     {l:'GPT-ALT',v:'21',r:'✅',cls:'ok'},{l:'Fosf.alc',v:'103',r:'✅',cls:'ok'},
-     {l:'PCR',v:'0.5',r:'✅',cls:'ok'},{l:'TSH',v:'2.84',r:'✅',cls:'ok'},
-     {l:'PSA',v:'2.11',r:'ng/mL ✅',cls:'ok'},{l:'α1-AT',v:'170',r:'✅',cls:'ok'}
-    ].forEach(function(v){ var ec=mk('div','esame-card '+v.cls); var el1=mk('div','esame-label'); el1.textContent=v.l; var ev=mk('div','esame-value'); ev.textContent=v.v; var er=mk('div','esame-ref'); er.textContent=v.r; ec.appendChild(el1); ec.appendChild(ev); ec.appendChild(er); g.appendChild(ec); });
-    b1.appendChild(g); c.appendChild(b1);
-    var b2=mk('div','block'); var bt2=mk('div','block-title'); bt2.textContent='Andamento colesterolo totale (mg/dL)'; b2.appendChild(bt2);
-    var wrap=mk('div','chart-wrap'); var canvas=document.createElement('canvas'); canvas.id='ldlChart'; wrap.appendChild(canvas); b2.appendChild(wrap); c.appendChild(b2);
-    setTimeout(function(){
-      if(ldlChart){ldlChart.destroy();ldlChart=null;}
-      ldlChart=new Chart(canvas,{type:'line',data:{labels:['ott 22','giu 23','feb 25','dic 25'],datasets:[{label:'Col. totale',data:[212,233,139,160],borderColor:'#70a8d0',backgroundColor:'rgba(112,168,208,.1)',pointBackgroundColor:'#70a8d0',pointRadius:5,tension:.3,fill:true},{label:'Desiderabile <200',data:[200,200,200,200],borderColor:'#70b060',borderDash:[6,3],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8a90a0',font:{size:10}}}},scales:{y:{min:100,max:260,ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}},x:{ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}}}}});
-    },80);
-  }
-};
+    [{l:'Glicemia',v:'97',c:'ok'},{l:'Creatinina',v:'0.84',c:'ok'},{l:'eGFR',v:'>60',c:'ok'},{l:'Ac.urico',v:'4.6',c:'ok'},
+     {l:'Col.tot',v:'160',c:'ok'},{l:'LDL',v:'98',c:'warn',r:'target ≤70'},{l:'HDL',v:'44',c:'ok'},{l:'Triglic.',v:'74',c:'ok'},
+     {l:'GPT',v:'21',c:'ok'},{l:'PCR',v:'0.5',c:'ok'},{l:'TSH',v:'2.84',c:'ok'},{l:'PSA',v:'2.11',c:'ok'}
+    ].forEach(function(e){var ec=mk('div','esame-card '+e.c),el=mk('div','esame-label');el.textContent=e.l;var ev=mk('div','esame-value');ev.textContent=e.v;var er=mk('div','esame-ref');er.textContent=e.r||'✅';ec.appendChild(el);ec.appendChild(ev);ec.appendChild(er);g.appendChild(ec);});
+    b1.appendChild(g);c.appendChild(b1);
+    var b2=mk('div','block'),t2=mk('div','block-title');t2.textContent='Andamento colesterolo totale';b2.appendChild(t2);
+    var w=mk('div','chart-wrap'),cv=document.createElement('canvas');cv.id='ldlChart';w.appendChild(cv);b2.appendChild(w);c.appendChild(b2);
+    setTimeout(function(){if(ldlChart){ldlChart.destroy();ldlChart=null;}
+      ldlChart=new Chart(cv,{type:'line',data:{labels:profile.storico_col_tot.map(function(x){return x.data;}),datasets:[{label:'Col.tot',data:profile.storico_col_tot.map(function(x){return x.val;}),borderColor:'#70a8d0',backgroundColor:'rgba(112,168,208,.1)',pointRadius:5,tension:.3,fill:true},{label:'<200',data:[200,200,200,200],borderColor:'#70b060',borderDash:[6,3],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8a90a0',font:{size:10}}}},scales:{y:{min:100,max:260,ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}},x:{ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}}}}});},80);}};
 
-PANELS.vacc = {
-  title:'💉 Vaccinazioni',
-  quick:['Come funziona Shingrix e quante dosi?','Quali vaccinazioni mi mancano?'],
-  render:function(c){
-    var b=mk('div','block');
-    [{ico:'✅',n:'Tetano/Difterite/Pertosse',tag:'<span class="tag-green">ott 2024</span>'},
-     {ico:'✅',n:'Antiinfluenzale',tag:'<span class="tag-green">nov 2025</span>'},
-     {ico:'✅',n:'Antipneumococcica',tag:'<span class="tag-green">dic 2025</span>'},
-     {ico:'❌',n:'Herpes Zoster (Shingrix)',tag:'<span class="tag-amber">non documentata</span>'},
-     {ico:'❌',n:'Anti-COVID',tag:'<span class="tag-amber">non documentata</span>'}
-    ].forEach(function(i){ var r=mk('div','vacc-row'); var ic=mk('span',''); ic.textContent=i.ico; ic.style.fontSize='16px'; var nm=mk('div','vacc-name'); nm.textContent=i.n; var tg=mk('span',''); tg.innerHTML=i.tag; r.appendChild(ic); r.appendChild(nm); r.appendChild(tg); b.appendChild(r); });
-    c.appendChild(b);
-  }
-};
+PANELS.vacc={title:'💉 Vaccinazioni',quick:['Mi conviene fare lo Shingrix?','Il richiamo COVID è ancora raccomandato per me?'],
+  render:function(c){var b=mk('div','block');
+    [['✅','Tetano/Difterite/Pertosse','<span class="tag-green">ott 2024</span>'],['✅','Antiinfluenzale','<span class="tag-green">nov 2025</span>'],['✅','Antipneumococcica','<span class="tag-green">dic 2025</span>'],['❌','Herpes Zoster (Shingrix)','<span class="tag-amber">da valutare</span>'],['❌','Anti-COVID','<span class="tag-amber">richiamo stagionale?</span>']
+    ].forEach(function(v){var r=mk('div','vacc-row'),ic=mk('span','');ic.textContent=v[0];ic.style.fontSize='16px';var nm=mk('div','vacc-name');nm.textContent=v[1];var tg=mk('span','');tg.innerHTML=v[2];r.appendChild(ic);r.appendChild(nm);r.appendChild(tg);b.appendChild(r);});
+    c.appendChild(b);}};
 
-PANELS.macula = {
-  title:'👁️ Maculopatia & occhi',
-  quick:['Cosa aspettarsi dalla visita OS dell\'11 maggio?','Novità 2025-2026 su DMLE e 2RT?','La cataratta OS è legata alla DMLE?','Rischio di evoluzione essudativa?'],
-  render:function(c){
-    var m=profile.maculopatia;
-    // diagnosi generale
-    var bd=mk('div','block'); var bdt=mk('div','block-title'); bdt.textContent='Diagnosi'; bd.appendChild(bdt);
-    var dp=mk('p',''); dp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6'; dp.textContent=m.diagnosi; bd.appendChild(dp); c.appendChild(bd);
-    // OD / OS
-    var b1=mk('div','block'); var b1t=mk('div','block-title'); b1t.textContent='Stato attuale dei due occhi'; b1.appendChild(b1t);
+PANELS.macula={title:'👁️ Maculopatia & occhi',quick:['Cosa aspettarsi dai prossimi controlli?','Novità 2026 su DMLE e 2RT?','Meso-zeaxantina: mi serve?','Rischio di evoluzione essudativa?'],
+  render:function(c){var m=profile.maculopatia;
+    c.appendChild(textBlock('Diagnosi',m.diagnosi));
+    var b1=mk('div','block'),t1=mk('div','block-title');t1.textContent='Stato attuale dei due occhi';b1.appendChild(t1);
     var mg=mk('div','macula-grid');
-    var od=mk('div','macula-item'); od.style.cssText='border-color:var(--green);background:var(--grnbg)';
-    var ode=mk('div','macula-eye'); ode.textContent='Occhio destro (OD)'; ode.style.color='var(--grnt)';
-    var ods=mk('div','macula-status'); ods.textContent=m.od.stato; ods.style.color='var(--grnt)'; od.appendChild(ode); od.appendChild(ods);
-    var os=mk('div','macula-item'); os.style.cssText='border-color:var(--amber);background:var(--ambrbg)';
-    var ose=mk('div','macula-eye'); ose.textContent='Occhio sinistro (OS)'; ose.style.color='var(--ambrt)';
-    var oss=mk('div','macula-status'); oss.textContent=m.os.stato; oss.style.color='var(--ambrt)'; os.appendChild(ose); os.appendChild(oss);
-    mg.appendChild(od); mg.appendChild(os); b1.appendChild(mg); c.appendChild(b1);
-    // storia OD
-    var bod=mk('div','block'); var bodt=mk('div','block-title'); bodt.textContent='Storia occhio destro (OD)'; bod.appendChild(bodt);
-    var odp=mk('p',''); odp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6'; odp.textContent=m.od.storia; bod.appendChild(odp); c.appendChild(bod);
-    // storia OS
-    var bos=mk('div','block'); var bost=mk('div','block-title'); bost.textContent='Storia occhio sinistro (OS)'; bos.appendChild(bost);
-    var osp=mk('p',''); osp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6'; osp.textContent=m.os.storia; bos.appendChild(osp);
-    var osnext=mk('p',''); osnext.style.cssText='font-size:12px;color:var(--ambrt);margin-top:6px'; osnext.textContent='📅 '+m.os.prossimo; bos.appendChild(osnext); c.appendChild(bos);
-    // laser 2RT
-    var b2rt=mk('div','block'); var b2rtt=mk('div','block-title'); b2rtt.textContent='Laser 2RT'; b2rt.appendChild(b2rtt);
-    var rp=mk('p',''); rp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6'; rp.textContent=m.laser_2rt; b2rt.appendChild(rp); c.appendChild(b2rt);
-    // esami strumentali
-    var bes=mk('div','block'); var best=mk('div','block-title'); best.textContent='Esami strumentali'; bes.appendChild(best);
-    m.esami_strumentali.forEach(function(e){ var r=mk('div','alert-row'); var dot=mk('div','alert-dot dot-blue'); var t=mk('div','alert-text'); t.textContent=e; r.appendChild(dot); r.appendChild(t); bes.appendChild(r); });
-    c.appendChild(bes);
-    // terapia
-    var bt2=mk('div','block'); var bt2t=mk('div','block-title'); bt2t.textContent='Terapia in corso'; bt2.appendChild(bt2t);
-    var tp=mk('p',''); tp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6'; tp.textContent=m.terapia_attuale; bt2.appendChild(tp); c.appendChild(bt2);
-  }
-};
+    var od=mk('div','macula-item');od.style.cssText='border-color:var(--green);background:var(--grnbg)';var ode=mk('div','macula-eye');ode.textContent='Occhio destro (OD)';ode.style.color='var(--grnt)';var ods=mk('div','macula-status');ods.textContent=m.od.stato;ods.style.color='var(--grnt)';od.appendChild(ode);od.appendChild(ods);
+    var os=mk('div','macula-item');os.style.cssText='border-color:var(--amber);background:var(--ambrbg)';var ose=mk('div','macula-eye');ose.textContent='Occhio sinistro (OS)';ose.style.color='var(--ambrt)';var oss=mk('div','macula-status');oss.textContent=m.os.stato;oss.style.color='var(--ambrt)';os.appendChild(ose);os.appendChild(oss);
+    mg.appendChild(od);mg.appendChild(os);b1.appendChild(mg);c.appendChild(b1);
+    c.appendChild(textBlock('Storia occhio destro (OD)',m.od.storia));
+    c.appendChild(textBlock('Storia occhio sinistro (OS)',m.os.storia+' — Prossimo: '+m.os.prossimo));
+    c.appendChild(textBlock('Laser 2RT',m.laser_2rt));
+    var be=mk('div','block'),te=mk('div','block-title');te.textContent='Esami strumentali';be.appendChild(te);m.esami.forEach(function(e){be.appendChild(row('dot-blue',e));});c.appendChild(be);
+    c.appendChild(textBlock('Terapia in corso',m.terapia));}};
 
-PANELS.schiena = {
-  title:'🦴 Schiena & rachide',
-  quick:['Cosa comporta la stabilizzazione L4-L5 nel tempo?','Quali attività evitare dopo l\'intervento?','Le cisti di Tarlov sono un problema?','Novità su recupero post-artrodesi lombare?'],
+PANELS.schiena={title:'🦴 Schiena & rachide',quick:['Cosa comporta la stabilizzazione nel tempo?','Quali attività evitare?','Novità su recupero post-artrodesi?'],
   render:function(c){
-    var bd=mk('div','block'); var bdt=mk('div','block-title'); bdt.textContent='Quadro attuale'; bd.appendChild(bdt);
-    var dp=mk('p',''); dp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';
-    dp.textContent='Stenosi severa L4-L5 (Schizas C) su anterolistesi I grado L4-L5, operata con stabilizzazione vertebrale (viti peduncolari + barre + cage intersomatica + laminoartrectomia L5) il 19-22/03/2025 all\'Osp. Bellaria di Bologna (dott.ssa Serchi). Decorso post-operatorio regolare con buon controllo del dolore e ripresa della deambulazione autonoma.'; bd.appendChild(dp); c.appendChild(bd);
+    c.appendChild(textBlock('Quadro attuale',profile.rachide_stato));
+    c.appendChild(textBlock('Storia clinica','Lombalgia da ~2022 con blocchi ricorrenti. Da marzo 2024, dopo sollevamento carico pesante, sciatalgia bilaterale ingravescente con claudicatio. RM documentava ernia L4-L5 con stenosi severa. Operato 19-22/03/2025 (stabilizzazione con viti, barre, cage, laminoartrectomia L5) all\'Osp. Bellaria Bologna.'));
+    var bi=mk('div','block'),ti=mk('div','block-title');ti.textContent='Reperti associati';bi.appendChild(ti);
+    ['Anterolistesi L4-L5 I grado (invariata)','Bulging L2-L3, L3-L4, L5-S1','Cisti di Tarlov sacrale ~2cm a S2 (non trattata, reperto da monitorare)','Coxartrosi bilaterale lieve','Calcificazioni aortiche'].forEach(function(x){bi.appendChild(row('dot-blue',x));});c.appendChild(bi);
+    c.appendChild(textBlock('Attività fisica',profile.attivita_fisica));
+    var bf=mk('div','block'),tf=mk('div','block-title');tf.textContent='Da programmare';bf.appendChild(tf);bf.appendChild(row('dot-amber','<strong>Follow-up neurochirurgico</strong> settembre 2026 — chiedere sicurezza palestra e utilità fisioterapia'));c.appendChild(bf);}};
 
-    var bs=mk('div','block'); var bst=mk('div','block-title'); bst.textContent='Storia clinica'; bs.appendChild(bst);
-    dp=mk('p',''); dp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';
-    dp.textContent='Lombalgia da ~2022 con blocchi rachidei ricorrenti. Da marzo 2024, dopo sollevamento di carico pesante, comparsa di sciatalgia bilaterale (dx>sx) ingravescente con claudicatio. RM giu 2023 e RMN gen 2025 documentavano ernia discale L4-L5 mediana voluminosa con stenosi canalare severa acquisita, più erniazione L5-S1 paramediana sinistra.'; bs.appendChild(dp); c.appendChild(bs);
-
-    var bi=mk('div','block'); var bit=mk('div','block-title'); bit.textContent='Reperti associati (imaging)'; bi.appendChild(bit);
-    ['Anterolistesi L4-L5 I grado (invariata post-intervento)',
-     'Bulging discali multipli L2-L3, L3-L4, L5-S1',
-     'Cisti di Tarlov sacrale, la maggiore ~2 cm a S2',
-     'Coxartrosi bilaterale lieve + entesopatia calcifica (RX nov 2024)',
-     'Calcificazioni aortiche, ridotto tono calcico'
-    ].forEach(function(it){ var r=mk('div','alert-row'); var dot=mk('div','alert-dot dot-blue'); var t=mk('div','alert-text'); t.textContent=it; r.appendChild(dot); r.appendChild(t); bi.appendChild(r); });
-    c.appendChild(bi);
-
-    var bf=mk('div','block'); var bft=mk('div','block-title'); bft.textContent='Da programmare'; bf.appendChild(bft);
-    var r=mk('div','alert-row'); var dot=mk('div','alert-dot dot-amber'); var t=mk('div','alert-text'); t.innerHTML='<strong>Follow-up neurochirurgico</strong> post stabilizzazione — da prenotare'; r.appendChild(dot); r.appendChild(t); bf.appendChild(r);
-    c.appendChild(bf);
-  }
-};
-
-PANELS.patologie = {
-  title:'🩺 Patologie attive',
-  quick:['Quali patologie interagiscono tra loro?','Qual è la più rischiosa per me?'],
+PANELS.patologie={title:'🩺 Patologie attive',quick:['Quali patologie interagiscono tra loro?','Qual è la più rischiosa per me?'],
   render:function(c){
-    [{label:'Cardiovascolare',items:['Ipertensione arteriosa (in terapia)','Dislipidemia — LDL 98, target ≤70','Ateromasia carotidea DX placca 23% non emodinamica']},
-     {label:'Oculare',items:['DMLE bilaterale con drusen','Pucker OD — operato 26/05/2025, VOD 8/10','Cataratta iniziale OS']},
-     {label:'Respiratoria',items:['Sospetta BPCO lieve — test broncodilatazione da eseguire']},
-     {label:'Osteoarticolare',items:['Stenosi L4-L5 — operata 03/2025','Gonartrosi tricompartimentale DX','Coxartrosi bilaterale lieve','Alluce valgo bilaterale']},
-     {label:'Dermatologica',items:['Cheratosi attiniche fronte (in trattamento)']},
-     {label:'ORL',items:['Ipoacusia bilaterale lieve (PTA DX 15, SX 13 dB)']}
-    ].forEach(function(cat){
-      var b=mk('div','block'); var bt=mk('div','block-title'); bt.textContent=cat.label; b.appendChild(bt);
-      cat.items.forEach(function(item){
-        var r=mk('div','alert-row'); r.style.cssText='justify-content:space-between;align-items:center;gap:10px';
-        var left=mk('div',''); left.style.cssText='display:flex;align-items:center;gap:10px;flex:1';
-        var dot=mk('div','alert-dot dot-blue'); var t=mk('div','alert-text'); t.textContent=item; left.appendChild(dot); left.appendChild(t);
-        var abtn=mk('button','approfondisci-btn'); abtn.textContent='Approfondisci';
-        abtn.addEventListener('click',(function(it){return function(){openPatologiaDetail(it);};})(item));
-        r.appendChild(left); r.appendChild(abtn); b.appendChild(r);
-      });
-      c.appendChild(b);
-    });
-  }
-};
+    var cats=[['Cardiovascolare',['Ipertensione arteriosa (in terapia, ben controllata)','Dislipidemia — LDL 98, target ≤70','Ateromasia carotidea DX placca 23% non emodinamica','Ateromasia calcifica aorta (no aneurisma)','Minima sclerosi aortica valvolare']],
+      ['Oculare',['DMLE bilaterale forma secca stabile','Pucker OD — operato 26/05/2025, VOD 8/10','Cataratta iniziale OS']],
+      ['Osteoarticolare',['Stenosi L4-L5 — operata 03/2025','Gonartrosi tricompartimentale DX','Coxartrosi bilaterale lieve','Alluce valgo bilaterale']],
+      ['Dermatologica',['Cheratosi attiniche fronte']],['ORL',['Ipoacusia bilaterale lieve']]];
+    var esc=mk('div','block'),te=mk('div','block-title');te.textContent='Escluse / risolte';esc.appendChild(te);esc.appendChild(row('dot-green','<strong>Sospetta BPCO</strong> — NON confermata (test broncodilatazione negativo, gen 2026)'));c.appendChild(esc);
+    cats.forEach(function(cat){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent=cat[0];b.appendChild(bt);
+      cat[1].forEach(function(item){var r=mk('div','alert-row');r.style.cssText='justify-content:space-between;align-items:center;gap:10px';
+        var left=mk('div','');left.style.cssText='display:flex;align-items:center;gap:10px;flex:1';var dot=mk('div','alert-dot dot-blue');var t=mk('div','alert-text');t.textContent=item;left.appendChild(dot);left.appendChild(t);
+        var ab=mk('button','approfondisci-btn');ab.textContent='Approfondisci';ab.addEventListener('click',(function(it){return function(){openDetail(it,'patologia');};})(item));
+        r.appendChild(left);r.appendChild(ab);b.appendChild(r);});c.appendChild(b);});}};
 
-PANELS.storia = {
-  title:'📖 Archivio referti',
-  quick:['Riassumi la mia storia clinica','Qual è l\'evoluzione della mia DMLE?'],
-  render:function(c){
-    var arch=profile.referti_archivio;
-    var intro=mk('div','block'); var it=mk('p',''); it.style.cssText='font-size:12px;color:var(--text2)'; it.textContent='Tocca una specialità per aprire i referti. Ordinati dal più recente.'; intro.appendChild(it); c.appendChild(intro);
-    Object.keys(arch).forEach(function(spec){
-      var refs=arch[spec].slice().reverse();
-      var b=mk('div','block'); b.style.padding='0';
-      var head=mk('div',''); head.style.cssText='padding:12px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer';
-      var lbl=mk('div',''); lbl.style.cssText='font-size:13px;font-weight:500;color:var(--text)'; lbl.textContent=spec;
-      var cnt=mk('span',''); cnt.className='tag-blue'; cnt.textContent=refs.length+' referti';
-      var right=mk('div',''); right.style.cssText='display:flex;align-items:center;gap:8px';
-      var chev=mk('span',''); chev.textContent='▾'; chev.style.cssText='color:var(--text2);transition:transform .2s';
-      right.appendChild(cnt); right.appendChild(chev);
-      head.appendChild(lbl); head.appendChild(right); b.appendChild(head);
-      var body=mk('div',''); body.style.cssText='display:none;padding:0 14px 12px';
-      refs.forEach(function(r){
-        var card=mk('div',''); card.style.cssText='border-top:0.5px solid var(--border2);padding:10px 0';
-        var dt=mk('div',''); dt.style.cssText='display:flex;justify-content:space-between;gap:8px;margin-bottom:4px';
-        var dd=mk('span',''); dd.style.cssText='font-size:12px;font-weight:500;color:var(--bluet)'; dd.textContent=r.data;
-        var st=mk('span',''); st.style.cssText='font-size:11px;color:var(--text2);text-align:right'; st.textContent=r.struttura;
-        dt.appendChild(dd); dt.appendChild(st); card.appendChild(dt);
-        var tx=mk('div',''); tx.style.cssText='font-size:12px;color:var(--text3);line-height:1.5'; tx.textContent=r.testo; card.appendChild(tx);
-        var abtn=mk('button','approfondisci-btn'); abtn.textContent='💬 Approfondisci con l\'AI'; abtn.style.marginTop='8px';
-        abtn.addEventListener('click',(function(rr,sp){return function(){ openRefertoDetail(rr,sp); };})(r,spec));
-        card.appendChild(abtn);
-        body.appendChild(card);
-      });
+PANELS.storia={title:'📖 Archivio referti',quick:['Riassumi la mia storia clinica','Qual è l\'evoluzione della mia DMLE?'],
+  render:function(c){var arch=profile.referti_archivio;
+    var intro=mk('div','block'),it=mk('p','');it.style.cssText='font-size:12px;color:var(--text2)';it.textContent='Tocca una specialità per aprire i referti (dal più recente).';intro.appendChild(it);c.appendChild(intro);
+    Object.keys(arch).forEach(function(spec){var refs=arch[spec].slice().reverse();
+      var b=mk('div','block');b.style.padding='0';
+      var head=mk('div','');head.style.cssText='padding:12px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer';
+      var lbl=mk('div','');lbl.style.cssText='font-size:13px;font-weight:500;color:var(--text)';lbl.textContent=spec;
+      var right=mk('div','');right.style.cssText='display:flex;align-items:center;gap:8px';var cnt=mk('span','tag-blue');cnt.textContent=refs.length;var chev=mk('span','');chev.textContent='▾';chev.style.color='var(--text2)';right.appendChild(cnt);right.appendChild(chev);
+      head.appendChild(lbl);head.appendChild(right);b.appendChild(head);
+      var body=mk('div','');body.style.cssText='display:none;padding:0 14px 12px';
+      refs.forEach(function(r){var card=mk('div','');card.style.cssText='border-top:0.5px solid var(--border2);padding:10px 0';
+        var dt=mk('div','');dt.style.cssText='display:flex;justify-content:space-between;gap:8px;margin-bottom:4px';var dd=mk('span','');dd.style.cssText='font-size:12px;font-weight:500;color:var(--bluet)';dd.textContent=r.data;var st=mk('span','');st.style.cssText='font-size:11px;color:var(--text2);text-align:right';st.textContent=r.struttura;dt.appendChild(dd);dt.appendChild(st);card.appendChild(dt);
+        var tx=mk('div','');tx.style.cssText='font-size:12px;color:var(--text3);line-height:1.5';tx.textContent=r.testo;card.appendChild(tx);
+        var ab=mk('button','approfondisci-btn');ab.textContent='💬 Approfondisci con l\'AI';ab.style.marginTop='8px';ab.addEventListener('click',(function(rr,sp){return function(){openRefertoDetail(rr,sp);};})(r,spec));card.appendChild(ab);
+        body.appendChild(card);});
       b.appendChild(body);
-      head.addEventListener('click',(function(bd,cv){return function(){ var open=bd.style.display!=='none'; bd.style.display=open?'none':'block'; cv.style.transform=open?'':'rotate(180deg)'; };})(body,chev));
-      c.appendChild(b);
-    });
-  }
-};
+      head.addEventListener('click',(function(bd,cv){return function(){var open=bd.style.display!=='none';bd.style.display=open?'none':'block';cv.style.transform=open?'':'rotate(180deg)';};})(body,chev));
+      c.appendChild(b);});}};
 
-function openRefertoDetail(referto, specialita){
-  var id='refdetail'; panelStack.push('refdetail');
-  document.getElementById('panel-title').textContent='💬 '+referto.data+' · '+specialita;
-  var content=document.getElementById('panel-content'); content.innerHTML='';
-  var rb=mk('div','block'); var rbt=mk('div','block-title'); rbt.textContent='Referto — '+referto.struttura; rb.appendChild(rbt);
-  var rp=mk('p',''); rp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6'; rp.textContent=referto.testo; rb.appendChild(rp); content.appendChild(rb);
-  var quick=['Spiegami questo referto in parole semplici','Cosa significano i termini tecnici?','È coerente con la mia storia clinica?','Domande da porre al medico su questo'];
-  buildChat(id,quick,content);
-  chatHistories[id]=[{role:'user',content:'CONTESTO REFERTO ('+specialita+', '+referto.data+', '+referto.struttura+'): '+referto.testo+'\n\nHo caricato questo referto. Attendi le mie domande su di esso.'},{role:'assistant',content:'Ho letto il referto del '+referto.data+'. Chiedimi pure cosa vuoi sapere: posso spiegartelo in parole semplici, chiarire i termini tecnici, o dirti come si inserisce nella tua storia clinica.'}];
-  var msgs=document.getElementById('msgs-'+id);
-  if(msgs){ chatHistories[id].forEach(function(m){ if(m.role==='assistant'){ addMsg(id,'ai',m.content); } }); }
-}
-
-function openPanel(id){
-  var p=PANELS[id]; if(!p) return;
-  panelStack=[id];
-  document.getElementById('home').style.display='none';
-  document.getElementById('panel').classList.add('open');
+function openPanel(id){var p=PANELS[id];if(!p)return;panelStack=[id];
+  document.getElementById('home').style.display='none';document.getElementById('panel').classList.add('open');
   document.getElementById('panel-title').textContent=p.title;
-  var content=document.getElementById('panel-content'); content.innerHTML='';
-  p.render(content);
-  buildChat(id,p.quick,content);
-  var hist=chatHistories[id]||[]; var msgs=document.getElementById('msgs-'+id);
-  if(msgs){ hist.forEach(function(m){ if(m.role==='user'||m.role==='assistant'){ var d=mk('div','msg '+(m.role==='user'?'msg-user':'msg-ai')); if(m.role==='ai') d.innerHTML=parseMarkdown(m.content); else d.textContent=m.content; msgs.appendChild(d); } }); msgs.scrollTop=msgs.scrollHeight; }
-}
+  var content=document.getElementById('panel-content');content.innerHTML='';p.render(content);buildChat(id,p.quick,content);
+  var hist=chatHistories[id]||[],msgs=document.getElementById('msgs-'+id);
+  if(msgs){hist.forEach(function(m){if(m.role==='user'||m.role==='assistant'){var d=mk('div','msg '+(m.role==='user'?'msg-user':'msg-ai'));if(m.role==='ai')d.innerHTML=parseMarkdown(m.content);else d.textContent=m.content;msgs.appendChild(d);}});msgs.scrollTop=msgs.scrollHeight;}}
 
-function openPatologiaDetail(patologia){
-  var id='detail'; panelStack.push('detail');
-  document.getElementById('panel-title').textContent='🩺 '+patologia;
-  var content=document.getElementById('panel-content'); content.innerHTML='';
-  var quick=['Cos\'è e come mi riguarda?','Sintomi da monitorare?','Interazioni con le altre patologie?','La terapia attuale è adeguata?'];
-  buildChat(id,quick,content);
+function openDetail(voce,tipo){var id='detail';panelStack.push('detail');
+  document.getElementById('panel-title').textContent='🩺 '+voce;
+  var content=document.getElementById('panel-content');content.innerHTML='';
+  buildChat(id,['Cos\'è e come mi riguarda?','Sintomi da monitorare?','Interazioni con le altre patologie?','La terapia è adeguata?'],content);
   chatHistories[id]=[];
   var inp=document.getElementById('input-'+id);
-  if(inp){ inp.value='Approfondisci la patologia: '+patologia+'. Fornisci panoramica completa nel contesto del mio profilo clinico: cos\'è, come mi riguarda, terapia attuale, cosa monitorare, interazioni con le mie altre patologie. Usa titoli e liste.'; sendMsg(id); }
-}
+  if(inp){inp.value='Approfondisci: '+voce+'. Panoramica completa nel contesto del mio profilo: cos\'è, come mi riguarda, terapia, cosa monitorare, interazioni con le altre patologie.';sendMsg(id);}}
 
-function openSalvati(){
-  panelStack=['salvati'];
-  document.getElementById('home').style.display='none';
-  document.getElementById('panel').classList.add('open');
-  document.getElementById('panel-title').textContent='💾 Contenuti salvati';
-  var content=document.getElementById('panel-content'); content.innerHTML='';
-  var loading=mk('div','block'); var lt=mk('p',''); lt.style.cssText='font-size:13px;color:var(--text2)'; lt.textContent='Caricamento…'; loading.appendChild(lt); content.appendChild(loading);
-  window.storage.list('saved:').then(function(res){
-    content.innerHTML='';
-    var keys=(res&&res.keys)?res.keys:[];
-    if(keys.length===0){ var b=mk('div','block'); var p=mk('p',''); p.style.cssText='font-size:13px;color:var(--text2)'; p.textContent='Nessun contenuto salvato. Usa il bottone 💾 Salva sotto le risposte AI o il riepilogo medico.'; b.appendChild(p); content.appendChild(b); return; }
-    keys.sort().reverse();
-    var promises=keys.map(function(k){ return window.storage.get(k).catch(function(){return null;}); });
-    Promise.all(promises).then(function(items){
-      items.forEach(function(it, idx){
-        if(!it) return;
-        var obj; try{ obj=JSON.parse(it.value); }catch(e){ return; }
-        var b=mk('div','block');
-        var bt=mk('div','block-title'); bt.style.cssText='display:flex;justify-content:space-between;align-items:center';
-        var lbl=mk('span',''); lbl.textContent=(obj.key||'nota')+' · '+(obj.data||'');
-        var del=mk('button',''); del.textContent='🗑'; del.style.cssText='background:none;border:none;color:var(--text2);cursor:pointer;font-size:13px';
-        del.addEventListener('click',(function(kk,blk){return function(){ window.storage.delete(kk).then(function(){blk.remove();}); };})(keys[idx],b));
-        bt.appendChild(lbl); bt.appendChild(del); b.appendChild(bt);
-        var body=mk('div','msg msg-ai'); body.style.maxWidth='100%'; body.innerHTML=parseMarkdown(obj.text||''); b.appendChild(body);
-        var bar=mk('div',''); bar.style.cssText='display:flex;gap:6px;margin-top:8px';
-        var cp=mk('button',''); cp.textContent='📄 Copia'; cp.style.cssText='background:none;border:0.5px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--text2);cursor:pointer';
-        cp.addEventListener('click',(function(txt,btn){return function(){navigator.clipboard.writeText(txt).then(function(){btn.textContent='✅';setTimeout(function(){btn.textContent='📄 Copia';},1500);});};})(obj.text,cp));
-        var dl=mk('button',''); dl.textContent='⬇️ Scarica'; dl.style.cssText=cp.style.cssText;
-        dl.addEventListener('click',(function(o){return function(){downloadText((o.key||'nota')+'_'+todayStr()+'.txt', o.text);};})(obj));
-        bar.appendChild(cp); bar.appendChild(dl); b.appendChild(bar);
-        content.appendChild(b);
-      });
-    });
-  }).catch(function(){ content.innerHTML=''; var b=mk('div','block'); var p=mk('p',''); p.style.cssText='font-size:13px;color:var(--text2)'; p.textContent='Impossibile caricare i contenuti salvati.'; b.appendChild(p); content.appendChild(b); });
-}
+function openRefertoDetail(ref,spec){var id='refdetail';panelStack.push('refdetail');
+  document.getElementById('panel-title').textContent='💬 '+ref.data;
+  var content=document.getElementById('panel-content');content.innerHTML='';
+  content.appendChild(textBlock('Referto — '+ref.struttura,ref.testo));
+  buildChat(id,['Spiegami in parole semplici','Cosa significano i termini tecnici?','È coerente con la mia storia?','Domande da porre al medico'],content);
+  chatHistories[id]=[{role:'user',content:'CONTESTO REFERTO ('+spec+', '+ref.data+', '+ref.struttura+'): '+ref.testo+'\n\nAttendi le mie domande.'},{role:'assistant',content:'Ho letto il referto del '+ref.data+'. Chiedimi pure cosa vuoi sapere.'}];
+  var msgs=document.getElementById('msgs-'+id);if(msgs){addMsg(id,'ai','Ho letto il referto del '+ref.data+'. Chiedimi pure cosa vuoi sapere.');}}
 
-function openRiepilogo(){
-  var id='riepilogo'; panelStack=['riepilogo'];
-  document.getElementById('home').style.display='none';
-  document.getElementById('panel').classList.add('open');
-  document.getElementById('panel-title').textContent='📋 Riepilogo per il medico curante';
-  var content=document.getElementById('panel-content'); content.innerHTML='';
-  var b=mk('div','block'); var bt=mk('div','block-title'); bt.textContent='Sintesi clinica generata'; b.appendChild(bt);
-  var msgs=mk('div','messages'); msgs.id='msgs-'+id; msgs.style.maxHeight='55vh'; b.appendChild(msgs);
-  var btnbar=mk('div',''); btnbar.style.cssText='display:flex;gap:6px;margin-top:8px;flex-wrap:wrap';
-  var getLast=function(){ var l=chatHistories[id]&&chatHistories[id].filter(function(m){return m.role==='assistant';}).pop(); return l?l.content:''; };
-  var copyBtn=mk('button','copy-btn'); copyBtn.textContent='📄 Copia';
-  copyBtn.addEventListener('click',function(){ var t=getLast(); if(t){ navigator.clipboard.writeText(t).then(function(){copyBtn.textContent='✅ Copiato';setTimeout(function(){copyBtn.textContent='📄 Copia';},1500);}); } });
-  var saveBtn=mk('button','copy-btn'); saveBtn.textContent='💾 Salva';
-  saveBtn.addEventListener('click',function(){ var t=getLast(); if(t&&saveToStore('riepilogo_medico',t)){saveBtn.textContent='✅ Salvato';setTimeout(function(){saveBtn.textContent='💾 Salva';},1500);} });
-  var dlBtn=mk('button','copy-btn'); dlBtn.textContent='⬇️ Scarica';
-  dlBtn.addEventListener('click',function(){ var t=getLast(); if(t) downloadText('riepilogo_medico_'+todayStr()+'.txt', t); });
-  btnbar.appendChild(copyBtn); btnbar.appendChild(saveBtn); btnbar.appendChild(dlBtn);
-  b.appendChild(btnbar); content.appendChild(b);
-  var actions=mk('div','block'); var abt=mk('div','block-title'); abt.textContent='Modifica il riepilogo'; actions.appendChild(abt);
-  var qb=mk('div','quick-btns');
-  ['Rendilo più sintetico','Solo le criticità aperte','Aggiungi domande per gli specialisti'].forEach(function(q){ var bn=mk('button','quick-btn'); bn.textContent=q; bn.addEventListener('click',(function(qq){return function(){sendQuick(id,qq);};})(q)); qb.appendChild(bn); });
-  actions.appendChild(qb);
-  var row=mk('div','chat-input-row'); row.style.marginTop='8px';
-  var inp=mk('input'); inp.type='text'; inp.id='input-'+id; inp.placeholder='Chiedi una modifica…';
-  inp.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg(id);});
-  var sbtn=mk('button','send-btn'); sbtn.id='btn-'+id; sbtn.textContent='Invia'; sbtn.addEventListener('click',function(){sendMsg(id);});
-  row.appendChild(inp); row.appendChild(sbtn); actions.appendChild(row); content.appendChild(actions);
+function openRiepilogo(){var id='riepilogo';panelStack=['riepilogo'];
+  document.getElementById('home').style.display='none';document.getElementById('panel').classList.add('open');
+  document.getElementById('panel-title').textContent='📋 Riepilogo per il medico';
+  var content=document.getElementById('panel-content');content.innerHTML='';
+  var b=mk('div','block'),bt=mk('div','block-title');bt.textContent='Sintesi clinica generata';b.appendChild(bt);
+  var msgs=mk('div','messages');msgs.id='msgs-'+id;msgs.style.maxHeight='55vh';b.appendChild(msgs);
+  var getLast=function(){var l=chatHistories[id]&&chatHistories[id].filter(function(m){return m.role==='assistant';}).pop();return l?l.content:'';};
+  var bar=mk('div','');bar.style.cssText='display:flex;gap:6px;margin-top:8px;flex-wrap:wrap';
+  var cp=mk('button','copy-btn');cp.textContent='📄 Copia';cp.addEventListener('click',function(){var t=getLast();if(t)navigator.clipboard.writeText(t).then(function(){cp.textContent='✅ Copiato';setTimeout(function(){cp.textContent='📄 Copia';},1500);});});
+  var dl=mk('button','copy-btn');dl.textContent='⬇️ Scarica';dl.addEventListener('click',function(){var t=getLast();if(t)downloadText('riepilogo_medico.txt',t);});
+  bar.appendChild(cp);bar.appendChild(dl);b.appendChild(bar);content.appendChild(b);
+  buildChat(id,['Rendilo più sintetico','Solo le criticità aperte','Aggiungi domande per gli specialisti'],content);
   chatHistories[id]=[];
-  var inpEl=document.getElementById('input-'+id);
-  if(inpEl){ inpEl.value='Redigi una relazione clinica di sintesi da medico consulente al medico curante (Dr. Carnevale), sul paziente Cataldo Pasquale. Registro professionale medico-medico, come una vera relazione specialistica: prosa asciutta e argomentata, terminologia clinica appropriata, niente elenchi scolastici né toni divulgativi. Struttura: riga anagrafica sintetica con le comorbidità principali; poi esposizione dei problemi attivi in ordine di rilevanza clinica, ciascuno integrato con il dato di laboratorio o strumentale pertinente e il razionale; terapia in corso e recenti sospensioni; infine un paragrafo su criticità aperte e accertamenti da programmare, formulato come raccomandazioni tra pari. Sii completo: includi tutti i problemi rilevanti senza tralasciarne. Non usare emoji.'; sendMsg(id); }
-}
+  var inp=document.getElementById('input-'+id);
+  if(inp){inp.value='Redigi una relazione clinica di sintesi da medico consulente al medico curante, su Pasquale Cataldo. Registro professionale medico-medico, prosa asciutta e argomentata, terminologia clinica appropriata, niente elenchi scolastici. Struttura: riga anagrafica con comorbidità; problemi attivi in ordine di rilevanza, ciascuno col dato di laboratorio/strumentale e razionale; terapia in corso e sospensioni; criticità aperte e accertamenti da programmare come raccomandazioni tra pari. Completo, senza emoji.';sendMsg(id);}}
 
-function closePanel(){
-  panelStack.pop();
-  if(panelStack.length>0){ var top=panelStack[panelStack.length-1]; if(PANELS[top]){ openPanel(top); } else { document.getElementById('panel').classList.remove('open'); document.getElementById('home').style.display=''; } }
-  else { document.getElementById('panel').classList.remove('open'); document.getElementById('home').style.display=''; }
-}
+function closePanel(){panelStack.pop();
+  if(panelStack.length>0){var top=panelStack[panelStack.length-1];if(PANELS[top]){openPanel(top);}else{document.getElementById('panel').classList.remove('open');document.getElementById('home').style.display='';}}
+  else{document.getElementById('panel').classList.remove('open');document.getElementById('home').style.display='';}}
 
-function copiaProfilo(){
-  var intro='PROFILO CLINICO COMPLETO — '+profile.nome+'\n(Incolla questo testo in una nuova conversazione con Claude per dargli tutto il quadro clinico aggiornato.)\n\n';
-  var testo=intro+JSON.stringify(profile,null,2);
-  navigator.clipboard.writeText(testo).then(function(){
-    alert('Profilo completo copiato negli appunti.\n\nOra puoi incollarlo in una nuova conversazione con Claude.');
-  }).catch(function(){
-    // fallback: mostra il testo in un'area selezionabile
-    var w=window.open('','_blank');
-    if(w){ w.document.write('<pre style="white-space:pre-wrap;font-size:12px;padding:16px">'+testo.replace(/</g,'&lt;')+'</pre>'); }
-    else { alert('Copia non riuscita. Usa il bottone Modifica per copiare il profilo manualmente.'); }
-  });
-}
+function downloadText(fn,txt){var blob=new Blob([txt],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=fn;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(url);},1000);}
 
-function copiaProfiloEnd(){}
-function openEdit(){ document.getElementById('profileEditor').value=JSON.stringify(profile,null,2); document.getElementById('editModal').classList.add('open'); }
-function closeEdit(){ document.getElementById('editModal').classList.remove('open'); }
-function saveEdit(){ try{ profile=JSON.parse(document.getElementById('profileEditor').value); chatHistories={}; closeEdit(); alert('Profilo aggiornato.'); }catch(e){ alert('JSON non valido.'); } }
+function copiaProfilo(){var testo='PROFILO CLINICO COMPLETO — '+profile.nome+'\n(Incolla in una nuova conversazione con Claude per dargli il quadro clinico aggiornato.)\n\n'+JSON.stringify(profile,null,2);
+  navigator.clipboard.writeText(testo).then(function(){alert('Profilo completo copiato negli appunti. Incollalo in una nuova conversazione con Claude.');}).catch(function(){alert('Copia non riuscita. Usa il bottone Modifica per copiarlo manualmente.');});}
+
+function openEdit(){document.getElementById('profileEditor').value=JSON.stringify(profile,null,2);document.getElementById('editModal').classList.add('open');}
+function closeEdit(){document.getElementById('editModal').classList.remove('open');}
+function saveEdit(){try{profile=JSON.parse(document.getElementById('profileEditor').value);chatHistories={};closeEdit();alert('Profilo aggiornato.');}catch(e){alert('JSON non valido: '+e.message);}}
 </script>
 </body>
 </html>
