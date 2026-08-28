@@ -244,6 +244,7 @@ var profile = {
     hba1c:"MAI dosata — da richiedere"
   },
   familiarita:"Solo maculopatia. Nessuna familiarità per infarto, ictus, diabete, tumori.",
+  allergie_dettaglio:"Allergia agli acari della polvere (Dermatophagoides farinae e pteronyssinus), documentata con test ALK-Abelló ~1995 (Dr. Donini). Fu prescritta immunoterapia specifica sottocutanea (vaccino desensibilizzante), ma NON è mai stata effettuata.",
   attivita_fisica:"Palestra 3x/sett: pesi su macchine e manubri, carico controllato (non massimale) + ellittica + bici. A casa: core (dead bug, bird dog, bridge). Nessun dolore sotto sforzo.",
   rachide_stato:"Post-fusione L4-L5 (mar 2025): claudicatio risolta, cammina bene, NO sintomi neurologici arti. Dolore solo posturale nei cambi di posizione, stabile, migliora col bridge. Assestamento post-fusione normale.",
   terapia_cronica:[
@@ -272,7 +273,8 @@ var profile = {
   ],
   patologie_escluse:["Sospetta BPCO - NON confermata: test broncodilatazione 29/01/2026 negativo, spirometria basale normale"],
   storia_chirurgica:[
-    "2000 - Fistola del collo","Emorroidectomia (data imprecisata)",
+    "2000 - Fistola del collo",
+    "02/11/2015 - Emorroidectomia con tecnica Longo (stapler), Istanbul, Prof. Asoğlu — per malattia emorroidaria con sanguinamento, anestesia generale, senza complicanze",
     "Dic 2019 - Frattura EDR polso SX (guarita)",
     "12/03/2024 - Laser 2RT occhio destro (DMLE, Life Clinic Bologna)",
     "22/09/2024 - Laser 2RT occhio sinistro (DMLE, Life Clinic Bologna)",
@@ -354,6 +356,13 @@ var profile = {
       {data:"29/12/2019",struttura:"PS Ortopedico Modena",testo:"Frattura composta EDR polso SX. Gesso, prognosi 30 giorni."},
       {data:"05/08/2024",struttura:"PS Oculistico Modena",testo:"Congiuntivite bilaterale non responsiva. Ducressa + Dropsept collirio."},
       {data:"30/09/2024",struttura:"PS Modena",testo:"Morso di cane mano DX. Amoxicillina+clavulanico 6gg, antitetanica passiva."}
+    ],
+    "Allergologia":[
+      {data:"~1995",struttura:"Policlinico Modena · Dr. Donini (ALK-Abelló)",testo:"Test allergologico: positività a Dermatophagoides farinae e pteronyssinus (acari della polvere), entrambi al 50% del trattamento. Prescritta immunoterapia specifica (inizio + mantenimento)."},
+      {data:"~1995-96",struttura:"Clinica Dermatologica Modena · Prof. Seidenari",testo:"PRESCRITTA (ma mai effettuata dal paziente) terapia iposensibilizzante specifica per Dermatophagoides (acari) sottocutanea: schema a dosi crescenti su 3-4 flaconi, poi mantenimento. Il vaccino non è mai stato fatto."}
+    ],
+    "Chirurgia (storica)":[
+      {data:"02/11/2015",struttura:"Istanbul · Prof. Asoğlu (INTERVENTO)",testo:"Emorroidectomia con tecnica Longo (stapler) per malattia emorroidaria con sanguinamento rettale. Anestesia generale. Nessuna perdita ematica, senza complicanze."}
     ],
     "Vaccinazioni & Screening":[
       {data:"16/07/2024",struttura:"Screening AUSL Modena",testo:"Ricerca sangue occulto feci (screening colon-retto): NEGATIVO."},
@@ -602,7 +611,7 @@ function openRiepilogo(){var id='riepilogo';panelStack=['riepilogo'];
   buildChat(id,['Rendilo più sintetico','Solo le criticità aperte','Aggiungi domande per gli specialisti'],content);
   chatHistories[id]=[];
   var inp=document.getElementById('input-'+id);
-  if(inp){inp.value='Redigi una relazione clinica di sintesi da medico consulente al medico curante, su Pasquale Cataldo. Registro professionale medico-medico, prosa asciutta e argomentata, terminologia clinica appropriata, niente elenchi scolastici. Struttura: riga anagrafica con comorbidità; problemi attivi in ordine di rilevanza, ciascuno col dato di laboratorio/strumentale e razionale; terapia in corso e sospensioni; criticità aperte e accertamenti da programmare come raccomandazioni tra pari. Completo, senza emoji.';sendMsg(id);}}
+  if(inp){inp.value='Redigi una relazione clinica di sintesi da medico consulente al medico curante, su Cataldo Pasquale. Registro professionale medico-medico, prosa asciutta e argomentata, terminologia clinica appropriata, niente elenchi scolastici. Struttura: riga anagrafica con comorbidità; problemi attivi in ordine di rilevanza, ciascuno col dato di laboratorio/strumentale e razionale; terapia in corso e sospensioni; criticità aperte e accertamenti da programmare come raccomandazioni tra pari. Completo, senza emoji.';sendMsg(id);}}
 
 function closePanel(){panelStack.pop();
   if(panelStack.length>0){var top=panelStack[panelStack.length-1];if(PANELS[top]){openPanel(top);}else{document.getElementById('panel').classList.remove('open');document.getElementById('home').style.display='';}}
