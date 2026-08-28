@@ -142,6 +142,13 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
 </div>
 
 <div id="home">
+  <div class="tile" onclick="openPanel('cruscotto')">
+    <div class="tile-icon">📊</div>
+    <div class="tile-title">Cruscotto salute</div>
+    <div class="tile-sub">Indicatori per area · semafori</div>
+    <div class="tile-badges"><span class="tag-green">panoramica</span></div>
+    <span class="tile-arrow">›</span>
+  </div>
   <div class="tile" onclick="openPanel('alerts')">
     <div class="tile-icon">⚠️</div>
     <div class="tile-title">Alert &amp; panoramica</div>
@@ -288,7 +295,7 @@ var profile = {
     diagnosi:"DMLE bilaterale forma SECCA, diagnosticata ~10 anni fa. Familiarità per maculopatia. Ultimo controllo 11/05/2026: stabile, senza attivazione neovascolare.",
     od:{stato:"Pseudofachico (IOL). VOD 8/10. Esiti peeling. DMLE dry stabile.",storia:"DMLE con drusen → pucker → 2RT laser 12/03/2024 → pucker con edema maculare cistoide → intervento 26/05/2025 (vitrectomia+peeling+MLI+endolaser+IOL). VOD 5/10 (feb 2025) → 8/10 (2025-2026). OCT 11/05/2026: dry senza IRF/SRF/MNV."},
     os:{stato:"Facosclerosi (cataratta iniziale). VOS 9-10/10. DMLE dry stabile.",storia:"DMLE con drusen diffuse → 2RT laser 22/09/2024. Cataratta iniziale. FAG feb 2025: drusen senza leakage. OCT 11/05/2026: dry senza IRF/SRF/MNV.",prossimo:"Controlli periodici + OCT di follow-up."},
-    esami:["OCT 27/02/2023: sollevamenti drusenoidi EPR-Bruch bilaterali","Fluorangiografia 28/02/2025: OD edema maculare cistoide, drusen; OS drusen senza leakage","OCT 11/05/2026: OO dry senza IRF/SRF/MNV, stabile"],
+    esami:["OCT 27/02/2023: sollevamenti drusenoidi EPR-Bruch bilaterali","Fluorangiografia 28/02/2025: OD edema maculare cistoide, drusen; OS drusen senza leakage","OCT 11/05/2026 (Heidelberg, confronto vs apr 2025): OD spessore centrale 531→441 µm (netto miglioramento post-intervento pucker), OS 249→250 µm (stabile). OO dry senza IRF/SRF/MNV."],
     terapia:"Vision Defender AREDS 2 (1 cp/die) + eventuale MZ meso-zeaxantina. Automonitoraggio Amsler.",
     laser_2rt:"2RT (Retinal Rejuvenation Therapy): laser a nanosecondi per DMLE intermedia. OD 12/03/2024, OS 22/09/2024."
   },
@@ -317,7 +324,8 @@ var profile = {
       {data:"26/05/2025",struttura:"Day Hospital Correggio · Dr. Vecchi (INTERVENTO)",testo:"OD vitrectomia + peeling pucker + MLI + endolaser 360° + FACO IOL. Anestesia locale. Diagnosi: pucker OD in DMLE."},
       {data:"06/06/2025",struttura:"Oculistica Correggio · Dr. Dondi",testo:"Post-op. VOD 4/10 nat. Macula in piano libera da trazioni. Aggiunto Yellox."},
       {data:"15/09/2025",struttura:"Aesculapio · Dr. Procopio",testo:"VOD 8/10, VOS 10/10. Pseudofachia OD, opacità lente OS. Peeling OD, OS distrofia maculare drusen. Richiesta OCT tra 8 mesi."},
-      {data:"11/05/2026",struttura:"Amb. Macula Correggio · Dr.ssa Ferraro (OCT)",testo:"VOD 8/10, VOS 9-10/10. OD pseudofachia, OS facosclerosi. OCT: OO DMS dry senza IRF/SRF/MNV. Dry AMD stabile. Continua AREDS 2 + Amsler."}
+      {data:"11/05/2026",struttura:"Amb. Macula Correggio · Dr.ssa Ferraro (OCT)",testo:"VOD 8/10, VOS 9-10/10. OD pseudofachia, OS facosclerosi. OCT: OO DMS dry senza IRF/SRF/MNV. Dry AMD stabile. Continua AREDS 2 + Amsler."},
+      {data:"11/05/2026",struttura:"OCT Heidelberg (confronto vs 29/04/2025)",testo:"OCT strumentale con follow-up. OD: spessore centrale da 531→441 µm, volume da 10.72→8.93 mm³ (-88 µm al centro): netta riduzione dell'edema/ispessimento dopo intervento pucker — buon esito post-vitrectomia. OS: 249→250 µm, praticamente INVARIATO: DMLE secca stabile, nessuna progressione. Quadro complessivo favorevole in entrambi gli occhi."}
     ],
     "Rachide & Neurochirurgia":[
       {data:"06/06/2023",struttura:"Ospedale Sassuolo (RM)",testo:"RM lombo-sacrale: anterolistesi I grado L4-L5, stenosi canale marcata con artrosi interapofisaria. Bulging L5-S1, L3-L4, L2-L3. Cisti di Tarlov sacrale ~2cm S2."},
@@ -450,6 +458,48 @@ function row(cls,html){var r=mk('div','alert-row'),d=mk('div','alert-dot '+cls),
 function textBlock(title,text){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent=title;b.appendChild(bt);var p=mk('p','');p.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';p.textContent=text;b.appendChild(p);return b;}
 
 var PANELS = {};
+
+PANELS.cruscotto={title:'📊 Cruscotto salute',quick:['Spiegami il mio livello di rischio cardiovascolare','Su cosa devo concentrarmi di più?','Come miglioro gli indicatori gialli?'],
+  render:function(c){
+    var intro=mk('div','block');var it=mk('p','');it.style.cssText='font-size:12px;color:var(--text2);line-height:1.5';
+    it.textContent='Indicatori per area, con semaforo (verde=ok, giallo=da seguire, rosso=da correggere). Non è un punteggio unico — la salute non si riduce a un numero — ma una panoramica onesta area per area.';intro.appendChild(it);c.appendChild(intro);
+    var aree=[
+      {area:'Cuore',stato:'green',val:'Ecocardiogramma normale, EF 60%',note:'Funzione contrattile nella norma, nessun danno da ipertensione'},
+      {area:'Pressione',stato:'green',val:'130/70 — ben controllata',note:'A target con amlodipina'},
+      {area:'Colesterolo / LDL',stato:'red',val:'LDL 98 (target ≤70)',note:'Unico parametro fuori posto. Importante per ateromasia carotidea+aortica'},
+      {area:'Vasi (carotidi/aorta)',stato:'amber',val:'Ateromasia lieve, placca 23%, no aneurisma',note:'Presente ma stabile e non emodinamica. Da tenere sotto controllo con LDL a target'},
+      {area:'Metabolismo/glicemia',stato:'green',val:'Glicemia 97, no diabete',note:'HbA1c mai dosata — da confermare al prossimo prelievo'},
+      {area:'Reni',stato:'green',val:'Creatinina 0.84, eGFR >60',note:'Funzione renale ottima'},
+      {area:'Fegato',stato:'green',val:'GPT 21, nella norma',note:'Ben tollerata la statina'},
+      {area:'Occhi (DMLE)',stato:'amber',val:'DMLE secca stabile, OD operato bene',note:'Forma secca sotto controllo, no attivazione neovascolare. Monitoraggio Amsler'},
+      {area:'Polmoni',stato:'green',val:'BPCO esclusa, SatO2 96%',note:'Test broncodilatazione negativo'},
+      {area:'Schiena',stato:'amber',val:'L4-L5 operata, dolore posturale stabile',note:'Buon esito, no sintomi neurologici. Follow-up settembre'},
+      {area:'Articolazioni',stato:'amber',val:'Gonartrosi DX, coxartrosi lieve',note:'Gestibile con rinforzo muscolare e attività adeguata'},
+      {area:'Prostata (PSA)',stato:'green',val:'PSA 2.11, nella norma',note:'Nei limiti per età'},
+      {area:'Vaccinazioni',stato:'amber',val:'Mancano Shingrix e COVID',note:'Da valutare col medico'}
+    ];
+    var b=mk('div','block');var bt=mk('div','block-title');bt.textContent='Indicatori per area';b.appendChild(bt);
+    aree.forEach(function(a){
+      var r=mk('div','alert-row');
+      var dot=mk('div','alert-dot dot-'+a.stato);
+      var t=mk('div','alert-text');
+      t.innerHTML='<strong>'+a.area+'</strong> — '+a.val+'<br><span style="color:var(--text2);font-size:12px">'+a.note+'</span>';
+      r.appendChild(dot);r.appendChild(t);b.appendChild(r);});
+    c.appendChild(b);
+    // conteggio
+    var g=aree.filter(function(a){return a.stato==='green';}).length;
+    var am=aree.filter(function(a){return a.stato==='amber';}).length;
+    var rd=aree.filter(function(a){return a.stato==='red';}).length;
+    var sum=mk('div','block');var st=mk('div','block-title');st.textContent='Sintesi';sum.appendChild(st);
+    var sp=mk('p','');sp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';
+    sp.innerHTML='<span class="tag-green">'+g+' verdi</span> &nbsp; <span class="tag-amber">'+am+' gialli</span> &nbsp; <span class="tag-red">'+rd+' rosso</span><br><br>Quadro complessivamente buono: cuore, pressione, reni, fegato, metabolismo e polmoni in ordine. I punti gialli (vasi, occhi, schiena, articolazioni) sono condizioni presenti ma stabili e monitorate. L\'unico rosso — l\'LDL — è anche la cosa più facilmente migliorabile e con più impatto sul rischio.';
+    sum.appendChild(sp);c.appendChild(sum);
+    // rischio CV
+    var cv=mk('div','block');var cvt=mk('div','block-title');cvt.textContent='Rischio cardiovascolare';cv.appendChild(cvt);
+    var cvp=mk('p','');cvp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';
+    cvp.innerHTML='Avendo <strong>aterosclerosi già documentata</strong> (placche carotidee, ateromasia aortica), rientri per definizione in una categoria di <strong>rischio cardiovascolare alto</strong>, indipendentemente dalle carte del rischio (che servono a stimarlo in chi non ha ancora malattia visibile). Questo NON è allarmante di per sé — hai pressione a target, cuore sano, normopeso, non fumatore, nessuna familiarità — ma spiega perché l\'obiettivo LDL è più basso (≤70) e perché portarlo a target è la priorità. È il singolo intervento con più impatto sul tuo rischio futuro.';
+    cv.appendChild(cvp);c.appendChild(cv);
+  }};
 
 PANELS.alerts={title:'⚠️ Alert & panoramica',quick:['Come ottimizzare LDL a target?','Priorità delle criticità aperte?','Fai un quadro riassuntivo del mio stato'],
   render:function(c){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent='Situazioni attive';b.appendChild(bt);
