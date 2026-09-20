@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard Medico</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,125 +16,112 @@
   --amber:#7a5a20;--ambrt:#d4a050;--ambrbg:#2a2010;
   --green:#2a5a30;--grnt:#70b060;--grnbg:#1a2a1a;
   --blue:#1e4a6a;--bluet:#70a8d0;--bluebg:#1a2a3a;
-  --fs-tiny:11px;--fs-sm:12px;--fs-body:13px;--fs-md:14px;--fs-val:16px;
 }
-html[data-size="lg"]{--fs-tiny:13px;--fs-sm:14px;--fs-body:15px;--fs-md:16px;--fs-val:19px}
-html[data-size="xl"]{--fs-tiny:15px;--fs-sm:16px;--fs-body:17px;--fs-md:18px;--fs-val:22px}
 body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:var(--text);min-height:100vh;min-height:-webkit-fill-available;display:flex;flex-direction:column}
 .header{background:var(--bg2);border-bottom:0.5px solid var(--border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;flex-wrap:wrap;gap:8px}
 .header-left{display:flex;align-items:center;gap:10px}
 .avatar{width:36px;height:36px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--bluet);flex-shrink:0}
-.header h1{font-size:var(--fs-md);font-weight:500;color:var(--text)}
-.header-meta{font-size:var(--fs-tiny);color:var(--text2)}
-.header-allergy{font-size:var(--fs-tiny);color:var(--redt);font-weight:500;margin-top:1px}
-.btn-outline{background:none;border:0.5px solid var(--border);border-radius:8px;padding:6px 10px;font-size:var(--fs-sm);cursor:pointer;color:var(--text3);display:flex;align-items:center;gap:4px;min-height:32px}
+.header h1{font-size:14px;font-weight:500;color:var(--text)}
+.header p{font-size:11px;color:var(--text2)}
+.btn-outline{background:none;border:0.5px solid var(--border);border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;color:var(--text3);display:flex;align-items:center;gap:4px;min-height:32px}
 .btn-outline:hover{background:var(--bg3)}
-.btn-outline.active{border-color:var(--accent);color:var(--bluet)}
 .header-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 #home{flex:1;padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:600px){#home{grid-template-columns:repeat(2,1fr);padding:12px;gap:10px}.header-meta{display:none}}
+@media(max-width:600px){#home{grid-template-columns:repeat(2,1fr);padding:12px;gap:10px}.header p{display:none}}
 .tile{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color .15s;position:relative;overflow:hidden;min-height:110px}
 .tile:active,.tile:hover{border-color:rgba(255,255,255,.22);background:var(--bg3)}
-.tile:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .tile-icon{font-size:20px}
-.tile-title{font-size:var(--fs-body);font-weight:500;line-height:1.3;color:var(--text)}
-.tile-sub{font-size:var(--fs-tiny);color:var(--text2);flex:1}
+.tile-title{font-size:13px;font-weight:500;line-height:1.3;color:var(--text)}
+.tile-sub{font-size:11px;color:var(--text2);flex:1}
 .tile-badges{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
 .tile-arrow{position:absolute;bottom:12px;right:12px;font-size:14px;color:var(--text2);opacity:.5}
-.tag-red{background:var(--redbg);color:var(--redt);border-radius:4px;padding:1px 6px;font-size:var(--fs-tiny);font-weight:500}
-.tag-amber{background:var(--ambrbg);color:var(--ambrt);border-radius:4px;padding:1px 6px;font-size:var(--fs-tiny);font-weight:500}
-.tag-green{background:var(--grnbg);color:var(--grnt);border-radius:4px;padding:1px 6px;font-size:var(--fs-tiny);font-weight:500}
-.tag-blue{background:var(--bluebg);color:var(--bluet);border-radius:4px;padding:1px 6px;font-size:var(--fs-tiny);font-weight:500}
+.tag-red{background:var(--redbg);color:var(--redt);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:500}
+.tag-amber{background:var(--ambrbg);color:var(--ambrt);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:500}
+.tag-green{background:var(--grnbg);color:var(--grnt);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:500}
+.tag-blue{background:var(--bluebg);color:var(--bluet);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:500}
 #panel{display:none;flex:1;flex-direction:column}
 #panel.open{display:flex}
 .panel-header{background:var(--bg2);border-bottom:0.5px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
-.back-btn{background:none;border:0.5px solid var(--border);border-radius:8px;padding:6px 12px;font-size:var(--fs-body);cursor:pointer;color:var(--text2);min-height:34px;white-space:nowrap}
+.back-btn{background:none;border:0.5px solid var(--border);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--text2);min-height:34px;white-space:nowrap}
 .back-btn:active{background:var(--bg3)}
-.panel-title{font-size:var(--fs-md);font-weight:500;flex:1;line-height:1.3;color:var(--text)}
+.panel-title{font-size:14px;font-weight:500;flex:1;line-height:1.3;color:var(--text)}
 .panel-body{flex:1;overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch}
 .panel-content{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
 .block{background:var(--bg2);border:0.5px solid var(--border);border-radius:10px;padding:14px}
-.block-title{font-size:var(--fs-tiny);font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.block-title{font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
 .alert-row{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:0.5px solid var(--border2)}
 .alert-row:last-child{border-bottom:none;padding-bottom:0}
-.alert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;position:relative}
-.alert-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px dashed transparent}
+.alert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
 .dot-red{background:#c05050}.dot-amber{background:#c09040}.dot-green{background:#60a050}.dot-blue{background:#5090c0}
-.alert-text{font-size:var(--fs-body);color:var(--text3);line-height:1.5;flex:1}
+.alert-text{font-size:13px;color:var(--text3);line-height:1.5;flex:1}
 .alert-text strong{color:var(--text);font-weight:500}
 .cal-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--border2)}
 .cal-item:last-child{border-bottom:none}
 .cal-date{min-width:44px;text-align:center;background:var(--bg3);border-radius:8px;padding:5px;border:0.5px solid var(--border);flex-shrink:0}
 .cal-date-day{font-size:15px;font-weight:500;line-height:1;color:var(--text)}
-.cal-date-mon{font-size:var(--fs-tiny);color:var(--text2);text-transform:uppercase}
-.cal-title{font-size:var(--fs-body);font-weight:500;color:var(--text)}
-.cal-sub{font-size:var(--fs-tiny);color:var(--text2)}
+.cal-date-mon{font-size:9px;color:var(--text2);text-transform:uppercase}
+.cal-title{font-size:13px;font-weight:500;color:var(--text)}
+.cal-sub{font-size:11px;color:var(--text2)}
 .pills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
 @media(max-width:600px){.pills-grid{grid-template-columns:1fr 1fr}}
 .pill-card{background:var(--bg3);border:0.5px solid var(--border);border-radius:8px;padding:9px 11px}
-.pill-name{font-size:var(--fs-body);font-weight:500;margin-bottom:2px;color:var(--text)}
-.pill-dose{font-size:var(--fs-sm);color:var(--text2)}
-.pill-note{font-size:var(--fs-tiny);color:var(--redt);margin-top:3px}
+.pill-name{font-size:13px;font-weight:500;margin-bottom:2px;color:var(--text)}
+.pill-dose{font-size:12px;color:var(--text2)}
+.pill-note{font-size:11px;color:var(--redt);margin-top:3px}
 .esami-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
 @media(max-width:600px){.esami-grid{grid-template-columns:repeat(3,1fr)}}
 .esame-card{background:var(--bg3);border:0.5px solid var(--border);border-radius:8px;padding:9px 10px}
 .esame-card.warn{border-color:var(--amber);background:var(--ambrbg)}
 .esame-card.ok{border-color:var(--green);background:var(--grnbg)}
-.esame-label{font-size:var(--fs-tiny);color:var(--text2);margin-bottom:2px}
+.esame-label{font-size:10px;color:var(--text2);margin-bottom:2px}
 .esame-card.warn .esame-label{color:var(--ambrt)}
 .esame-card.ok .esame-label{color:var(--grnt)}
-.esame-value{font-size:var(--fs-val);font-weight:500;color:var(--text)}
+.esame-value{font-size:16px;font-weight:500;color:var(--text)}
 .esame-card.warn .esame-value{color:var(--ambrt)}
 .esame-card.ok .esame-value{color:var(--grnt)}
-.esame-ref{font-size:var(--fs-tiny);color:var(--text2);margin-top:1px}
+.esame-ref{font-size:10px;color:var(--text2);margin-top:1px}
 .vacc-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--border2)}
 .vacc-row:last-child{border-bottom:none}
-.vacc-name{flex:1;font-size:var(--fs-body);color:var(--text)}
-.vacc-sub{font-size:var(--fs-tiny);color:var(--text2)}
+.vacc-name{flex:1;font-size:13px;color:var(--text)}
 .macula-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:400px){.macula-grid{grid-template-columns:1fr}}
 .macula-item{border-radius:8px;padding:10px 12px;border:0.5px solid var(--border)}
-.macula-eye{font-size:var(--fs-tiny);font-weight:500;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
-.macula-status{font-size:var(--fs-body);font-weight:500}
-.macula-date{font-size:var(--fs-tiny);color:var(--text2);margin-top:3px;line-height:1.4}
+.macula-eye{font-size:11px;font-weight:500;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.macula-status{font-size:13px;font-weight:500}
+.macula-date{font-size:11px;color:var(--text2);margin-top:3px;line-height:1.4}
 .chart-wrap{position:relative;width:100%;height:180px}
-.chart-fallback{font-size:var(--fs-sm);color:var(--text2);padding:20px;text-align:center}
 .messages{display:flex;flex-direction:column;gap:7px;max-height:280px;overflow-y:auto;margin-bottom:8px;-webkit-overflow-scrolling:touch}
-.msg{padding:9px 13px;border-radius:8px;font-size:var(--fs-body);line-height:1.6;max-width:88%}
+.msg{padding:9px 13px;border-radius:8px;font-size:13px;line-height:1.6;max-width:88%}
 .msg-user{background:var(--accent2);color:#c8dcea;align-self:flex-end;border-radius:8px 8px 2px 8px}
 .msg-ai{background:var(--bg3);color:var(--text);align-self:flex-start;border-radius:8px 8px 8px 2px;border:0.5px solid var(--border);max-width:96%}
 .msg-ai p{margin-bottom:6px}.msg-ai p:last-child{margin-bottom:0}
 .msg-ai strong{font-weight:600;color:var(--text)}
 .msg-ai ul,.msg-ai ol{margin:4px 0 4px 18px}
 .msg-ai li{margin-bottom:3px}
-.msg-ai h3{font-size:var(--fs-body);font-weight:600;margin:8px 0 4px;color:var(--bluet)}
-.msg-loading{color:var(--text2);font-style:italic;font-size:var(--fs-sm);align-self:flex-start;padding:8px 12px}
+.msg-ai h3{font-size:13px;font-weight:600;margin:8px 0 4px;color:var(--bluet)}
+.msg-loading{color:var(--text2);font-style:italic;font-size:12px;align-self:flex-start;padding:8px 12px}
 .quick-btns{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
-.quick-btn{background:none;border:0.5px solid var(--border);border-radius:6px;padding:6px 10px;font-size:var(--fs-sm);color:var(--text2);cursor:pointer;min-height:30px}
+.quick-btn{background:none;border:0.5px solid var(--border);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--text2);cursor:pointer;min-height:30px}
 .quick-btn:active{background:var(--bg3)}
 .chat-input-row{display:flex;gap:6px}
 .chat-input-row input{flex:1;border:0.5px solid var(--border);border-radius:8px;padding:9px 10px;font-size:16px;background:var(--bg3);color:var(--text);outline:none;-webkit-appearance:none}
 .chat-input-row input:focus{border-color:var(--accent)}
-.send-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:var(--fs-md);cursor:pointer;min-height:40px;white-space:nowrap}
+.send-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:14px;cursor:pointer;min-height:40px;white-space:nowrap}
 .send-btn:active{background:var(--accent2)}
 .send-btn:disabled{opacity:.4;cursor:not-allowed}
-.copy-btn{background:var(--bluebg);color:var(--bluet);border:0.5px solid var(--blue);border-radius:8px;padding:8px 14px;font-size:var(--fs-body);cursor:pointer;min-height:36px}
+.copy-btn{background:var(--bluebg);color:var(--bluet);border:0.5px solid var(--blue);border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer;min-height:36px}
 .copy-btn:active{background:var(--blue)}
-.approfondisci-btn{flex-shrink:0;background:var(--bluebg);color:var(--bluet);border:none;border-radius:6px;padding:6px 10px;font-size:var(--fs-tiny);font-weight:500;cursor:pointer;white-space:nowrap;min-height:30px}
+.approfondisci-btn{flex-shrink:0;background:var(--bluebg);color:var(--bluet);border:none;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:500;cursor:pointer;white-space:nowrap;min-height:30px}
 .approfondisci-btn:active{background:var(--blue)}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;align-items:flex-end;justify-content:center}
 @media(min-width:600px){.modal-overlay{align-items:center}}
 .modal-overlay.open{display:flex}
 .modal{background:var(--bg2);border-radius:16px 16px 0 0;padding:20px;width:100%;max-height:85vh;overflow-y:auto;border:0.5px solid var(--border)}
 @media(min-width:600px){.modal{border-radius:12px;max-width:520px}}
-.modal h2{font-size:var(--fs-md);font-weight:500;margin-bottom:10px;color:var(--text)}
+.modal h2{font-size:15px;font-weight:500;margin-bottom:10px;color:var(--text)}
 .modal textarea{width:100%;height:180px;font-size:12px;font-family:monospace;border:0.5px solid var(--border);border-radius:8px;padding:8px;background:var(--bg3);color:var(--text);resize:vertical}
-.modal-btns{display:flex;gap:8px;margin-top:10px;align-items:center}
-.modal-btns .spacer{flex:1}
-.btn-primary{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:var(--fs-body);cursor:pointer;min-height:36px}
-.btn-danger-outline{background:none;border:0.5px solid var(--red);color:var(--redt);border-radius:8px;padding:8px 12px;font-size:var(--fs-sm);cursor:pointer;min-height:36px}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(10px);background:var(--bg3);color:var(--text);border:0.5px solid var(--border);border-radius:10px;padding:10px 16px;font-size:var(--fs-body);box-shadow:0 4px 18px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;max-width:90%;text-align:center}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.modal-btns{display:flex;gap:8px;margin-top:10px;justify-content:flex-end}
+.btn-primary{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;min-height:36px}
 </style>
 </head>
 <body>
@@ -144,12 +131,10 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
     <div class="avatar">CP</div>
     <div>
       <h1>Cataldo Pasquale</h1>
-      <p class="header-meta">10/08/1955 · 70 anni · BMI 24.7 · Gruppo 0 Rh+</p>
-      <p class="header-allergy">⚠️ Allergie: acari, polvere</p>
+      <p>10/08/1955 · 70 anni · BMI 24.7 · Gruppo 0 Rh+ · Allergie: acari, polvere</p>
     </div>
   </div>
   <div class="header-right">
-    <button class="btn-outline" id="textSizeBtn" onclick="toggleTextSize()" title="Dimensione testo">🔎 Testo</button>
     <button class="btn-outline" onclick="copiaProfilo()">📋 Copia profilo</button>
     <button class="btn-outline" onclick="openRiepilogo()">📋 Riepilogo medico</button>
     <button class="btn-outline" onclick="openEdit()">✏️ Modifica</button>
@@ -195,8 +180,8 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
   <div class="tile" onclick="openPanel('vacc')">
     <div class="tile-icon">💉</div>
     <div class="tile-title">Vaccinazioni</div>
-    <div class="tile-sub">Shingrix 1ª dose fatta (02/09/2026)</div>
-    <div class="tile-badges"><span class="tag-green">3 complete</span><span class="tag-amber">Shingrix 2ª dose</span><span class="tag-amber">COVID</span></div>
+    <div class="tile-sub">5 fatte · 2 da valutare</div>
+    <div class="tile-badges"><span class="tag-green">5 ok</span><span class="tag-amber">Shingrix, COVID</span></div>
     <span class="tile-arrow">›</span>
   </div>
   <div class="tile" onclick="openPanel('macula')">
@@ -224,7 +209,14 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
     <div class="tile-icon">📖</div>
     <div class="tile-title">Archivio referti</div>
     <div class="tile-sub">Tutti i referti per specialità</div>
-    <div class="tile-badges"><span class="tag-blue">9 aree</span></div>
+    <div class="tile-badges"><span class="tag-blue">11 aree</span></div>
+    <span class="tile-arrow">›</span>
+  </div>
+  <div class="tile" onclick="openPanel('palestra')">
+    <div class="tile-icon">🏋️</div>
+    <div class="tile-title">Palestra</div>
+    <div class="tile-sub">Allenamenti, carichi, progressi</div>
+    <div class="tile-badges"><span class="tag-green">~3x/sett</span></div>
     <span class="tile-arrow">›</span>
   </div>
 </div>
@@ -242,11 +234,9 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
 <div class="modal-overlay" id="editModal">
   <div class="modal">
     <h2>Modifica profilo clinico</h2>
-    <p style="font-size:var(--fs-sm);color:var(--text2);margin-bottom:10px">Modifica il profilo JSON. Salva per aggiornare la dashboard, il contesto AI e salvare in locale su questo dispositivo.</p>
-    <textarea id="profileEditor" spellcheck="false"></textarea>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:10px">Modifica il profilo JSON. Salva per aggiornare il contesto AI.</p>
+    <textarea id="profileEditor"></textarea>
     <div class="modal-btns">
-      <button class="btn-danger-outline" onclick="resetToDefault()">↺ Predefinito</button>
-      <span class="spacer"></span>
       <button class="btn-outline" onclick="closeEdit()">Annulla</button>
       <button class="btn-primary" onclick="saveEdit()">Salva</button>
     </div>
@@ -255,9 +245,8 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
 
 <script>
 var WORKER_URL = 'https://holy-band-5ed2.pasca2009.workers.dev/';
-var APP_KEY = 'c0ae2205ea90fefe8b7ecb4892fceca04a7dc34753558edf';
 
-var DEFAULT_PROFILE = {
+var profile = {
   nome:"Cataldo Pasquale", nato:"10/08/1955", eta:70, sesso:"M", peso_kg:66.5, altezza_cm:164, bmi:24.7,
   gruppo_sanguigno:"0 Rh+", allergie:["Acari","polvere"], ex_fumatore:"~15 anni, ~30 sigarette/die, smesso",
   medico_curante:"Dr. Emanuele Carnevale, Modena",
@@ -270,8 +259,42 @@ var DEFAULT_PROFILE = {
   },
   familiarita:"Solo maculopatia. Nessuna familiarità per infarto, ictus, diabete, tumori.",
   allergie_dettaglio:"Allergia agli acari della polvere (Dermatophagoides farinae e pteronyssinus), documentata con test ALK-Abelló ~1995 (Dr. Donini). Fu prescritta immunoterapia specifica sottocutanea (vaccino desensibilizzante), ma NON è mai stata effettuata.",
-  attivita_fisica:"Palestra 3x/sett: pesi su macchine e manubri, carico controllato (non massimale) + ellittica + bici. A casa: core (dead bug, bird dog, bridge). Nessun dolore sotto sforzo.",
-  rachide_stato:"Post-fusione L4-L5 (mar 2025): claudicatio risolta, cammina bene, NO sintomi neurologici arti. Dolore solo posturale nei cambi di posizione, stabile, migliora col bridge. Assestamento post-fusione normale.",
+  attivita_fisica:"Palestra ~3x/sett: pesi su macchine e manubri, carico controllato. Leg Extension/Curl: 23kg (apr 2026) → 27kg (giu) → 29kg (lug-set, stabile 2+ mesi), nessun dolore al ginocchio. Leg Press (80kg) sospesa da metà luglio 2026 per lieve fastidio alla schiena — da riprovare più avanti. Squat (front/dumbbell, 12kg) provati fine luglio, non entrati in routine regolare — scelta prudente vista la fusione L4-L5. A casa: core (dead bug, bird dog, bridge) dall'11/09/2026.",
+  rachide_stato:"Post-fusione L4-L5 (mar 2025): claudicatio risolta, cammina bene, NO sintomi neurologici arti. Dolore solo posturale nei cambi di posizione, stabile, migliora col bridge. Assestamento post-fusione normale. Leg Press causa fastidio alla schiena — sospesa, da valutare col neurochirurgo prima di reintrodurla.",
+  palestra:{
+    fonte:"GymCoach (app personale) - aggiornamento mensile su richiesta",
+    ultimo_aggiornamento:"20/09/2026 (dati fino al 19/09/2026)",
+    indicatori_mese_corrente:{sessioni:8,durata_media_min:106,calorie_medie:560,volume_kg:86821,frequenza:"~3x/settimana"},
+    trend_mensile:[
+      {mese:"Luglio 2026",durata_media:82,calorie_medie:466,sessioni:7},
+      {mese:"Agosto 2026",durata_media:99,calorie_medie:568,sessioni:13},
+      {mese:"Settembre 2026*",durata_media:106,calorie_medie:560,sessioni:8}
+    ],
+    progressione_gambe:[
+      {periodo:"Apr 2026",peso_kg:23},
+      {periodo:"Giu 2026",peso_kg:27},
+      {periodo:"Lug-Set 2026",peso_kg:29}
+    ],
+    note:[
+      "Leg Press (80kg): lieve fastidio alla schiena, sospesa da metà luglio 2026. Da riprovare più avanti, eventualmente dopo parere neurochirurgo.",
+      "Squat (front/dumbbell squat, 12kg): provati fine luglio, non diventati esercizio regolare — scelta prudente per la fusione L4-L5.",
+      "Leg Extension/Curl: nessun dolore al ginocchio, carico stabile a 29kg da oltre 2 mesi.",
+      "Esercizi di core (Bird Dog, Cat-Cow, Glute Bridge) presenti nel log dall'11/09/2026, coerenti con il lavoro di stabilizzazione lombare."
+    ],
+    valutazione_mensile:{
+      criteri:"Indicatore orientativo (non sostituisce il parere di un fisioterapista/medico) basato su 4 criteri chiave per l'attività fisica dopo i 65 anni, secondo linee guida OMS/ACSM: (1) Frequenza — 2-3 sessioni/sett raccomandate; (2) Copertura muscolare — allenamento full body; (3) Costanza — regolarità nel tempo; (4) Equilibrio/stabilità — componente esplicitamente raccomandata over 65 per prevenzione cadute, spesso trascurata da chi fa solo pesi.",
+      mesi:[
+        {mese:"Luglio 2026",giudizio:"Buono",colore:"amber",motivo:"Frequenza e copertura muscolare corrette, ma nessun lavoro di equilibrio/stabilità."},
+        {mese:"Agosto 2026",giudizio:"Buono",colore:"amber",motivo:"Ottima costanza (13 sessioni) e copertura completa, ma componente equilibrio ancora assente."},
+        {mese:"Settembre 2026*",giudizio:"Ottimo",colore:"green",motivo:"Stessa costanza e copertura, più l'aggiunta di esercizi di core/equilibrio (Bird Dog, Cat-Cow, Glute Bridge) — completa il quadro raccomandato per l'età."}
+      ]
+    },
+    suggerimenti:[
+      {nome:"Equilibrio monopodalico",descrizione:"20-30 sec per lato (anche con supporto se serve). Componente di equilibrio raccomandata over 65 per prevenzione cadute — complementare al lavoro già fatto a terra (bird dog, glute bridge), che non allena l'equilibrio in piedi.",priorita:"alta"},
+      {nome:"Pallof Press (già in libreria, provato 1 volta a luglio)",descrizione:"Anti-rotazione del core in piedi, senza carico assiale sulla colonna — ideale con la fusione L4-L5. Da reintrodurre con regolarità, 2x/settimana.",priorita:"alta"},
+      {nome:"Farmer's carry leggero — da valutare più avanti",descrizione:"Cammino con manubri leggeri: rinforza la presa (correlata a longevità e autonomia funzionale) e la postura. Meglio attendere l'esito della visita ortopedica sul ginocchio prima di introdurre carico in movimento.",priorita:"da valutare"}
+    ]
+  },
   terapia_cronica:[
     {nome:"Atorvastatina 20 mg", indicazione:"dislipidemia", note:"LDL 98, target ≤70 — da rivalutare"},
     {nome:"Amlodipina 5 mg", indicazione:"ipertensione — pressione 130/70 ben controllata"}
@@ -293,26 +316,21 @@ var DEFAULT_PROFILE = {
     {ora:"Post-allenamento",cosa:"Whey proteine + Creatina",modalita:"nei giorni di palestra",nota:"Creatina anche nei giorni di riposo, orario libero"}
   ],
   integratori_sospesi:["Rolufta 55mcg - sospeso","Vitamina D - sospesa da tempo, 25-OH mai dosata (da controllare)"],
-
   patologie_attive:[
-    {testo:"Ipertensione arteriosa (in terapia, ben controllata 130/70)", categoria:"Cardiovascolare"},
-    {testo:"Dislipidemia - LDL 98, target ≤70", categoria:"Cardiovascolare"},
-    {testo:"Ateromasia carotidea DX placca 23% non emodinamica", categoria:"Cardiovascolare"},
-    {testo:"Ateromasia calcifica aorta addominale (diametro normale, no aneurisma)", categoria:"Cardiovascolare"},
-    {testo:"Minima sclerosi aortica valvolare (valvola normofunzionante)", categoria:"Cardiovascolare"},
-    {testo:"DMLE bilaterale forma secca stabile (controllo 11/05/2026, no MNV)", categoria:"Oculare"},
-    {testo:"Pucker maculare OD - operato 26/05/2025, VOD 8/10", categoria:"Oculare"},
-    {testo:"Cataratta iniziale OS (facosclerosi)", categoria:"Oculare"},
-    {testo:"Stenosi L4-L5 - operata 03/2025 (stabilizzazione)", categoria:"Osteoarticolare"},
-    {testo:"Anterolistesi L4-L5 I grado", categoria:"Osteoarticolare"},
-    {testo:"Gonartrosi tricompartimentale DX", categoria:"Osteoarticolare"},
-    {testo:"Coxartrosi bilaterale lieve", categoria:"Osteoarticolare"},
-    {testo:"Alluce valgo bilaterale", categoria:"Osteoarticolare"},
-    {testo:"Cheratosi attiniche fronte", categoria:"Dermatologica"},
-    {testo:"Ipoacusia bilaterale lieve (PTA DX 15, SX 13 dB)", categoria:"ORL"}
+    "Ipertensione arteriosa (in terapia, ben controllata 130/70)",
+    "Dislipidemia - LDL 98, target ≤70",
+    "DMLE bilaterale forma secca stabile (controllo 11/05/2026, no MNV)",
+    "Pucker maculare OD - operato 26/05/2025, VOD 8/10",
+    "Cataratta iniziale OS (facosclerosi)",
+    "Ateromasia carotidea DX placca 23% non emodinamica",
+    "Ateromasia calcifica aorta addominale (diametro normale, no aneurisma)",
+    "Minima sclerosi aortica valvolare (valvola normofunzionante)",
+    "Stenosi L4-L5 - operata 03/2025 (stabilizzazione)",
+    "Gonartrosi tricompartimentale DX","Coxartrosi bilaterale lieve",
+    "Ipoacusia bilaterale lieve (PTA DX 15, SX 13 dB)",
+    "Cheratosi attiniche fronte","Anterolistesi L4-L5 I grado","Alluce valgo bilaterale"
   ],
   patologie_escluse:["Sospetta BPCO - NON confermata: test broncodilatazione 29/01/2026 negativo, spirometria basale normale"],
-
   storia_chirurgica:[
     "2000 - Fistola del collo",
     "02/11/2015 - Emorroidectomia con tecnica Longo (stapler), Istanbul, Prof. Asoğlu — per malattia emorroidaria con sanguinamento, anestesia generale, senza complicanze",
@@ -322,73 +340,9 @@ var DEFAULT_PROFILE = {
     "19-22/03/2025 - Stabilizzazione L4-L5 (viti+barre+cage+laminoartrectomia L5, Bellaria Bologna)",
     "26/05/2025 - Vitrectomia+peeling pucker+IOL occhio destro (Correggio, Dr. Vecchi)"
   ],
-
   ultimi_esami_data:"17/12/2025",
-  ultimi_esami:[
-    {key:"glicemia",label:"Glicemia",v:97,ref:"70-100 mg/dL",status:"ok"},
-    {key:"creatinina",label:"Creatinina",v:0.84,ref:"0.7-1.2 mg/dL",status:"ok"},
-    {key:"egfr",label:"eGFR",v:">60",ref:"eGFR >60 = normale",status:"ok"},
-    {key:"acido_urico",label:"Acido urico",v:4.6,ref:"3.5-7.2 mg/dL",status:"ok"},
-    {key:"colesterolo_totale",label:"Colesterolo tot.",v:160,ref:"<200 mg/dL",status:"ok"},
-    {key:"ldl",label:"LDL",v:98,ref:"target ≤70 (rischio alto)",status:"warn"},
-    {key:"hdl",label:"HDL",v:44,ref:">40 mg/dL",status:"ok"},
-    {key:"trigliceridi",label:"Trigliceridi",v:74,ref:"<150 mg/dL",status:"ok"},
-    {key:"gpt_alt",label:"GPT (ALT)",v:21,ref:"<41 U/L",status:"ok"},
-    {key:"fosfatasi_alcalina",label:"Fosfatasi alc.",v:103,ref:"44-147 U/L",status:"ok"},
-    {key:"pcr",label:"PCR",v:0.5,ref:"<0.5 mg/dL circa",status:"ok"},
-    {key:"tsh",label:"TSH",v:2.84,ref:"0.4-4.0 mIU/L",status:"ok"},
-    {key:"psa",label:"PSA",v:2.11,ref:"<4 ng/mL (età-correlato)",status:"ok"},
-    {key:"vitamina_d",label:"Vitamina D",v:"Mai dosata",ref:"30-100 ng/mL",status:"warn"},
-    {key:"hba1c",label:"HbA1c",v:"Mai dosata",ref:"<5.7% (non diabetico)",status:"warn"}
-  ],
+  ultimi_esami:{glicemia:97,creatinina:0.84,egfr:">60",acido_urico:4.6,colesterolo_totale:160,ldl:98,hdl:44,trigliceridi:74,gpt_alt:21,fosfatasi_alcalina:103,pcr:0.5,tsh:2.84,psa:2.11,vitamina_d:"mai dosata",hba1c:"mai dosata"},
   storico_col_tot:[{data:"ott 2022",val:212},{data:"giu 2023",val:233},{data:"feb 2025",val:139},{data:"dic 2025",val:160}],
-
-  cruscotto:[
-    {area:"Cuore",stato:"green",val:"Ecocardiogramma normale, EF 60%",note:"Funzione contrattile nella norma, nessun danno da ipertensione"},
-    {area:"Pressione",stato:"green",val:"130/70 — ben controllata",note:"A target con amlodipina"},
-    {area:"Colesterolo / LDL",stato:"red",val:"LDL 98 (target ≤70)",note:"Unico parametro fuori posto. Importante per ateromasia carotidea+aortica"},
-    {area:"Vasi (carotidi/aorta)",stato:"amber",val:"Ateromasia lieve, placca 23%, no aneurisma",note:"Presente ma stabile e non emodinamica. Da tenere sotto controllo con LDL a target"},
-    {area:"Metabolismo/glicemia",stato:"green",val:"Glicemia 97, no diabete",note:"HbA1c mai dosata — da confermare al prossimo prelievo"},
-    {area:"Reni",stato:"green",val:"Creatinina 0.84, eGFR >60",note:"Funzione renale ottima"},
-    {area:"Fegato",stato:"green",val:"GPT 21, nella norma",note:"Ben tollerata la statina"},
-    {area:"Occhi (DMLE)",stato:"amber",val:"DMLE secca stabile, OD operato bene",note:"Forma secca sotto controllo, no attivazione neovascolare. Monitoraggio Amsler"},
-    {area:"Polmoni",stato:"green",val:"BPCO esclusa, SatO2 96%",note:"Test broncodilatazione negativo"},
-    {area:"Schiena",stato:"amber",val:"L4-L5 operata, dolore posturale stabile",note:"Buon esito, no sintomi neurologici. Follow-up settembre"},
-    {area:"Articolazioni",stato:"amber",val:"Gonartrosi DX, coxartrosi lieve",note:"Gestibile con rinforzo muscolare e attività adeguata"},
-    {area:"Prostata (PSA)",stato:"green",val:"PSA 2.11, nella norma",note:"Nei limiti per età"},
-    {area:"Vaccinazioni",stato:"amber",val:"Shingrix 1ª dose fatta, manca 2ª + COVID",note:"2ª dose Shingrix indicativamente nov 2026 - mar 2027"}
-  ],
-
-  alerts_attivi:[
-    {stato:"red", lead:"LDL 98 mg/dL", testo:"target ≤70 con ateromasia carotidea e aortica.", tag:{text:"Da ottimizzare",cls:"red"}},
-    {stato:"amber", lead:"Vitamina D e HbA1c", testo:"mai dosate; vitamina D sospesa da tempo.", tag:{text:"Al prelievo",cls:"amber"}},
-    {stato:"amber", lead:"Shingrix 2ª dose e richiamo COVID", testo:"1ª dose Shingrix fatta il 02/09/2026 (lotto 2GE24); 2ª dose da programmare tra 2 e 6 mesi. COVID stagionale ancora da valutare.", tag:{text:"Da programmare",cls:"amber"}},
-    {stato:"green", lead:"Cuore", testo:"ecocardiogramma 19/08/2026 normale (EF 60%).", tag:{text:"Ok",cls:"green"}},
-    {stato:"green", lead:"Aorta / polmoni / occhi", testo:"no aneurisma aortico · BPCO esclusa · DMLE stabile.", tag:{text:"Rassicuranti",cls:"green"}}
-  ],
-
-  calendario:[
-    {giorno:"11",mese:"Mag",gruppo:1,titolo:"Ambulatorio Maculopatia",sottotitolo:"Eseguita 11/05/2026 · DMLE dry stabile"},
-    {giorno:"29",mese:"Giu",gruppo:1,titolo:"Eco-TSA carotide",sottotitolo:"Eseguita · placca DX 23% stabile"},
-    {giorno:"27",mese:"Lug",gruppo:1,titolo:"Eco-Doppler aorta",sottotitolo:"Eseguita · no aneurisma"},
-    {giorno:"19",mese:"Ago",gruppo:1,titolo:"Ecocardiogramma",sottotitolo:"Eseguito · cuore normale EF 60%"},
-    {giorno:"29",mese:"Gen",gruppo:1,titolo:"Test broncodilatazione",sottotitolo:"Eseguito · BPCO non confermata"},
-    {giorno:"02",mese:"Set",gruppo:1,titolo:"Vaccino Herpes Zoster (1ª dose)",sottotitolo:"Eseguita 02/09/2026 · Shingrix, lotto 2GE24 · AUSL Modena"},
-    {giorno:"Set",mese:"26",gruppo:2,titolo:"Follow-up neurochirurgico",sottotitolo:"Programmato · chiedere sicurezza palestra"},
-    {giorno:"?",mese:"--",gruppo:3,titolo:"Prossimo prelievo",sottotitolo:"Aggiungere vitamina D 25-OH e HbA1c"},
-    {giorno:"?",mese:"--",gruppo:3,titolo:"Vaccino Herpes Zoster (2ª dose)",sottotitolo:"Da programmare, indicativamente tra novembre 2026 e marzo 2027 (2-6 mesi dopo la 1ª)"},
-    {giorno:"?",mese:"--",gruppo:3,titolo:"Vaccinazione anti-COVID",sottotitolo:"Richiamo stagionale da valutare col medico"}
-  ],
-
-  vaccinazioni:[
-    {nome:"Tetano / Difterite / Pertosse", stato:"fatta", dettaglio:"ott 2024"},
-    {nome:"Antiinfluenzale", stato:"fatta", dettaglio:"nov 2025"},
-    {nome:"Antipneumococcica", stato:"fatta", dettaglio:"dic 2025"},
-    {nome:"Herpes Zoster (Shingrix)", stato:"parziale", dettaglio:"1ª dose 02/09/2026 (lotto 2GE24, AUSL Modena) · 2ª dose da programmare (2-6 mesi dopo)"},
-    {nome:"Anti-COVID", stato:"da_fare", dettaglio:"valutare richiamo stagionale per età"}
-  ],
-  screening:{colon_retto:"sangue occulto negativo (lug 2024)"},
-
   maculopatia:{
     diagnosi:"DMLE bilaterale forma SECCA, diagnosticata ~10 anni fa. Familiarità per maculopatia. Ultimo controllo 11/05/2026: stabile, senza attivazione neovascolare.",
     od:{stato:"Pseudofachico (IOL). VOD 8/10. Esiti peeling. DMLE dry stabile.",storia:"DMLE con drusen → pucker → 2RT laser 12/03/2024 → pucker con edema maculare cistoide → intervento 26/05/2025 (vitrectomia+peeling+MLI+endolaser+IOL). VOD 5/10 (feb 2025) → 8/10 (2025-2026). OCT 11/05/2026: dry senza IRF/SRF/MNV."},
@@ -397,13 +351,17 @@ var DEFAULT_PROFILE = {
     terapia:"Vision Defender AREDS 2 (1 cp/die) + eventuale MZ meso-zeaxantina. Automonitoraggio Amsler.",
     laser_2rt:"2RT (Retinal Rejuvenation Therapy): laser a nanosecondi per DMLE intermedia. OD 12/03/2024, OS 22/09/2024."
   },
-
-  note_per_visite:{
-    medico_base:"LDL 98 → target ≤70 (ottimizzare statina). Dosare vitamina D 25-OH e HbA1c al prossimo prelievo. Shingrix: 1ª dose eseguita 02/09/2026, programmare 2ª dose (indicativamente 2-6 mesi dopo, nov 2026 - mar 2027). COVID: valutare richiamo stagionale, eventualmente con antinfluenzale. Rivedere lista integratori.",
-    oculista:"Oltre all'AREDS 2 aggiungo Vision Defender MZ (meso-zeaxantina): ha senso o è ridondante? Confermare posologia dei due prodotti.",
-    neurochirurgo:"Follow-up set 2026. Claudicatio risolta, no sintomi neurologici. Dolore solo posturale stabile, migliora col bridge. Palestra macchine+manubri controllato + core a casa. Chiedere: tenuta fusione, stato livelli adiacenti L3-L4/L5-S1, sicurezza allenamento, utilità fisioterapia."
+  vaccinazioni:{
+    antitetanica:"4 dosi (ultima ott 2024)",antidifterica:"ott 2024",antipertossica:"ott 2024",
+    antiinfluenzale:"nov 2025",antipneumococcica:"dic 2025",
+    herpes_zoster:"NON fatta - da valutare (Shingrix, rilevante per situazione oculare)",anti_covid:"da valutare richiamo stagionale per età"
   },
-
+  screening:{colon_retto:"sangue occulto negativo (lug 2024)"},
+  note_per_visite:{
+    medico_base:"LDL 98 → target ≤70 (ottimizzare statina). Dosare vitamina D 25-OH e HbA1c al prossimo prelievo. Shingrix: indicato a 70 anni, rilevante per situazione oculare (evitare zoster oftalmico). COVID: valutare richiamo stagionale, eventualmente con antinfluenzale. Rivedere lista integratori.",
+    oculista:"Oltre all'AREDS 2 aggiungo Vision Defender MZ (meso-zeaxantina): ha senso o è ridondante? Confermare posologia dei due prodotti.",
+    neurochirurgo:"Follow-up set 2026. Claudicatio risolta, no sintomi neurologici. Dolore solo posturale stabile, migliora col bridge. Palestra macchine+manubri controllato + core a casa. NOTA: Leg Press (80kg) causa lieve fastidio alla schiena, sospesa da metà luglio — chiedere se e quando reintrodurla. Chiedere: tenuta fusione, stato livelli adiacenti L3-L4/L5-S1, sicurezza allenamento, utilità fisioterapia."
+  },
   referti_archivio:{
     "Oculistica":[
       {data:"10/01/2023",struttura:"Finale Emilia · Dr. Fonso",testo:"VOD/VOS 10/10 nat. Drusen colloidi diffuse. DMLE diagnosticata. Prescritta OCT. Assume AREDS 2."},
@@ -448,7 +406,8 @@ var DEFAULT_PROFILE = {
     "Ortopedia":[
       {data:"28/06/2023",struttura:"Mirandola (RX)",testo:"RX ginocchio DX: iniziale appuntimento spine intercondiliche. RX piedi: valgismo alluce bilaterale, artropatia I metatarso-falangea."},
       {data:"30/08/2025",struttura:"PS Ortopedico Modena · Dr.ssa Ferrari",testo:"Gonalgia DX atraumatica. Ginocchio fresco, ROM completo. Arcoxia 90mg 7gg. RX + controllo ortopedico."},
-      {data:"18/09/2025",struttura:"Sassuolo · Dr.ssa D'Andrea (RX)",testo:"RX ginocchio DX: gonartrosi tricompartimentale DX, artropatia femoro-tibiale SX. Lieve varo DX."}
+      {data:"18/09/2025",struttura:"Sassuolo · Dr.ssa D'Andrea (RX)",testo:"RX ginocchio DX: gonartrosi tricompartimentale DX, artropatia femoro-tibiale SX. Lieve varo DX."},
+      {data:"in corso",struttura:"Auto-osservazione",testo:"Dolore ginocchio DX ricomparso dopo ciclo di Arcoxia (etoricoxib) 10gg — risoluzione temporanea, poi recidiva. Dolore MECCANICO da movimento/carico specifico: SCALE e nel GIRARSI A LETTO (torsione/flessione, non dolore a riposo puro). NESSUN dolore con leg extension/leg curl a carico leggero in palestra. Iniziato UC-II collagene tipo 2. Suggerito cuscino tra le ginocchia la notte. Da valutare con ortopedico: eventuale infiltrazione, eventuale RM ginocchio."}
     ],
     "Dermatologia":[
       {data:"16/12/2022",struttura:"Modena · Dr.ssa Padalino",testo:"Visita nevi. Rari nevi senza atipia. Nessuna lesione patologica. Protezione solare SPF 50+."},
@@ -468,13 +427,10 @@ var DEFAULT_PROFILE = {
     ],
     "Vaccinazioni & Screening":[
       {data:"16/07/2024",struttura:"Screening AUSL Modena",testo:"Ricerca sangue occulto feci (screening colon-retto): NEGATIVO."},
-      {data:"24/12/2025",struttura:"Igiene Pubblica Modena",testo:"Antitetanica 4 dosi. Antidifterica+antipertossica ott 2024. Antiinfluenzale nov 2025. Antipneumococcica dic 2025. NON documentate: Herpes Zoster, anti-COVID."},
-      {data:"02/09/2026",struttura:"AUSL Modena · Dr.ssa Alessandra Fantuzzi",testo:"Vaccinazione Herpes Zoster (HZOS), 1ª dose. Prodotto: Shingrix polv+sosp 1F, lotto 2GE24. 2ª dose da programmare indicativamente tra 2 e 6 mesi dopo la prima."}
+      {data:"24/12/2025",struttura:"Igiene Pubblica Modena",testo:"Antitetanica 4 dosi. Antidifterica+antipertossica ott 2024. Antiinfluenzale nov 2025. Antipneumococcica dic 2025. NON documentate: Herpes Zoster, anti-COVID."}
     ]
   }
 };
-
-var profile = JSON.parse(JSON.stringify(DEFAULT_PROFILE));
 
 var SYSTEM_PROMPT = "Sei il medico consulente personale di Cataldo Pasquale, 70 anni. Esperto multidisciplinare: medicina generale, cardiologia, oculistica, ORL, ortopedia, dermatologia, endocrinologia, pneumologia.\n\nPROFILO CLINICO COMPLETO:\n{PROFILE}\n\nCOME RISPONDERE:\n1. ESAUSTIVITÀ: una sola risposta completa e autosufficiente. Non frammentare, non rimandare, approfondisci subito.\n2. RAGIONA SUL SUO CASO: collega sempre ai suoi dati reali (valori, referti, patologie, terapia). Se un dato manca, dillo.\n3. COLLEGA GLI APPARATI: se una domanda ha implicazioni su altri organi, evidenzialo.\n4. STRUTTURA: titoli e paragrafi, prosa che spiega il perché, non solo il cosa.\n5. WEB SEARCH: per novità terapeutiche/linee guida usa la ricerca web e cita le fonti con data.\n6. CONCRETEZZA: chiudi indicando cosa monitorare, cosa chiedere allo specialista, cosa manca.\n7. ONESTÀ: segnala incertezze e limiti. Le decisioni terapeutiche spettano ai medici reali.\nRispondi in italiano, chiaro ma clinicamente preciso.";
 
@@ -484,36 +440,11 @@ var SECTION_CTX = {
   vacc:"Rispondi su VACCINAZIONI.",macula:"Rispondi su MACULOPATIA e occhi.",
   patologie:"Rispondi su PATOLOGIE ATTIVE.",storia:"Rispondi su STORIA e referti.",
   schiena:"Rispondi su SCHIENA e rachide.",riepilogo:"Genera RIEPILOGO per il medico.",
+  cruscotto:"Rispondi sul CRUSCOTTO salute e indicatori generali.",palestra:"Rispondi su ALLENAMENTO, carichi e progressi in palestra.",
   detail:"Approfondisci la voce specifica richiesta.",refdetail:"Approfondisci il referto specifico."
 };
 
-var chatHistories = {}, ldlChart = null, panelStack = [];
-var STORAGE_PROFILE_KEY = 'dashboardMedico_profile_v1';
-var STORAGE_CHAT_KEY = 'dashboardMedico_chats_v1';
-var STORAGE_SIZE_KEY = 'dashboardMedico_textsize_v1';
-
-function loadPersisted(){
-  try{var saved=localStorage.getItem(STORAGE_PROFILE_KEY);if(saved)profile=JSON.parse(saved);}catch(e){}
-  try{var savedChats=localStorage.getItem(STORAGE_CHAT_KEY);if(savedChats)chatHistories=JSON.parse(savedChats);}catch(e){}
-  try{var size=localStorage.getItem(STORAGE_SIZE_KEY);if(size&&size!=='md')document.documentElement.setAttribute('data-size',size);}catch(e){}
-}
-function persistProfile(){try{localStorage.setItem(STORAGE_PROFILE_KEY,JSON.stringify(profile));}catch(e){}}
-function persistChats(){try{localStorage.setItem(STORAGE_CHAT_KEY,JSON.stringify(chatHistories));}catch(e){}}
-
-function toggleTextSize(){
-  var order=['md','lg','xl'],cur=document.documentElement.getAttribute('data-size')||'md';
-  var next=order[(order.indexOf(cur)+1)%order.length];
-  if(next==='md')document.documentElement.removeAttribute('data-size');else document.documentElement.setAttribute('data-size',next);
-  try{localStorage.setItem(STORAGE_SIZE_KEY,next);}catch(e){}
-  toast(next==='md'?'Testo normale':(next==='lg'?'Testo grande':'Testo molto grande'));
-}
-
-function toast(msg){
-  var t=document.getElementById('toast');
-  if(!t){t=mk('div','toast');t.id='toast';document.body.appendChild(t);}
-  t.textContent=msg;t.classList.add('show');
-  clearTimeout(toast._t);toast._t=setTimeout(function(){t.classList.remove('show');},2800);
-}
+var chatHistories = {}, ldlChart = null, palestraChart = null, panelStack = [];
 
 function mk(t,c){var d=document.createElement(t);if(c)d.className=c;return d;}
 function getSystem(id){return SYSTEM_PROMPT.replace('{PROFILE}',JSON.stringify(profile))+'\n\nCONTESTO: '+(SECTION_CTX[id]||'');}
@@ -552,14 +483,13 @@ function sendMsg(id){
   addMsg(id,'user',text);
   if(!chatHistories[id])chatHistories[id]=[];
   chatHistories[id].push({role:'user',content:text});
-  persistChats();
   addLoading(id);
-  fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json','X-App-Key':APP_KEY},
+  fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:8000,system:getSystem(id),tools:[{type:'web_search_20250305',name:'web_search'}],messages:chatHistories[id]})})
   .then(function(r){return r.json();})
   .then(function(data){var reply='';if(data.content){data.content.forEach(function(b){if(b.type==='text')reply+=b.text;});}
     if(!reply)reply=data.error?('Errore: '+data.error.message):'Nessuna risposta.';
-    removeLoading(id);addMsg(id,'ai',reply);chatHistories[id].push({role:'assistant',content:reply});persistChats();})
+    removeLoading(id);addMsg(id,'ai',reply);chatHistories[id].push({role:'assistant',content:reply});})
   .catch(function(e){removeLoading(id);addMsg(id,'ai','Errore di connessione: '+e.message);})
   .finally(function(){if(btn)btn.disabled=false;});
 }
@@ -578,55 +508,81 @@ function buildChat(id,quick,c){
   row.appendChild(inp);row.appendChild(sb);b.appendChild(row);c.appendChild(b);
 }
 
-function safeRow(dotClass, leadText, mainText, noteText, tag){
-  var r=mk('div','alert-row'), d=mk('div','alert-dot '+dotClass), t=mk('div','alert-text');
-  if(leadText){var strong=mk('strong','');strong.textContent=leadText;t.appendChild(strong);if(mainText)t.appendChild(document.createTextNode(' — '+mainText));}
-  else if(mainText){t.appendChild(document.createTextNode(mainText));}
-  if(noteText){t.appendChild(document.createElement('br'));var sm=mk('span','');sm.style.cssText='color:var(--text2);font-size:var(--fs-sm)';sm.textContent=noteText;t.appendChild(sm);}
-  if(tag&&tag.text){t.appendChild(document.createElement('br'));var sp=mk('span','tag-'+tag.cls);sp.style.cssText='display:inline-block;margin-top:4px';sp.textContent=tag.text;t.appendChild(sp);}
-  r.appendChild(d);r.appendChild(t);return r;
-}
-function textBlock(title,text){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent=title;b.appendChild(bt);var p=mk('p','');p.style.cssText='font-size:var(--fs-body);color:var(--text3);line-height:1.6';p.textContent=text;b.appendChild(p);return b;}
+function row(cls,html){var r=mk('div','alert-row'),d=mk('div','alert-dot '+cls),t=mk('div','alert-text');t.innerHTML=html;r.appendChild(d);r.appendChild(t);return r;}
+function textBlock(title,text){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent=title;b.appendChild(bt);var p=mk('p','');p.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';p.textContent=text;b.appendChild(p);return b;}
 
 var PANELS = {};
 
 PANELS.cruscotto={title:'📊 Cruscotto salute',quick:['Spiegami il mio livello di rischio cardiovascolare','Su cosa devo concentrarmi di più?','Come miglioro gli indicatori gialli?'],
   render:function(c){
-    var intro=mk('div','block');var it=mk('p','');it.style.cssText='font-size:var(--fs-sm);color:var(--text2);line-height:1.5';
+    var intro=mk('div','block');var it=mk('p','');it.style.cssText='font-size:12px;color:var(--text2);line-height:1.5';
     it.textContent='Indicatori per area, con semaforo (verde=ok, giallo=da seguire, rosso=da correggere). Non è un punteggio unico — la salute non si riduce a un numero — ma una panoramica onesta area per area.';intro.appendChild(it);c.appendChild(intro);
-    var aree=profile.cruscotto||[];
+    var aree=[
+      {area:'Cuore',stato:'green',val:'Ecocardiogramma normale, EF 60%',note:'Funzione contrattile nella norma, nessun danno da ipertensione'},
+      {area:'Pressione',stato:'green',val:'130/70 — ben controllata',note:'A target con amlodipina'},
+      {area:'Colesterolo / LDL',stato:'red',val:'LDL 98 (target ≤70)',note:'Unico parametro fuori posto. Importante per ateromasia carotidea+aortica'},
+      {area:'Vasi (carotidi/aorta)',stato:'amber',val:'Ateromasia lieve, placca 23%, no aneurisma',note:'Presente ma stabile e non emodinamica. Da tenere sotto controllo con LDL a target'},
+      {area:'Metabolismo/glicemia',stato:'green',val:'Glicemia 97, no diabete',note:'HbA1c mai dosata — da confermare al prossimo prelievo'},
+      {area:'Reni',stato:'green',val:'Creatinina 0.84, eGFR >60',note:'Funzione renale ottima'},
+      {area:'Fegato',stato:'green',val:'GPT 21, nella norma',note:'Ben tollerata la statina'},
+      {area:'Occhi (DMLE)',stato:'amber',val:'DMLE secca stabile, OD operato bene',note:'Forma secca sotto controllo, no attivazione neovascolare. Monitoraggio Amsler'},
+      {area:'Polmoni',stato:'green',val:'BPCO esclusa, SatO2 96%',note:'Test broncodilatazione negativo'},
+      {area:'Schiena',stato:'amber',val:'L4-L5 operata, dolore posturale stabile',note:'Buon esito, no sintomi neurologici. Follow-up settembre'},
+      {area:'Articolazioni',stato:'amber',val:'Gonartrosi DX, coxartrosi lieve',note:'Gestibile con rinforzo muscolare e attività adeguata'},
+      {area:'Prostata (PSA)',stato:'green',val:'PSA 2.11, nella norma',note:'Nei limiti per età'},
+      {area:'Vaccinazioni',stato:'amber',val:'Mancano Shingrix e COVID',note:'Da valutare col medico'}
+    ];
     var b=mk('div','block');var bt=mk('div','block-title');bt.textContent='Indicatori per area';b.appendChild(bt);
-    aree.forEach(function(a){b.appendChild(safeRow('dot-'+a.stato, a.area, a.val, a.note, null));});
+    aree.forEach(function(a){
+      var r=mk('div','alert-row');
+      var dot=mk('div','alert-dot dot-'+a.stato);
+      var t=mk('div','alert-text');
+      t.innerHTML='<strong>'+a.area+'</strong> — '+a.val+'<br><span style="color:var(--text2);font-size:12px">'+a.note+'</span>';
+      r.appendChild(dot);r.appendChild(t);b.appendChild(r);});
     c.appendChild(b);
+    // conteggio
     var g=aree.filter(function(a){return a.stato==='green';}).length;
     var am=aree.filter(function(a){return a.stato==='amber';}).length;
     var rd=aree.filter(function(a){return a.stato==='red';}).length;
     var sum=mk('div','block');var st=mk('div','block-title');st.textContent='Sintesi';sum.appendChild(st);
-    var sp=mk('p','');sp.style.cssText='font-size:var(--fs-body);color:var(--text3);line-height:1.6';
+    var sp=mk('p','');sp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';
     sp.innerHTML='<span class="tag-green">'+g+' verdi</span> &nbsp; <span class="tag-amber">'+am+' gialli</span> &nbsp; <span class="tag-red">'+rd+' rosso</span><br><br>Quadro complessivamente buono: cuore, pressione, reni, fegato, metabolismo e polmoni in ordine. I punti gialli (vasi, occhi, schiena, articolazioni) sono condizioni presenti ma stabili e monitorate. L\'unico rosso — l\'LDL — è anche la cosa più facilmente migliorabile e con più impatto sul rischio.';
     sum.appendChild(sp);c.appendChild(sum);
+    // rischio CV
     var cv=mk('div','block');var cvt=mk('div','block-title');cvt.textContent='Rischio cardiovascolare';cv.appendChild(cvt);
-    var cvp=mk('p','');cvp.style.cssText='font-size:var(--fs-body);color:var(--text3);line-height:1.6';
+    var cvp=mk('p','');cvp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';
     cvp.innerHTML='Avendo <strong>aterosclerosi già documentata</strong> (placche carotidee, ateromasia aortica), rientri per definizione in una categoria di <strong>rischio cardiovascolare alto</strong>, indipendentemente dalle carte del rischio (che servono a stimarlo in chi non ha ancora malattia visibile). Questo NON è allarmante di per sé — hai pressione a target, cuore sano, normopeso, non fumatore, nessuna familiarità — ma spiega perché l\'obiettivo LDL è più basso (≤70) e perché portarlo a target è la priorità. È il singolo intervento con più impatto sul tuo rischio futuro.';
     cv.appendChild(cvp);c.appendChild(cv);
   }};
 
 PANELS.alerts={title:'⚠️ Alert & panoramica',quick:['Come ottimizzare LDL a target?','Priorità delle criticità aperte?','Fai un quadro riassuntivo del mio stato'],
   render:function(c){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent='Situazioni attive';b.appendChild(bt);
-    (profile.alerts_attivi||[]).forEach(function(a){b.appendChild(safeRow('dot-'+a.stato, a.lead, a.testo, null, a.tag));});
+    b.appendChild(row('dot-red','<strong>LDL 98 mg/dL</strong> — target &lt;70 con ateromasia carotidea e aortica. <span class="tag-red">Da ottimizzare</span>'));
+    b.appendChild(row('dot-amber','<strong>Vitamina D</strong> sospesa e mai dosata + <strong>HbA1c</strong> mai fatta. <span class="tag-amber">Al prelievo</span>'));
+    b.appendChild(row('dot-amber','<strong>Shingrix</strong> (rilevante per occhi) e <strong>COVID</strong> stagionale. <span class="tag-amber">Da valutare</span>'));
+    b.appendChild(row('dot-green','<strong>Cuore</strong> — ecocardiogramma 19/08/2026 normale (EF 60%). <span class="tag-green">Ok</span>'));
+    b.appendChild(row('dot-green','<strong>Aorta</strong> no aneurisma · <strong>BPCO</strong> esclusa · <strong>DMLE</strong> stabile. <span class="tag-green">Rassicuranti</span>'));
     c.appendChild(b);}};
 
 PANELS.cal={title:'📅 Calendario visite',quick:['Che priorità do alle visite da fare?','Cosa chiedere al neurochirurgo a settembre?'],
   render:function(c){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent='Visite e scadenze';b.appendChild(bt);
-    (profile.calendario||[]).forEach(function(i){
-      var col=i.gruppo===1?'var(--grnbg)':i.gruppo===2?'var(--ambrbg)':'var(--redbg)';
-      var bc=i.gruppo===1?'var(--green)':i.gruppo===2?'var(--amber)':'var(--red)';
-      var dc=i.gruppo===1?'var(--grnt)':i.gruppo===2?'var(--ambrt)':'var(--redt)';
-      var dot=i.gruppo===1?'dot-green':i.gruppo===2?'dot-amber':'dot-red';
+    [{d:'11',m:'Mag',g:1,t:'Ambulatorio Maculopatia',s:'Eseguita 11/05/2026 · DMLE dry stabile'},
+     {d:'29',m:'Giu',g:1,t:'Eco-TSA carotide',s:'Eseguita · placca DX 23% stabile'},
+     {d:'27',m:'Lug',g:1,t:'Eco-Doppler aorta',s:'Eseguita · no aneurisma'},
+     {d:'19',m:'Ago',g:1,t:'Ecocardiogramma',s:'Eseguito · cuore normale EF 60%'},
+     {d:'29',m:'Gen',g:1,t:'Test broncodilatazione',s:'Eseguito · BPCO non confermata'},
+     {d:'Set',m:'26',g:2,t:'Follow-up neurochirurgico',s:'Programmato · chiedere sicurezza palestra'},
+     {d:'?',m:'--',g:3,t:'Prossimo prelievo',s:'Aggiungere vitamina D 25-OH e HbA1c'},
+     {d:'?',m:'--',g:3,t:'Vaccinazioni',s:'Shingrix + richiamo COVID (da valutare col medico)'}
+    ].forEach(function(i){
+      var col=i.g===1?'var(--grnbg)':i.g===2?'var(--ambrbg)':'var(--redbg)';
+      var bc=i.g===1?'var(--green)':i.g===2?'var(--amber)':'var(--red)';
+      var dc=i.g===1?'var(--grnt)':i.g===2?'var(--ambrt)':'var(--redt)';
+      var dot=i.g===1?'dot-green':i.g===2?'dot-amber':'dot-red';
       var r=mk('div','cal-item'),cd=mk('div','cal-date');cd.style.cssText='background:'+col+';border-color:'+bc;
-      var cdd=mk('div','cal-date-day');cdd.textContent=i.giorno;cdd.style.color=dc;var cdm=mk('div','cal-date-mon');cdm.textContent=i.mese;
+      var cdd=mk('div','cal-date-day');cdd.textContent=i.d;cdd.style.color=dc;var cdm=mk('div','cal-date-mon');cdm.textContent=i.m;
       cd.appendChild(cdd);cd.appendChild(cdm);
-      var ci=mk('div',''),ct=mk('div','cal-title');ct.textContent=i.titolo;var cs=mk('div','cal-sub');cs.textContent=i.sottotitolo;ci.appendChild(ct);ci.appendChild(cs);
+      var ci=mk('div',''),ct=mk('div','cal-title');ct.textContent=i.t;var cs=mk('div','cal-sub');cs.textContent=i.s;ci.appendChild(ct);ci.appendChild(cs);
       var dt=mk('div','alert-dot '+dot);dt.style.marginTop='6px';
       r.appendChild(cd);r.appendChild(ci);r.appendChild(dt);b.appendChild(r);});
     c.appendChild(b);}};
@@ -645,29 +601,38 @@ PANELS.farm={title:'💊 Farmaci & integratori',quick:['Interazioni tra farmaci 
       var parts=s.split(' - ');pn.textContent=parts[0];var pd=mk('div','pill-dose');pd.textContent=parts[1]||'';pc.appendChild(pn);pc.appendChild(pd);g2.appendChild(pc);});
     b2.appendChild(g2);c.appendChild(b2);
     var b3=mk('div','block'),t3=mk('div','block-title');t3.textContent='Sospesi';b3.appendChild(t3);
-    profile.integratori_sospesi.forEach(function(s){b3.appendChild(safeRow('dot-amber',null,s,null,null));});c.appendChild(b3);}};
+    profile.integratori_sospesi.forEach(function(s){b3.appendChild(row('dot-amber',s));});c.appendChild(b3);
+    // calendario assunzione
+    var bc=mk('div','block'),tc=mk('div','block-title');tc.textContent='📅 Calendario giornaliero di assunzione';bc.appendChild(tc);
+    profile.calendario_assunzione.forEach(function(x){
+      var card=mk('div','');card.style.cssText='border-top:0.5px solid var(--border2);padding:9px 0';
+      var top=mk('div','');top.style.cssText='display:flex;justify-content:space-between;gap:8px;margin-bottom:3px';
+      var ora=mk('span','');ora.style.cssText='font-size:11px;font-weight:500;color:var(--bluet);text-transform:uppercase;letter-spacing:.3px';ora.textContent=x.ora;
+      var cosa=mk('span','');cosa.style.cssText='font-size:13px;font-weight:500;color:var(--text);text-align:right';cosa.textContent=x.cosa;
+      top.appendChild(ora);top.appendChild(cosa);card.appendChild(top);
+      var mod=mk('div','');mod.style.cssText='font-size:12px;color:var(--text3)';mod.textContent='→ '+x.modalita;card.appendChild(mod);
+      if(x.nota){var nt=mk('div','');nt.style.cssText='font-size:11px;color:var(--text2);margin-top:2px;font-style:italic';nt.textContent=x.nota;card.appendChild(nt);}
+      bc.appendChild(card);});
+    c.appendChild(bc);}};
 
-PANELS.esami={title:'🧪 Ultimi esami — '+DEFAULT_PROFILE.ultimi_esami_data,quick:['Analizza i valori e le criticità','Il PSA 2.11 è preoccupante?','Andamento del colesterolo nel tempo?'],
+PANELS.esami={title:'🧪 Ultimi esami — 17/12/2025',quick:['Analizza i valori e le criticità','Il PSA 2.11 è preoccupante?','Andamento del colesterolo nel tempo?'],
   render:function(c){
-    var b1=mk('div','block'),t1=mk('div','block-title');t1.textContent='Valori ('+profile.ultimi_esami_data+')';b1.appendChild(t1);
+    var b1=mk('div','block'),t1=mk('div','block-title');t1.textContent='Valori (17/12/2025)';b1.appendChild(t1);
     var g=mk('div','esami-grid');
-    (profile.ultimi_esami||[]).forEach(function(e){var ec=mk('div','esame-card '+e.status),el=mk('div','esame-label');el.textContent=e.label;var ev=mk('div','esame-value');ev.textContent=e.v;var er=mk('div','esame-ref');er.textContent=e.ref;ec.appendChild(el);ec.appendChild(ev);ec.appendChild(er);g.appendChild(ec);});
+    [{l:'Glicemia',v:'97',c:'ok'},{l:'Creatinina',v:'0.84',c:'ok'},{l:'eGFR',v:'>60',c:'ok'},{l:'Ac.urico',v:'4.6',c:'ok'},
+     {l:'Col.tot',v:'160',c:'ok'},{l:'LDL',v:'98',c:'warn',r:'target ≤70'},{l:'HDL',v:'44',c:'ok'},{l:'Triglic.',v:'74',c:'ok'},
+     {l:'GPT',v:'21',c:'ok'},{l:'PCR',v:'0.5',c:'ok'},{l:'TSH',v:'2.84',c:'ok'},{l:'PSA',v:'2.11',c:'ok'}
+    ].forEach(function(e){var ec=mk('div','esame-card '+e.c),el=mk('div','esame-label');el.textContent=e.l;var ev=mk('div','esame-value');ev.textContent=e.v;var er=mk('div','esame-ref');er.textContent=e.r||'✅';ec.appendChild(el);ec.appendChild(ev);ec.appendChild(er);g.appendChild(ec);});
     b1.appendChild(g);c.appendChild(b1);
     var b2=mk('div','block'),t2=mk('div','block-title');t2.textContent='Andamento colesterolo totale';b2.appendChild(t2);
     var w=mk('div','chart-wrap'),cv=document.createElement('canvas');cv.id='ldlChart';w.appendChild(cv);b2.appendChild(w);c.appendChild(b2);
-    setTimeout(function(){
-      if(typeof Chart==='undefined'){w.innerHTML='';var fb=mk('div','chart-fallback');fb.textContent='Grafico non disponibile (libreria non caricata — verifica la connessione).';w.appendChild(fb);return;}
-      if(ldlChart){ldlChart.destroy();ldlChart=null;}
-      ldlChart=new Chart(cv,{type:'line',data:{labels:profile.storico_col_tot.map(function(x){return x.data;}),datasets:[{label:'Col.tot',data:profile.storico_col_tot.map(function(x){return x.val;}),borderColor:'#70a8d0',backgroundColor:'rgba(112,168,208,.1)',pointRadius:5,tension:.3,fill:true},{label:'<200',data:profile.storico_col_tot.map(function(){return 200;}),borderColor:'#70b060',borderDash:[6,3],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8a90a0',font:{size:10}}}},scales:{y:{min:100,max:260,ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}},x:{ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}}}}});
-    },80);}};
+    setTimeout(function(){if(ldlChart){ldlChart.destroy();ldlChart=null;}
+      ldlChart=new Chart(cv,{type:'line',data:{labels:profile.storico_col_tot.map(function(x){return x.data;}),datasets:[{label:'Col.tot',data:profile.storico_col_tot.map(function(x){return x.val;}),borderColor:'#70a8d0',backgroundColor:'rgba(112,168,208,.1)',pointRadius:5,tension:.3,fill:true},{label:'<200',data:[200,200,200,200],borderColor:'#70b060',borderDash:[6,3],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8a90a0',font:{size:10}}}},scales:{y:{min:100,max:260,ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}},x:{ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}}}}});},80);}};
 
-PANELS.vacc={title:'💉 Vaccinazioni',quick:['Quando devo fare la 2ª dose di Shingrix?','Il richiamo COVID è ancora raccomandato per me?'],
+PANELS.vacc={title:'💉 Vaccinazioni',quick:['Mi conviene fare lo Shingrix?','Il richiamo COVID è ancora raccomandato per me?'],
   render:function(c){var b=mk('div','block');
-    var ICONS={fatta:'✅',parziale:'🟡',da_fare:'❌'}, LABELS={fatta:'fatta',parziale:'in corso',da_fare:'da valutare'}, CLS={fatta:'green',parziale:'amber',da_fare:'amber'};
-    (profile.vaccinazioni||[]).forEach(function(v){var st=v.stato||'da_fare';var r=mk('div','vacc-row'),ic=mk('span','');ic.textContent=ICONS[st];ic.style.fontSize='16px';
-      var nmWrap=mk('div','');nmWrap.style.flex='1';var nm=mk('div','vacc-name');nm.textContent=v.nome;var sub=mk('div','vacc-sub');sub.textContent=v.dettaglio;nmWrap.appendChild(nm);nmWrap.appendChild(sub);
-      var tg=mk('span','tag-'+CLS[st]);tg.textContent=LABELS[st];
-      r.appendChild(ic);r.appendChild(nmWrap);r.appendChild(tg);b.appendChild(r);});
+    [['✅','Tetano/Difterite/Pertosse','<span class="tag-green">ott 2024</span>'],['✅','Antiinfluenzale','<span class="tag-green">nov 2025</span>'],['✅','Antipneumococcica','<span class="tag-green">dic 2025</span>'],['❌','Herpes Zoster (Shingrix)','<span class="tag-amber">da valutare</span>'],['❌','Anti-COVID','<span class="tag-amber">richiamo stagionale?</span>']
+    ].forEach(function(v){var r=mk('div','vacc-row'),ic=mk('span','');ic.textContent=v[0];ic.style.fontSize='16px';var nm=mk('div','vacc-name');nm.textContent=v[1];var tg=mk('span','');tg.innerHTML=v[2];r.appendChild(ic);r.appendChild(nm);r.appendChild(tg);b.appendChild(r);});
     c.appendChild(b);}};
 
 PANELS.macula={title:'👁️ Maculopatia & occhi',quick:['Cosa aspettarsi dai prossimi controlli?','Novità 2026 su DMLE e 2RT?','Meso-zeaxantina: mi serve?','Rischio di evoluzione essudativa?'],
@@ -681,7 +646,7 @@ PANELS.macula={title:'👁️ Maculopatia & occhi',quick:['Cosa aspettarsi dai p
     c.appendChild(textBlock('Storia occhio destro (OD)',m.od.storia));
     c.appendChild(textBlock('Storia occhio sinistro (OS)',m.os.storia+' — Prossimo: '+m.os.prossimo));
     c.appendChild(textBlock('Laser 2RT',m.laser_2rt));
-    var be=mk('div','block'),te=mk('div','block-title');te.textContent='Esami strumentali';be.appendChild(te);m.esami.forEach(function(e){be.appendChild(safeRow('dot-blue',null,e,null,null));});c.appendChild(be);
+    var be=mk('div','block'),te=mk('div','block-title');te.textContent='Esami strumentali';be.appendChild(te);m.esami.forEach(function(e){be.appendChild(row('dot-blue',e));});c.appendChild(be);
     c.appendChild(textBlock('Terapia in corso',m.terapia));}};
 
 PANELS.schiena={title:'🦴 Schiena & rachide',quick:['Cosa comporta la stabilizzazione nel tempo?','Quali attività evitare?','Novità su recupero post-artrodesi?'],
@@ -689,56 +654,118 @@ PANELS.schiena={title:'🦴 Schiena & rachide',quick:['Cosa comporta la stabiliz
     c.appendChild(textBlock('Quadro attuale',profile.rachide_stato));
     c.appendChild(textBlock('Storia clinica','Lombalgia da ~2022 con blocchi ricorrenti. Da marzo 2024, dopo sollevamento carico pesante, sciatalgia bilaterale ingravescente con claudicatio. RM documentava ernia L4-L5 con stenosi severa. Operato 19-22/03/2025 (stabilizzazione con viti, barre, cage, laminoartrectomia L5) all\'Osp. Bellaria Bologna.'));
     var bi=mk('div','block'),ti=mk('div','block-title');ti.textContent='Reperti associati';bi.appendChild(ti);
-    ['Anterolistesi L4-L5 I grado (invariata)','Bulging L2-L3, L3-L4, L5-S1','Cisti di Tarlov sacrale ~2cm a S2 (non trattata, reperto da monitorare)','Coxartrosi bilaterale lieve','Calcificazioni aortiche'].forEach(function(x){bi.appendChild(safeRow('dot-blue',null,x,null,null));});c.appendChild(bi);
+    ['Anterolistesi L4-L5 I grado (invariata)','Bulging L2-L3, L3-L4, L5-S1','Cisti di Tarlov sacrale ~2cm a S2 (non trattata, reperto da monitorare)','Coxartrosi bilaterale lieve','Calcificazioni aortiche'].forEach(function(x){bi.appendChild(row('dot-blue',x));});c.appendChild(bi);
     c.appendChild(textBlock('Attività fisica',profile.attivita_fisica));
-    var bf=mk('div','block'),tf=mk('div','block-title');tf.textContent='Da programmare';bf.appendChild(tf);bf.appendChild(safeRow('dot-amber','Follow-up neurochirurgico','settembre 2026 — chiedere sicurezza palestra e utilità fisioterapia',null,null));c.appendChild(bf);}};
+    var bf=mk('div','block'),tf=mk('div','block-title');tf.textContent='Da programmare';bf.appendChild(tf);bf.appendChild(row('dot-amber','<strong>Follow-up neurochirurgico</strong> settembre 2026 — chiedere sicurezza palestra e utilità fisioterapia'));c.appendChild(bf);}};
 
 PANELS.patologie={title:'🩺 Patologie attive',quick:['Quali patologie interagiscono tra loro?','Qual è la più rischiosa per me?'],
   render:function(c){
-    var esc=mk('div','block'),te=mk('div','block-title');te.textContent='Escluse / risolte';esc.appendChild(te);
-    (profile.patologie_escluse||[]).forEach(function(x){esc.appendChild(safeRow('dot-green',null,x,null,null));});
-    c.appendChild(esc);
-    var order=['Cardiovascolare','Oculare','Osteoarticolare','Dermatologica','ORL'];
-    var byCat={};
-    (profile.patologie_attive||[]).forEach(function(p){var cat=p.categoria||'Altro';if(!byCat[cat])byCat[cat]=[];byCat[cat].push(p.testo);});
-    var cats=order.filter(function(o){return byCat[o];}).concat(Object.keys(byCat).filter(function(k){return order.indexOf(k)===-1;}));
-    cats.forEach(function(cat){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent=cat;b.appendChild(bt);
-      byCat[cat].forEach(function(item){var r=mk('div','alert-row');r.style.cssText='justify-content:space-between;align-items:center;gap:10px';
+    var cats=[['Cardiovascolare',['Ipertensione arteriosa (in terapia, ben controllata)','Dislipidemia — LDL 98, target ≤70','Ateromasia carotidea DX placca 23% non emodinamica','Ateromasia calcifica aorta (no aneurisma)','Minima sclerosi aortica valvolare']],
+      ['Oculare',['DMLE bilaterale forma secca stabile','Pucker OD — operato 26/05/2025, VOD 8/10','Cataratta iniziale OS']],
+      ['Osteoarticolare',['Stenosi L4-L5 — operata 03/2025','Gonartrosi tricompartimentale DX','Coxartrosi bilaterale lieve','Alluce valgo bilaterale']],
+      ['Dermatologica',['Cheratosi attiniche fronte']],['ORL',['Ipoacusia bilaterale lieve']]];
+    var esc=mk('div','block'),te=mk('div','block-title');te.textContent='Escluse / risolte';esc.appendChild(te);esc.appendChild(row('dot-green','<strong>Sospetta BPCO</strong> — NON confermata (test broncodilatazione negativo, gen 2026)'));c.appendChild(esc);
+    cats.forEach(function(cat){var b=mk('div','block'),bt=mk('div','block-title');bt.textContent=cat[0];b.appendChild(bt);
+      cat[1].forEach(function(item){var r=mk('div','alert-row');r.style.cssText='justify-content:space-between;align-items:center;gap:10px';
         var left=mk('div','');left.style.cssText='display:flex;align-items:center;gap:10px;flex:1';var dot=mk('div','alert-dot dot-blue');var t=mk('div','alert-text');t.textContent=item;left.appendChild(dot);left.appendChild(t);
         var ab=mk('button','approfondisci-btn');ab.textContent='Approfondisci';ab.addEventListener('click',(function(it){return function(){openDetail(it,'patologia');};})(item));
         r.appendChild(left);r.appendChild(ab);b.appendChild(r);});c.appendChild(b);});}};
 
 PANELS.storia={title:'📖 Archivio referti',quick:['Riassumi la mia storia clinica','Qual è l\'evoluzione della mia DMLE?'],
   render:function(c){var arch=profile.referti_archivio;
-    var intro=mk('div','block'),it=mk('p','');it.style.cssText='font-size:var(--fs-sm);color:var(--text2)';it.textContent='Tocca una specialità per aprire i referti (dal più recente).';intro.appendChild(it);c.appendChild(intro);
+    var intro=mk('div','block'),it=mk('p','');it.style.cssText='font-size:12px;color:var(--text2)';it.textContent='Tocca una specialità per aprire i referti (dal più recente).';intro.appendChild(it);c.appendChild(intro);
     Object.keys(arch).forEach(function(spec){var refs=arch[spec].slice().reverse();
       var b=mk('div','block');b.style.padding='0';
       var head=mk('div','');head.style.cssText='padding:12px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer';
-      var lbl=mk('div','');lbl.style.cssText='font-size:var(--fs-body);font-weight:500;color:var(--text)';lbl.textContent=spec;
+      var lbl=mk('div','');lbl.style.cssText='font-size:13px;font-weight:500;color:var(--text)';lbl.textContent=spec;
       var right=mk('div','');right.style.cssText='display:flex;align-items:center;gap:8px';var cnt=mk('span','tag-blue');cnt.textContent=refs.length;var chev=mk('span','');chev.textContent='▾';chev.style.color='var(--text2)';right.appendChild(cnt);right.appendChild(chev);
       head.appendChild(lbl);head.appendChild(right);b.appendChild(head);
       var body=mk('div','');body.style.cssText='display:none;padding:0 14px 12px';
       refs.forEach(function(r){var card=mk('div','');card.style.cssText='border-top:0.5px solid var(--border2);padding:10px 0';
-        var dt=mk('div','');dt.style.cssText='display:flex;justify-content:space-between;gap:8px;margin-bottom:4px';var dd=mk('span','');dd.style.cssText='font-size:var(--fs-sm);font-weight:500;color:var(--bluet)';dd.textContent=r.data;var st=mk('span','');st.style.cssText='font-size:var(--fs-tiny);color:var(--text2);text-align:right';st.textContent=r.struttura;dt.appendChild(dd);dt.appendChild(st);card.appendChild(dt);
-        var tx=mk('div','');tx.style.cssText='font-size:var(--fs-sm);color:var(--text3);line-height:1.5';tx.textContent=r.testo;card.appendChild(tx);
+        var dt=mk('div','');dt.style.cssText='display:flex;justify-content:space-between;gap:8px;margin-bottom:4px';var dd=mk('span','');dd.style.cssText='font-size:12px;font-weight:500;color:var(--bluet)';dd.textContent=r.data;var st=mk('span','');st.style.cssText='font-size:11px;color:var(--text2);text-align:right';st.textContent=r.struttura;dt.appendChild(dd);dt.appendChild(st);card.appendChild(dt);
+        var tx=mk('div','');tx.style.cssText='font-size:12px;color:var(--text3);line-height:1.5';tx.textContent=r.testo;card.appendChild(tx);
         var ab=mk('button','approfondisci-btn');ab.textContent='💬 Approfondisci con l\'AI';ab.style.marginTop='8px';ab.addEventListener('click',(function(rr,sp){return function(){openRefertoDetail(rr,sp);};})(r,spec));card.appendChild(ab);
         body.appendChild(card);});
       b.appendChild(body);
       head.addEventListener('click',(function(bd,cv){return function(){var open=bd.style.display!=='none';bd.style.display=open?'none':'block';cv.style.transform=open?'':'rotate(180deg)';};})(body,chev));
       c.appendChild(b);});}};
 
+PANELS.palestra={title:'🏋️ Palestra',quick:['Come sta andando la mia progressione?','La leg press è sicura da riprovare?','Consigli per il prossimo mese?'],
+  render:function(c){
+    var p=profile.palestra;
+    var b1=mk('div','block'),t1=mk('div','block-title');t1.textContent='Indicatori — aggiornato al '+p.ultimo_aggiornamento;b1.appendChild(t1);
+    var g=mk('div','esami-grid');
+    [{l:'Sessioni (mese)',v:p.indicatori_mese_corrente.sessioni,r:p.indicatori_mese_corrente.frequenza},
+     {l:'Durata media',v:p.indicatori_mese_corrente.durata_media_min+' min',r:'per sessione'},
+     {l:'Calorie medie',v:p.indicatori_mese_corrente.calorie_medie,r:'kcal/sessione'},
+     {l:'Volume sollevato',v:Math.round(p.indicatori_mese_corrente.volume_kg/1000)+' t',r:'tonnellate, mese'}
+    ].forEach(function(i){var ec=mk('div','esame-card ok'),el=mk('div','esame-label');el.textContent=i.l;var ev=mk('div','esame-value');ev.textContent=i.v;var er=mk('div','esame-ref');er.textContent=i.r;ec.appendChild(el);ec.appendChild(ev);ec.appendChild(er);g.appendChild(ec);});
+    b1.appendChild(g);c.appendChild(b1);
+
+    var b2=mk('div','block'),t2=mk('div','block-title');t2.textContent='Andamento mensile — durata e calorie';b2.appendChild(t2);
+    var w=mk('div','chart-wrap'),cv=document.createElement('canvas');cv.id='palestraChart';w.appendChild(cv);b2.appendChild(w);c.appendChild(b2);
+    setTimeout(function(){
+      if(palestraChart){palestraChart.destroy();palestraChart=null;}
+      palestraChart=new Chart(cv,{type:'line',data:{labels:p.trend_mensile.map(function(m){return m.mese;}),datasets:[
+        {label:'Durata media (min)',data:p.trend_mensile.map(function(m){return m.durata_media;}),borderColor:'#70a8d0',backgroundColor:'rgba(112,168,208,.1)',pointRadius:5,tension:.3,yAxisID:'y'},
+        {label:'Calorie medie',data:p.trend_mensile.map(function(m){return m.calorie_medie;}),borderColor:'#70b060',backgroundColor:'rgba(112,176,96,.1)',pointRadius:5,tension:.3,yAxisID:'y1'}
+      ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8a90a0',font:{size:10}}}},scales:{y:{position:'left',ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}},y1:{position:'right',ticks:{color:'#8a90a0',font:{size:10}},grid:{display:false}},x:{ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}}}}});
+    },80);
+
+    var b3=mk('div','block'),t3=mk('div','block-title');t3.textContent='Progressione carico — Leg Extension/Curl (ginocchio)';b3.appendChild(t3);
+    var pg=mk('div','pills-grid');
+    p.progressione_gambe.forEach(function(x,idx){
+      var pc=mk('div','pill-card');
+      if(idx===p.progressione_gambe.length-1) pc.style.cssText='border-color:var(--green);background:var(--grnbg)';
+      var pn=mk('div','pill-name');pn.textContent=x.peso_kg+' kg';if(idx===p.progressione_gambe.length-1)pn.style.color='var(--grnt)';
+      var pd=mk('div','pill-dose');pd.textContent=x.periodo;
+      pc.appendChild(pn);pc.appendChild(pd);pg.appendChild(pc);
+    });
+    b3.appendChild(pg);
+    var pgn=mk('p','');pgn.style.cssText='font-size:12px;color:var(--text2);margin-top:8px';pgn.textContent='Nessun dolore riportato su questi esercizi durante tutto il periodo.';b3.appendChild(pgn);
+    c.appendChild(b3);
+
+    var b4=mk('div','block'),t4=mk('div','block-title');t4.textContent='Osservazioni cliniche dall\'allenamento';b4.appendChild(t4);
+    p.note.forEach(function(n){b4.appendChild(row('dot-blue',n));});
+    c.appendChild(b4);
+
+    var b4b=mk('div','block'),t4b=mk('div','block-title');t4b.textContent='Valutazione mensile per l\'età';b4b.appendChild(t4b);
+    var crit=mk('p','');crit.style.cssText='font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:10px';crit.textContent=p.valutazione_mensile.criteri;b4b.appendChild(crit);
+    p.valutazione_mensile.mesi.forEach(function(m){
+      var card=mk('div','');card.style.cssText='border-top:0.5px solid var(--border2);padding:9px 0';
+      var top=mk('div','');top.style.cssText='display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:3px';
+      var mn=mk('span','');mn.style.cssText='font-size:13px;font-weight:500;color:var(--text)';mn.textContent=m.mese;
+      var badge=mk('span','tag-'+m.colore);badge.textContent=m.giudizio;
+      top.appendChild(mn);top.appendChild(badge);card.appendChild(top);
+      var mo=mk('div','');mo.style.cssText='font-size:12px;color:var(--text3)';mo.textContent=m.motivo;card.appendChild(mo);
+      b4b.appendChild(card);
+    });
+    c.appendChild(b4b);
+
+    var b4c=mk('div','block'),t4c=mk('div','block-title');t4c.textContent='💡 Suggerimenti per il prossimo mese';b4c.appendChild(t4c);
+    p.suggerimenti.forEach(function(s){
+      var dotCls=s.priorita==='alta'?'dot-green':'dot-amber';
+      var html='<strong>'+s.nome+'</strong><br><span style="color:var(--text2);font-size:12px">'+s.descrizione+'</span>';
+      b4c.appendChild(row(dotCls,html));
+    });
+    c.appendChild(b4c);
+
+    var b5=mk('div','block'),t5=mk('div','block-title');t5.textContent='Come aggiornare';b5.appendChild(t5);
+    var up=mk('p','');up.style.cssText='font-size:12px;color:var(--text2);line-height:1.6';up.textContent='Ogni mese carica qui in chat il file di backup JSON di GymCoach: analizzo i nuovi allenamenti e aggiorno indicatori, grafico e note.';b5.appendChild(up);c.appendChild(b5);
+  }};
+
 function openPanel(id){var p=PANELS[id];if(!p)return;panelStack=[id];
   document.getElementById('home').style.display='none';document.getElementById('panel').classList.add('open');
   document.getElementById('panel-title').textContent=p.title;
   var content=document.getElementById('panel-content');content.innerHTML='';p.render(content);buildChat(id,p.quick,content);
   var hist=chatHistories[id]||[],msgs=document.getElementById('msgs-'+id);
-  if(msgs){hist.forEach(function(m){if(m.role==='user'||m.role==='assistant'){var d=mk('div','msg '+(m.role==='user'?'msg-user':'msg-ai'));if(m.role==='assistant')d.innerHTML=parseMarkdown(m.content);else d.textContent=m.content;msgs.appendChild(d);}});msgs.scrollTop=msgs.scrollHeight;}}
+  if(msgs){hist.forEach(function(m){if(m.role==='user'||m.role==='assistant'){var d=mk('div','msg '+(m.role==='user'?'msg-user':'msg-ai'));if(m.role==='ai')d.innerHTML=parseMarkdown(m.content);else d.textContent=m.content;msgs.appendChild(d);}});msgs.scrollTop=msgs.scrollHeight;}}
 
 function openDetail(voce,tipo){var id='detail';panelStack.push('detail');
   document.getElementById('panel-title').textContent='🩺 '+voce;
   var content=document.getElementById('panel-content');content.innerHTML='';
   buildChat(id,['Cos\'è e come mi riguarda?','Sintomi da monitorare?','Interazioni con le altre patologie?','La terapia è adeguata?'],content);
-  chatHistories[id]=[];persistChats();
+  chatHistories[id]=[];
   var inp=document.getElementById('input-'+id);
   if(inp){inp.value='Approfondisci: '+voce+'. Panoramica completa nel contesto del mio profilo: cos\'è, come mi riguarda, terapia, cosa monitorare, interazioni con le altre patologie.';sendMsg(id);}}
 
@@ -748,7 +775,6 @@ function openRefertoDetail(ref,spec){var id='refdetail';panelStack.push('refdeta
   content.appendChild(textBlock('Referto — '+ref.struttura,ref.testo));
   buildChat(id,['Spiegami in parole semplici','Cosa significano i termini tecnici?','È coerente con la mia storia?','Domande da porre al medico'],content);
   chatHistories[id]=[{role:'user',content:'CONTESTO REFERTO ('+spec+', '+ref.data+', '+ref.struttura+'): '+ref.testo+'\n\nAttendi le mie domande.'},{role:'assistant',content:'Ho letto il referto del '+ref.data+'. Chiedimi pure cosa vuoi sapere.'}];
-  persistChats();
   var msgs=document.getElementById('msgs-'+id);if(msgs){addMsg(id,'ai','Ho letto il referto del '+ref.data+'. Chiedimi pure cosa vuoi sapere.');}}
 
 function openRiepilogo(){var id='riepilogo';panelStack=['riepilogo'];
@@ -759,15 +785,13 @@ function openRiepilogo(){var id='riepilogo';panelStack=['riepilogo'];
   var msgs=mk('div','messages');msgs.id='msgs-'+id;msgs.style.maxHeight='55vh';b.appendChild(msgs);
   var getLast=function(){var l=chatHistories[id]&&chatHistories[id].filter(function(m){return m.role==='assistant';}).pop();return l?l.content:'';};
   var bar=mk('div','');bar.style.cssText='display:flex;gap:6px;margin-top:8px;flex-wrap:wrap';
-  var cp=mk('button','copy-btn');cp.textContent='📄 Copia';cp.addEventListener('click',function(){var t=getLast();if(t)navigator.clipboard.writeText(t).then(function(){toast('Copiato negli appunti');});});
+  var cp=mk('button','copy-btn');cp.textContent='📄 Copia';cp.addEventListener('click',function(){var t=getLast();if(t)navigator.clipboard.writeText(t).then(function(){cp.textContent='✅ Copiato';setTimeout(function(){cp.textContent='📄 Copia';},1500);});});
   var dl=mk('button','copy-btn');dl.textContent='⬇️ Scarica';dl.addEventListener('click',function(){var t=getLast();if(t)downloadText('riepilogo_medico.txt',t);});
   bar.appendChild(cp);bar.appendChild(dl);b.appendChild(bar);content.appendChild(b);
   buildChat(id,['Rendilo più sintetico','Solo le criticità aperte','Aggiungi domande per gli specialisti'],content);
-  var hist=chatHistories[id]||[];
-  if(hist.length){var m2=document.getElementById('msgs-'+id);hist.forEach(function(m){if(m.role==='user'||m.role==='assistant'){var d=mk('div','msg '+(m.role==='user'?'msg-user':'msg-ai'));if(m.role==='assistant')d.innerHTML=parseMarkdown(m.content);else d.textContent=m.content;m2.appendChild(d);}});m2.scrollTop=m2.scrollHeight;}
-  else{chatHistories[id]=[];persistChats();
-    var inp=document.getElementById('input-'+id);
-    if(inp){inp.value='Redigi una relazione clinica di sintesi da medico consulente al medico curante, su Cataldo Pasquale. Registro professionale medico-medico, prosa asciutta e argomentata, terminologia clinica appropriata, niente elenchi scolastici. Struttura: riga anagrafica con comorbidità; problemi attivi in ordine di rilevanza, ciascuno col dato di laboratorio/strumentale e razionale; terapia in corso e sospensioni; criticità aperte e accertamenti da programmare come raccomandazioni tra pari. Completo, senza emoji.';sendMsg(id);}}}
+  chatHistories[id]=[];
+  var inp=document.getElementById('input-'+id);
+  if(inp){inp.value='Redigi una relazione clinica di sintesi da medico consulente al medico curante, su Cataldo Pasquale. Registro professionale medico-medico, prosa asciutta e argomentata, terminologia clinica appropriata, niente elenchi scolastici. Struttura: riga anagrafica con comorbidità; problemi attivi in ordine di rilevanza, ciascuno col dato di laboratorio/strumentale e razionale; terapia in corso e sospensioni; criticità aperte e accertamenti da programmare come raccomandazioni tra pari. Completo, senza emoji.';sendMsg(id);}}
 
 function closePanel(){panelStack.pop();
   if(panelStack.length>0){var top=panelStack[panelStack.length-1];if(PANELS[top]){openPanel(top);}else{document.getElementById('panel').classList.remove('open');document.getElementById('home').style.display='';}}
@@ -776,34 +800,11 @@ function closePanel(){panelStack.pop();
 function downloadText(fn,txt){var blob=new Blob([txt],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=fn;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(url);},1000);}
 
 function copiaProfilo(){var testo='PROFILO CLINICO COMPLETO — '+profile.nome+'\n(Incolla in una nuova conversazione con Claude per dargli il quadro clinico aggiornato.)\n\n'+JSON.stringify(profile,null,2);
-  navigator.clipboard.writeText(testo).then(function(){toast('Profilo copiato negli appunti');}).catch(function(){toast('Copia non riuscita — usa "Modifica" per copiarlo manualmente');});}
+  navigator.clipboard.writeText(testo).then(function(){alert('Profilo completo copiato negli appunti. Incollalo in una nuova conversazione con Claude.');}).catch(function(){alert('Copia non riuscita. Usa il bottone Modifica per copiarlo manualmente.');});}
 
 function openEdit(){document.getElementById('profileEditor').value=JSON.stringify(profile,null,2);document.getElementById('editModal').classList.add('open');}
 function closeEdit(){document.getElementById('editModal').classList.remove('open');}
-function saveEdit(){
-  try{
-    var parsed=JSON.parse(document.getElementById('profileEditor').value);
-    profile=parsed;persistProfile();
-    closeEdit();toast('Profilo aggiornato e salvato su questo dispositivo');
-    if(panelStack.length&&PANELS[panelStack[0]])openPanel(panelStack[0]);
-  }catch(e){toast('JSON non valido: '+e.message);}
-}
-function resetToDefault(){
-  if(!window.confirm('Ripristinare i valori predefiniti? Le modifiche salvate su questo dispositivo andranno perse.'))return;
-  profile=JSON.parse(JSON.stringify(DEFAULT_PROFILE));persistProfile();
-  document.getElementById('profileEditor').value=JSON.stringify(profile,null,2);
-  toast('Profilo ripristinato ai valori predefiniti');
-}
-
-function wireTileAccessibility(){
-  document.querySelectorAll('.tile').forEach(function(t){
-    t.setAttribute('tabindex','0');t.setAttribute('role','button');
-    t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();t.click();}});
-  });
-}
-
-loadPersisted();
-wireTileAccessibility();
+function saveEdit(){try{profile=JSON.parse(document.getElementById('profileEditor').value);chatHistories={};closeEdit();alert('Profilo aggiornato.');}catch(e){alert('JSON non valido: '+e.message);}}
 </script>
 </body>
 </html>
