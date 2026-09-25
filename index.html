@@ -219,6 +219,13 @@ body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:
     <div class="tile-badges"><span class="tag-green">~3x/sett</span></div>
     <span class="tile-arrow">›</span>
   </div>
+  <div class="tile" onclick="openPanel('vitali')">
+    <div class="tile-icon">⌚</div>
+    <div class="tile-title">Parametri vitali</div>
+    <div class="tile-sub">Apple Watch: FC, SpO2, equilibrio</div>
+    <div class="tile-badges"><span class="tag-green">FC 56.6</span><span class="tag-amber">equilibrio ↓</span></div>
+    <span class="tile-arrow">›</span>
+  </div>
 </div>
 
 <div id="panel">
@@ -294,6 +301,55 @@ var profile = {
       {nome:"Pallof Press (già in libreria, provato 1 volta a luglio)",descrizione:"Anti-rotazione del core in piedi, senza carico assiale sulla colonna — ideale con la fusione L4-L5. Da reintrodurre con regolarità, 2x/settimana.",priorita:"alta"},
       {nome:"Farmer's carry leggero — da valutare più avanti",descrizione:"Cammino con manubri leggeri: rinforza la presa (correlata a longevità e autonomia funzionale) e la postura. Meglio attendere l'esito della visita ortopedica sul ginocchio prima di introdurre carico in movimento.",priorita:"da valutare"}
     ]
+  },
+  apple_watch:{
+    fonte:"Apple Watch → app Salute (iPhone), dashboard riassuntiva HTML caricata dall'utente — dati storici dal 2017, metriche cliniche continue dal 2019-2021",
+    ultimo_aggiornamento:"24/09/2026",
+    indicatori_correnti:{
+      fc_riposo_media:56.6, fc_riposo_trend:"Stabile, in leggero miglioramento negli ultimi 2 mesi (59-60 bpm lug-ago → 55.8 bpm set)",
+      hrv_media:null,
+      vo2max:33.8, vo2max_nota:"Buono per l'età (71 anni, M) secondo le fasce di riferimento Apple Fitness",
+      spo2_media:94.2, spo2_trend:"Lieve calo da maggio 2026 (95.0-95.3% gen-apr → 93.6-94.3% mag-set)",
+      passi_medi:11114,
+      energia_attiva_media:637,
+      minuti_esercizio_medi:73,
+      velocita_cammino_media:3.9,
+      stabilita_cammino:82.9, stabilita_cammino_trend:"In calo costante da 5 mesi: 88.6% (apr) → 81.8% (set 2026). Ancora in fascia 'OK' Apple (>80%) ma il trend discendente è da seguire",
+      asimmetria_cammino:2.7,
+      sonno_ore_medie:6.68,
+      cuore:{fc_riposo:56.6,fc_media:76.0,fc_camminando:78.1,vo2max:33.8,spo2:94.2,freq_respiratoria:15.6},
+      attivita:{passi:11114,distanza_km:8.0,energia_attiva:637,minuti_esercizio:73,piani_saliti:11.1,tempo_in_piedi:159},
+      cammino:{velocita:3.9,lunghezza_passo:64.0,stabilita:82.9,asimmetria:2.7,doppio_appoggio:29.0,velocita_scale:0.24},
+      sonno:{qualita:79,durata:"6h 41min",durata_ore_dec:6.68,periodo:"media ultimi 7 giorni",fonte:"riportato manualmente da app Salute (non presente nell'export)"},
+      udito:{rumore_ambientale:52.1,volume_cuffie:65.8},
+      altro:{luce_giorno:118,peso_ultimo:67.1,peso_data:"21/02/2026"}
+    },
+    trend_mensile:[
+      {mese:"ott 25",fc_riposo:59.3,spo2:95.2,passi:9821,stabilita_cammino:78.6},
+      {mese:"nov 25",fc_riposo:60.9,spo2:94.9,passi:10827,stabilita_cammino:82.2},
+      {mese:"dic 25",fc_riposo:60.5,spo2:94.9,passi:9969,stabilita_cammino:82.8},
+      {mese:"gen 26",fc_riposo:58.4,spo2:94.5,passi:9916,stabilita_cammino:83.5},
+      {mese:"feb 26",fc_riposo:58.9,spo2:94.9,passi:11211,stabilita_cammino:84.0},
+      {mese:"mar 26",fc_riposo:56.1,spo2:95.3,passi:11055,stabilita_cammino:86.3},
+      {mese:"apr 26",fc_riposo:57.7,spo2:95.0,passi:11674,stabilita_cammino:88.6},
+      {mese:"mag 26",fc_riposo:58.1,spo2:94.1,passi:10399,stabilita_cammino:85.6},
+      {mese:"giu 26",fc_riposo:58.4,spo2:93.6,passi:11650,stabilita_cammino:86.0},
+      {mese:"lug 26",fc_riposo:59.2,spo2:93.7,passi:9898,stabilita_cammino:84.1},
+      {mese:"ago 26",fc_riposo:59.7,spo2:93.8,passi:8357,stabilita_cammino:83.4},
+      {mese:"set 26*",fc_riposo:55.8,spo2:94.3,passi:11223,stabilita_cammino:81.8}
+    ],
+    note:[
+      "Stabilità del cammino (Apple Walking Steadiness) in calo costante da aprile a settembre 2026 (88.6% → 81.8%). È l'indicatore di equilibrio/rischio caduta calcolato dal watch dall'andatura quotidiana — si collega direttamente all'esercizio di equilibrio monopodalico già suggerito nella scheda Palestra. Ancora in fascia 'OK' ma da tenere sotto osservazione nei prossimi mesi, anche alla luce di gonartrosi e stabilizzazione L4-L5.",
+      "SpO2 media in lieve calo da maggio 2026 (94-95% → 93.6-94.3%). Valori nella norma bassa per rilevazioni da polso (meno precise di un pulsossimetro clinico), non allarmanti isolatamente, ma utile segnalarlo al medico curante alla luce della storia di sospetta BPCO (esclusa) ed ex-fumo.",
+      "Sonno: 6h 41min medi (ultimi 7 giorni) e punteggio qualità 79/100, riportati a mano da Cataldo dall'app Salute — non presenti nell'export scaricato, quindi al momento è un'istantanea a 7 giorni e non un trend mensile come gli altri indicatori. Durata leggermente sotto le 7-8 ore generalmente consigliate per l'età, ma non è un dato isolato allarmante. Non ho un riferimento affidabile per le fasce del punteggio qualità Apple (0-100), quindi lo riporto senza etichettarlo come buono/scarso.",
+      "Nessun dato di variabilità della frequenza cardiaca (HRV) nell'esportazione.",
+      "Nessun dato di Recupero cardio (Heart Rate Recovery) — verificato da Cataldo direttamente in app Salute, non presente. Il watch lo calcola solo da allenamenti con fine ben definita (es. camminata/corsa registrata con GPS) seguiti da qualche minuto di fermo con watch indosso: probabilmente non si è ancora verificata questa combinazione.",
+      "Velocità di salita scale: 0.24 m/s (media 30gg). Non è uno degli indicatori Apple con fasce di riferimento pubbliche standardizzate come la stabilità del cammino, quindi lo riporto come dato grezzo da confrontare nel tempo più che da interpretare isolatamente — resta comunque coerente con il dolore riferito sulle scale per la gonartrosi DX.",
+      "Peso rilevato dal watch: ultimo valore 67.1 kg (21/02/2026, poi il watch non ne ha più registrati). Leggermente diverso dai 66.5 kg nel profilo principale — probabilmente bilance o momenti di misurazione diversi. Se il peso attuale differisce, aggiornalo.",
+      "Esposizione sonora — rumore ambientale 52 dB e volume cuffie 66 dB (medie 30gg): entrambi ben sotto le soglie di rischio uditivo (>85 dB prolungati). Non risultano un fattore aggravante per l'ipoacusia bilaterale lieve già documentata.",
+      "Tempo alla luce del giorno: ~118 min/giorno in media. Dato utile da menzionare insieme alla vitamina D 25-OH mai dosata, anche se l'esposizione solare registrata dal watch non sostituisce la misurazione ematica."
+    ],
+    come_aggiornare:"Ogni volta che vuoi aggiornare, esporta di nuovo questa dashboard riassuntiva HTML (o un file simile) e caricala qui in chat: ricalcolo gli indicatori e aggiorno grafico e note. Evita di caricare l'export.zip completo di Apple Salute: con anni di dati supera il limite di caricamento della chat (~135 MB) e viene troncato."
   },
   terapia_cronica:[
     {nome:"Atorvastatina 20 mg", indicazione:"dislipidemia", note:"LDL 98, target ≤70 — da rivalutare"},
@@ -441,10 +497,11 @@ var SECTION_CTX = {
   patologie:"Rispondi su PATOLOGIE ATTIVE.",storia:"Rispondi su STORIA e referti.",
   schiena:"Rispondi su SCHIENA e rachide.",riepilogo:"Genera RIEPILOGO per il medico.",
   cruscotto:"Rispondi sul CRUSCOTTO salute e indicatori generali.",palestra:"Rispondi su ALLENAMENTO, carichi e progressi in palestra.",
+  vitali:"Rispondi sui PARAMETRI VITALI rilevati da Apple Watch (frequenza cardiaca a riposo, HRV, sonno, SpO2, passi) e su come si collegano al quadro clinico generale (es. pressione, situazione cardiovascolare, dolore posturale notturno, pneumologia).",
   detail:"Approfondisci la voce specifica richiesta.",refdetail:"Approfondisci il referto specifico."
 };
 
-var chatHistories = {}, ldlChart = null, palestraChart = null, panelStack = [];
+var chatHistories = {}, ldlChart = null, palestraChart = null, vitaliChart = null, panelStack = [];
 
 function mk(t,c){var d=document.createElement(t);if(c)d.className=c;return d;}
 function getSystem(id){return SYSTEM_PROMPT.replace('{PROFILE}',JSON.stringify(profile))+'\n\nCONTESTO: '+(SECTION_CTX[id]||'');}
@@ -560,6 +617,7 @@ PANELS.alerts={title:'⚠️ Alert & panoramica',quick:['Come ottimizzare LDL a 
     b.appendChild(row('dot-red','<strong>LDL 98 mg/dL</strong> — target &lt;70 con ateromasia carotidea e aortica. <span class="tag-red">Da ottimizzare</span>'));
     b.appendChild(row('dot-amber','<strong>Vitamina D</strong> sospesa e mai dosata + <strong>HbA1c</strong> mai fatta. <span class="tag-amber">Al prelievo</span>'));
     b.appendChild(row('dot-amber','<strong>Shingrix</strong> (rilevante per occhi) e <strong>COVID</strong> stagionale. <span class="tag-amber">Da valutare</span>'));
+    b.appendChild(row('dot-amber','<strong>Stabilità del cammino</strong> (Apple Watch) in calo costante da 5 mesi: 88.6% → 81.8%. Ancora nella fascia "OK" ma da monitorare, in relazione a gonartrosi e fusione L4-L5. <span class="tag-amber">Da seguire</span>'));
     b.appendChild(row('dot-green','<strong>Cuore</strong> — ecocardiogramma 19/08/2026 normale (EF 60%). <span class="tag-green">Ok</span>'));
     b.appendChild(row('dot-green','<strong>Aorta</strong> no aneurisma · <strong>BPCO</strong> esclusa · <strong>DMLE</strong> stabile. <span class="tag-green">Rassicuranti</span>'));
     c.appendChild(b);}};
@@ -752,6 +810,95 @@ PANELS.palestra={title:'🏋️ Palestra',quick:['Come sta andando la mia progre
 
     var b5=mk('div','block'),t5=mk('div','block-title');t5.textContent='Come aggiornare';b5.appendChild(t5);
     var up=mk('p','');up.style.cssText='font-size:12px;color:var(--text2);line-height:1.6';up.textContent='Ogni mese carica qui in chat il file di backup JSON di GymCoach: analizzo i nuovi allenamenti e aggiorno indicatori, grafico e note.';b5.appendChild(up);c.appendChild(b5);
+  }};
+
+PANELS.vitali={title:'⌚ Parametri vitali (Apple Watch)',quick:['Cosa significano questi parametri per la mia salute?','Come si collegano alla mia situazione cardiovascolare?','Cosa dovrei monitorare con più attenzione?'],
+  render:function(c){
+    var v=profile.apple_watch;
+    var intro=mk('div','block'),it=mk('p','');it.style.cssText='font-size:12px;color:var(--text2);line-height:1.6';
+    it.textContent='Parametri raccolti dall\'Apple Watch tramite l\'app Salute di iPhone: frequenza cardiaca a riposo, SpO2, VO2max, attività quotidiana ed equilibrio/andatura. Si aggiornano periodicamente, con lo stesso meccanismo della scheda Palestra.';
+    intro.appendChild(it);c.appendChild(intro);
+
+    if(!v.ultimo_aggiornamento){
+      var setup=mk('div','block');setup.style.cssText='border-color:var(--amber);background:var(--ambrbg)';
+      var st=mk('div','block-title');st.textContent='Da configurare — primo aggiornamento in sospeso';st.style.color='var(--ambrt)';setup.appendChild(st);
+      var sp=mk('p','');sp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';sp.textContent='Non ho ancora ricevuto dati dall\'Apple Watch. Vedi sotto come procedere per il primo caricamento.';
+      setup.appendChild(sp);c.appendChild(setup);
+    } else {
+      var ic=v.indicatori_correnti;
+      var t1txt=mk('div','block'),t1h=mk('div','block-title');t1h.textContent='Indicatori — aggiornato al '+v.ultimo_aggiornamento;t1txt.appendChild(t1h);c.appendChild(t1txt);
+      var cats=[
+        {title:'❤️ Cuore e fitness cardio',items:[
+          {l:'FC riposo',v:ic.cuore.fc_riposo,u:' bpm',g:'Buono',cls:'ok'},
+          {l:'FC media giorno',v:ic.cuore.fc_media,u:' bpm',g:'Normale',cls:'ok'},
+          {l:'FC camminando',v:ic.cuore.fc_camminando,u:' bpm',g:'Normale',cls:'ok'},
+          {l:'VO2max',v:ic.cuore.vo2max,u:'',g:'Buono per l\'età',cls:'ok'},
+          {l:'SpO2',v:ic.cuore.spo2,u:'%',g:'Border line, da seguire',cls:'warn'},
+          {l:'Freq. respiratoria (notte)',v:ic.cuore.freq_respiratoria,u:'/min',g:'Normale',cls:'ok'}]},
+        {title:'🏃 Attività quotidiana',items:[
+          {l:'Passi',v:ic.attivita.passi,u:'/giorno',g:'Ottimo',cls:'ok'},
+          {l:'Distanza',v:ic.attivita.distanza_km,u:' km',g:'Buono',cls:'ok'},
+          {l:'Energia attiva',v:ic.attivita.energia_attiva,u:' kcal',g:'Buono',cls:'ok'},
+          {l:'Minuti esercizio',v:ic.attivita.minuti_esercizio,u:' min',g:'Ottimo',cls:'ok'},
+          {l:'Piani saliti',v:ic.attivita.piani_saliti,u:'/giorno',g:'Buono',cls:'ok'},
+          {l:'Tempo in piedi',v:ic.attivita.tempo_in_piedi,u:' min',g:'Informativo',cls:''}]},
+        {title:'⚖️ Equilibrio e cammino',items:[
+          {l:'Velocità cammino',v:ic.cammino.velocita,u:' km/h',g:'Buono',cls:'ok'},
+          {l:'Lunghezza passo',v:ic.cammino.lunghezza_passo,u:' cm',g:'Informativo',cls:''},
+          {l:'Stabilità cammino',v:ic.cammino.stabilita,u:'%',g:'Da monitorare (trend in calo)',cls:'warn'},
+          {l:'Asimmetria',v:ic.cammino.asimmetria,u:'%',g:'Normale',cls:'ok'},
+          {l:'Doppio appoggio',v:ic.cammino.doppio_appoggio,u:'%',g:'Informativo',cls:''},
+          {l:'Velocità scale',v:ic.cammino.velocita_scale,u:' m/s',g:'Nessun riferimento standard',cls:''}]},
+        {title:'😴 Sonno (ultimi 7 giorni)',items:[
+          {l:'Durata media',v:ic.sonno.durata,u:'',g:'Leggermente sotto il consigliato',cls:'warn'},
+          {l:'Qualità',v:ic.sonno.qualita,u:'/100',g:'Nessuna fascia Apple verificata',cls:''}]},
+        {title:'🔊 Esposizione sonora',items:[
+          {l:'Rumore ambientale',v:ic.udito.rumore_ambientale,u:' dB',g:'Normale',cls:'ok'},
+          {l:'Volume cuffie',v:ic.udito.volume_cuffie,u:' dB',g:'Normale',cls:'ok'}]},
+        {title:'☀️ Altro',items:[
+          {l:'Luce diurna',v:ic.altro.luce_giorno,u:' min/g',g:'Informativo',cls:''},
+          {l:'Peso ('+ic.altro.peso_data+')',v:ic.altro.peso_ultimo,u:' kg',g:'Dato non recente',cls:''}]}
+      ];
+      var legend=mk('div','block'),lt=mk('p','');lt.style.cssText='font-size:11px;color:var(--text2)';
+      lt.innerHTML='<span class="tag-green">verde</span> = nella norma/buono · <span class="tag-amber">giallo</span> = da monitorare · senza colore = solo informativo, senza un riferimento clinico standard affidabile.';
+      legend.appendChild(lt);c.appendChild(legend);
+      cats.forEach(function(cat){
+        var b=mk('div','block'),bt=mk('div','block-title');bt.textContent=cat.title;b.appendChild(bt);
+        var g=mk('div','esami-grid');
+        cat.items.forEach(function(i){var ec=mk('div','esame-card'+(i.cls?' '+i.cls:''));var el=mk('div','esame-label');el.textContent=i.l;
+          var ev=mk('div','esame-value');ev.textContent=(i.v!=null?i.v+i.u:'—');
+          var er=mk('div','esame-ref');er.textContent=i.g;
+          ec.appendChild(el);ec.appendChild(ev);ec.appendChild(er);g.appendChild(ec);});
+        b.appendChild(g);c.appendChild(b);
+      });
+
+      if(v.trend_mensile.length>0){
+        var b2=mk('div','block'),t2=mk('div','block-title');t2.textContent='Andamento — FC riposo e SpO2 (12 mesi)';b2.appendChild(t2);
+        var w=mk('div','chart-wrap'),cv=document.createElement('canvas');cv.id='vitaliChart';w.appendChild(cv);b2.appendChild(w);c.appendChild(b2);
+        setTimeout(function(){
+          if(vitaliChart){vitaliChart.destroy();vitaliChart=null;}
+          vitaliChart=new Chart(cv,{type:'line',data:{labels:v.trend_mensile.map(function(m){return m.mese;}),datasets:[
+            {label:'FC riposo (bpm)',data:v.trend_mensile.map(function(m){return m.fc_riposo;}),borderColor:'#e08080',backgroundColor:'rgba(224,128,128,.1)',pointRadius:5,tension:.3,yAxisID:'y'},
+            {label:'SpO2 (%)',data:v.trend_mensile.map(function(m){return m.spo2;}),borderColor:'#70a8d0',backgroundColor:'rgba(112,168,208,.1)',pointRadius:5,tension:.3,yAxisID:'y1'}
+          ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8a90a0',font:{size:10}}}},scales:{y:{position:'left',ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}},y1:{position:'right',min:90,max:100,ticks:{color:'#8a90a0',font:{size:10}},grid:{display:false}},x:{ticks:{color:'#8a90a0',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}}}}});
+        },80);
+      }
+
+      var b2b=mk('div','block');b2b.style.cssText='border-color:var(--amber);background:var(--ambrbg)';
+      var t2b=mk('div','block-title');t2b.textContent='📉 Andamento equilibrio — da seguire';t2b.style.color='var(--ambrt)';b2b.appendChild(t2b);
+      var eqp=mk('p','');eqp.style.cssText='font-size:13px;color:var(--text3);line-height:1.6';
+      eqp.innerHTML='<strong>Stabilità del cammino: '+ic.stabilita_cammino+'%</strong> — '+ic.stabilita_cammino_trend;
+      b2b.appendChild(eqp);c.appendChild(b2b);
+
+      if(v.note.length>0){
+        var b3=mk('div','block'),t3=mk('div','block-title');t3.textContent='Osservazioni';b3.appendChild(t3);
+        v.note.forEach(function(n){b3.appendChild(row('dot-blue',n));});
+        c.appendChild(b3);
+      }
+    }
+
+    var b4=mk('div','block'),t4=mk('div','block-title');t4.textContent='Come aggiornare';b4.appendChild(t4);
+    var up=mk('p','');up.style.cssText='font-size:12px;color:var(--text2);line-height:1.6';up.textContent=v.come_aggiornare;b4.appendChild(up);c.appendChild(b4);
   }};
 
 function openPanel(id){var p=PANELS[id];if(!p)return;panelStack=[id];
